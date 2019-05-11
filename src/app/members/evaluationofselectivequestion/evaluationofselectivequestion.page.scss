@@ -1,0 +1,129 @@
+.bg{
+    --ion-background-color: #0FADF0;  
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    //--overflow: hidden;
+}
+
+ion-card {
+    background: #fff;
+    color: #626262;
+    margin: 10px;
+    //margin-top: 50px;
+    padding: 0px !important;
+    padding-top: 0px;
+
+    ion-row {
+        margin: 2px !important;
+        padding: 0px !important;
+
+        ion-col {
+            margin: 0px !important;
+            padding: 0px !important;
+
+            p {
+                margin: 0px !important;
+                padding: 0px !important;
+                //border-bottom: 1px solid #626262;
+                font-size: 12px;
+            }
+
+            .mainQuestion {
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            .arabicWords{
+                text-align: right;
+                font-size: 12px;
+                font: bold;
+            }
+
+            img {
+                height: 100px;
+                width: 100px;
+                border-radius: 10px;
+            }
+        }
+
+        ion-button {
+            margin: 0px !important;
+            padding: 0px !important;
+        }
+    }
+}
+
+.choices {
+    background: #b9d6da;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 5px;
+    border-radius: 10px;
+
+    img {
+        height: 100px;
+        width: 150px;
+        border-radius: 10px;
+    }
+
+    span {
+        font-size: 20px;
+        padding: 5px
+    }
+}
+
+.evaluationField {
+    background: #fff;
+    border-radius: 10px;
+    padding: 3px;
+    text-align: center;
+    margin-left: 15px;
+    margin-right: 15px;
+
+    .mark {
+        color: #0FADF0;
+        font-weight: bold;
+    }
+
+    .description {
+        background: #E0E0E0;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 8px;
+        border-radius: 4px;
+    }
+}
+
+.giveMark {
+    background: #fff;
+    border-radius: 10px;
+    padding: 3px;
+    font-size: 14px;
+    margin-left: 15px;
+    margin-right: 15px;
+
+    .inputs {
+        background: #E0E0E0;
+        margin-left: 10px;
+        margin-right: 10px;
+        border-radius: 10px;
+        padding: 10px !important;
+
+        ion-item {
+            --ion-background-color: transparent !important; 
+        }
+    }
+
+    ion-label {
+        font-size: 14px;
+    }
+
+    .keepButton {
+        text-align: center;
+    }
+
+    ion-button {
+        --border-radius: 50px;
+        width: 200px;
+    }
+}

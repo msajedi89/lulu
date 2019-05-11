@@ -1,0 +1,54 @@
+<ion-content class="bg" text-center>
+  <div class="head" text-center>
+    <img src="../../assets/imgs/app-logo.jpeg">
+    <h1>LULUWA</h1>
+  </div>
+
+
+  <ion-card>
+    <ion-card-content>
+
+      <div class="inputs">
+        <ion-item>
+          <ion-icon name="person" color="medium" class="icons" slot="start"></ion-icon>
+          <ion-input [(ngModel)]="username" placeholder="Username" type="text"></ion-input>
+        </ion-item>
+        <ion-item class="pass">
+          <ion-icon name="lock" color="medium" class="icons" slot="start"></ion-icon>
+          <ion-input type="password" [(ngModel)]="pass" placeholder="Password"></ion-input>
+        </ion-item>
+
+        <ion-list>
+          <ion-radio-group>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-item>
+                    <span>Student</span>
+                    <ion-radio slot="start" value="student" color="primary" checked (click)="changeWhoIsToStudent()">
+                    </ion-radio>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-item>
+                    <span>Teacher</span>
+                    <ion-radio slot="start" value="teacher" color="primary" (click)="changeWhoIsToTeacher()">
+                    </ion-radio>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-radio-group>
+        </ion-list>
+
+        <p align="center">
+          <ion-button expand="block" color="primary" (click)="login(username, pass)" size="small">
+            LOG IN
+          </ion-button>
+        </p>
+        <span class="loginMsgs">{{ responseTxt }}</span>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

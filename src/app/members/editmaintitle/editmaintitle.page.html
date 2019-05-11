@@ -1,0 +1,37 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-dropleft-circle" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-title>Main Title</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg">
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Main Titles</ion-card-title>
+      <ion-item>
+        <p>In this page you can Add/Edit/Disable a Main Title.</p>
+      </ion-item>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-item>
+        <ion-label>Main Title:</ion-label>
+        <ion-input placeholder="Required" [(ngModel)]="newMainTitle" value="{{ mainTitle }}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Status</ion-label>
+        <ion-toggle color="warning" [(ngModel)]="mtStatus" size="small"></ion-toggle>
+      </ion-item>
+
+      <p align="center" class="keepButton">
+        <ion-button expand="block" color="success" size="small" (click)="saveChanges(newMainTitle)" slot="end">ADD/SAVE CHANGES
+        </ion-button>
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

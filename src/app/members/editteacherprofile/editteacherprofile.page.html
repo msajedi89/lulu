@@ -1,0 +1,64 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-dropleft-circle" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-title>Edit Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg">
+
+  <ion-card>
+    <ion-card-header text-center>
+      <div class="keepImage">
+        <p align="center"><img class="profileImg" src="{{ profileImg }}"></p>
+        <p class="changeImg" (click)="selectImage()">Change Profile Photo</p>
+      </div>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-item>
+        <ion-label>First Name:</ion-label>
+        <ion-input placeholder="Required" [(ngModel)]="name" value="{{ teacher.Name }}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Last Name:</ion-label>
+        <ion-input placeholder="Required" [(ngModel)]="Family" value="{{ teacher.Family }}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Username:</ion-label>
+        <ion-input placeholder="Required" [(ngModel)]="username" value="{{ teacher.Username }}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Password:</ion-label>
+        <ion-input placeholder="Required" [(ngModel)]="password" value="{{ teacher.Pass }}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Address:</ion-label>
+        <ion-textarea [(ngModel)]="address" value="{{ teacher.Address }}"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Email:</ion-label>
+        <ion-input [(ngModel)]="email" value="{{ teacher.Email }}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Mobile No:</ion-label>
+        <ion-input [(ngModel)]="phone" value="{{ teacher.Phone }}"></ion-input>
+      </ion-item>
+
+      <p align="center" class="keepButton">
+        <ion-button expand="block" color="success" size="small"
+          (click)="saveChanges(name, Family, username, password, address, email, phone)" slot="end">EDIT PROFILE
+        </ion-button>
+      </p>
+      
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

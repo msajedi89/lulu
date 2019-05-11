@@ -1,0 +1,37 @@
+.bg{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --ion-background-color: url(../../../assets/imgs/login-background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+
+ion-card {
+    --ion-background-color: transparent !important;
+    text-align: left;
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+
+    ion-item {
+        color: #626262;
+    }
+
+    ion-button {
+        opacity: 0.6;
+    }
+
+    p {
+        margin-top: 0px !important;
+        color: #0FADF0 !important;
+        font-size: 5vh !important;
+        font-weight: lighter !important;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+        span {
+            color: #000;
+            font-size: 2vh !important;
+        }
+    }
+
+   
+}

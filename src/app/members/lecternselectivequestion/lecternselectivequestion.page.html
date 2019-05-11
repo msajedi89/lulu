@@ -1,0 +1,123 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-dropleft-circle" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-title>Selection</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg">
+
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+
+        <ion-row>
+          <ion-col size="3">
+            <ion-button (click)="playVoice('question')" size="small">
+              <ion-icon name="volume-high"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="9">
+            <p class="mainQuestion">{{ question.Question }}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="3">
+            <ion-button (click)="presentPopover($event)" size="small">
+              <ion-icon name="help-circle"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="9">
+            <p>{{ question.QuestionAz }}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <p class="arabicWords">{{ question.QuestionAr }}</p>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid>
+
+    <ion-row>
+      <ion-col size="12">
+        <div class="choices" (click)="select('fstChoice')" [style.background]="oneColor">
+
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <img src="{{ fstChoiceImg }}" alt="">
+              </ion-col>
+
+              <ion-col size="6" text-center>
+                <p>
+                  <span>{{ fstChoice.NameAr }}</span><br />
+                  <span>{{ fstChoice.NameAz }}</span>
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <div class="choices" (click)="select('secChoice')" [style.background]="twoColor">
+
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <img src="{{ secChoiceImg }}" alt="">
+              </ion-col>
+
+              <ion-col size="6" text-center>
+                <p>
+                  <span>{{ secChoice.NameAr }}</span><br />
+                  <span>{{ secChoice.NameAz }}</span>
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <div class="choices" (click)="select('trdChoice')" [style.background]="threeColor">
+
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <img src="{{ trdChoiceImg }}" alt="">
+              </ion-col>
+
+              <ion-col size="6" text-center>
+                <p>
+                  <span>{{ trdChoice.NameAr }}</span><br />
+                  <span>{{ trdChoice.NameAz }}</span>
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+          <ion-button expand="block" color="warning" (click)="evaluateStudentAnswer()">CHECK YOUR ANSWER</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

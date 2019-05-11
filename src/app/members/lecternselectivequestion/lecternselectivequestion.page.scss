@@ -1,0 +1,101 @@
+.bg{
+    --ion-background-color: #0FADF0;  
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    //--overflow: hidden;
+}
+
+ion-card {
+    background: #fff;
+    color: #626262;
+    margin: 10px;
+    //margin-top: 50px;
+    padding: 0px !important;
+    padding-top: 0px;
+
+    ion-row {
+        margin: 2px !important;
+        padding: 0px !important;
+
+        ion-col {
+            margin: 0px !important;
+            padding: 0px !important;
+
+            p {
+                margin: 0px !important;
+                padding: 0px !important;
+                //border-bottom: 1px solid #626262;
+                font-size: 12px;
+            }
+
+            .mainQuestion {
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            .arabicWords{
+                text-align: right;
+                font-size: 12px;
+                font: bold;
+            }
+
+            img {
+                height: 100px;
+                width: 100px;
+                border-radius: 10px;
+            }
+        }
+
+        ion-button {
+            margin: 0px !important;
+            padding: 0px !important;
+        }
+    }
+}
+
+.choices {
+    background: #b9d6da;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 15px;
+    border-radius: 10px;
+
+    img {
+        height: 100px;
+        width: 150px;
+        border-radius: 10px;
+    }
+
+    span {
+        font-size: 20px;
+        padding: 10px
+    }
+
+    ion-button {
+        margin-top: 30px;
+        //margin-right: 3px;
+    }
+}
+
+.choicesSelected {
+    background: #00fa00;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 15px;
+    border-radius: 5px;
+
+    img {
+        height: 100px;
+        width: 150px;
+    }
+
+    span {
+        font-size: 20px;
+        padding: 10px
+    }
+
+    ion-button {
+        margin-top: 30px;
+        //margin-right: 3px;
+    }
+}

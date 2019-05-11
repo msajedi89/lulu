@@ -1,0 +1,100 @@
+import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router, RouterEvent } from '@angular/router';
+import { Storage } from '@ionic/storage';
+import { NetworkEngineService } from '../../network-engine.service';
+
+const USERID = 'userid';
+
+@Component({
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.page.html',
+  styleUrls: ['./dashboard.page.scss'],
+})
+export class DashboardPage implements OnInit {
+
+  studentID = '';
+  student: any = '';
+  profileImg = '';
+
+// tslint:disable-next-line: max-line-length
+  constructor(private router: Router, private authService: AuthenticationService, private storage: Storage, private network: NetworkEngineService) { }
+
+  ngOnInit() {
+    this.storage.get(USERID).then(userID => {
+      this.studentID = userID;
+      console.log('the studentID: ' + this.studentID);
+
+      this.network.getStudentByID(this.studentID).then(studentData => {
+        const jsonArray = studentData;
+        this.student = jsonArray[0];
+        console.log('the Student: ' + JSON.stringify(this.student));
+
+        if (this.student.ProfileImg == '') {
+          this.profileImg = '../../../assets/imgs/default-user.jpg';
+        } else {
+          this.profileImg = this.network.mainStudentsProfileImgUrl + this.student.ProfileImg;
+        }
+      });
+    });
+
+  }
+
+  logout() {
+    //this.storage.clear();
+    this.authService.logout();
+  }
+
+  goToDragDrop() {
+    this.router.navigate(['members', 'studentdragdropquestion']);
+  }
+
+  goToStudentDragDrop() {
+    this.router.navigate(['members', 'studentsdragdrop']);
+  }
+
+  goToStudentSelectiveQuestions() {
+    this.router.navigate(['members', 'studentselectivequestions']);
+  }
+
+  goToStudentDragToTableQuestion() {
+    this.router.navigate(['members', 'studentsdragtotablequestion']);
+  }
+
+  goToStudentDrawingQuestion() {
+    this.router.navigate(['members', 'studentdrawingquestion']);
+  }
+
+  goToStudentDescriptiveQuestion() {
+    this.router.navigate(['members', 'studentdescriptivequestion']);
+  }
+
+  goToStudentReciteQuran() {
+    this.router.navigate(['members', 'studentrecitequran']);
+  }
+
+  goToExamsList() {
+    this.router.navigate(['members', 'listofstudentexams']);
+  }
+
+  goToHomeworksList() {
+    this.router.navigate(['members', 'listofstudenthomeworks']);
+  }
+
+  goToListOfTakenExam() {
+    this.router.navigate(['members', 'listofstudentstakenexam']);
+  }
+
+  goToListOfTakenHomeworks() {
+    this.router.navigate(['members', 'listofstudenttakenhomework']);
+  }
+
+  goToLecterns() {
+    this.router.navigate(['members', 'lecternmaintitlepage']);
+  }
+
+  goToEditProfile() {
+    this.router.navigate(['members', 'edituser']);
+  }
+
+}

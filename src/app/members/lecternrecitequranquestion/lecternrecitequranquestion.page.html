@@ -1,0 +1,70 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-dropleft-circle" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-title>Recite Quran</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg">
+
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="3">
+            <ion-button (click)="playVoice()" size="small">
+              <ion-icon name="volume-high"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="9">
+            <p class="mainQuestion">{{ question.Question }}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="3">
+            <ion-button (click)="presentPopover($event)" size="small">
+              <ion-icon name="help-circle"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="9">
+            <p>{{ question.QuestionAz }}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <p class="arabicWords">{{ question.QuestionAr }}</p>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid>
+
+    <ion-row>
+      <ion-col>
+        <div class="recordingField">
+          <p align="center">Record Your Voice</p>
+          <p align="center">
+            <ion-button color="primary" (click)="stopAudio()" size="small" *ngIf="recording">
+              <ion-icon name="mic-off"></ion-icon>&nbsp;&nbsp;Stop Recording
+            </ion-button>
+            <ion-button color="primary" (click)="startAudio()" size="small" *ngIf="!recording">
+              <ion-icon name="mic"></ion-icon>&nbsp;&nbsp;Start Recording
+            </ion-button>
+          </p>
+
+          <div *ngIf="stVoiceFileName">
+            <p>{{ stVoiceFileName }}</p>
+            <ion-button expand="block" size="small" color="primary" (click)="playAudio(stVoiceFileName)">
+              <ion-icon name="play"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

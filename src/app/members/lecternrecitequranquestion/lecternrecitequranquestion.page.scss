@@ -1,0 +1,57 @@
+.bg{
+    --ion-background-color: #0FADF0;  
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    //--overflow: hidden;
+}
+
+ion-card {
+    background: #fff;
+    color: #626262;
+    margin: 10px;
+    //margin-top: 50px;
+    padding: 0px !important;
+    padding-top: 0px;
+
+    ion-row {
+        margin: 2px !important;
+        padding: 0px !important;
+
+        ion-col {
+            margin: 0px !important;
+            padding: 0px !important;
+
+            p {
+                margin: 0px !important;
+                padding: 0px !important;
+                //border-bottom: 1px solid #626262;
+                font-size: 12px;
+            }
+
+            .mainQuestion {
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            .arabicWords{
+                text-align: right;
+                font-size: 12px;
+                font: bold;
+            }
+        }
+
+        ion-button {
+            margin: 0px !important;
+            padding: 0px !important;
+        }
+    }
+}
+
+.recordingField {
+    background: #e0e0e0;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-left: 30px;
+    margin-right: 30px;
+}

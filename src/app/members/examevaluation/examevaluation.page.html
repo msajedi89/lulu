@@ -1,0 +1,90 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-dropleft-circle" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-title>Exam Evaluation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg" text-center>
+
+  <ion-grid>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <div class="cards">
+            <ion-card-content class="profileContent">
+              <ion-item>
+                <img class="profileImg" src="{{ profileImgUrl }}" alt="">
+              </ion-item>
+
+              <div><span>{{ namefamily }} with ID: {{ stID }}</span></div>
+              <div>Birthdate: <span>{{ birthdate }}</span></div>
+            </ion-card-content>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <h2>Give Mark</h2>
+          </ion-card-header>
+
+          <ion-item>
+            <p style="font-size: 14px;">*Note: After you Evaluate all bellow Questions, come back here and Give your Overal Mark for this Exam.
+              <br></p>
+          </ion-item>
+
+          <ion-card-content>
+
+            <ion-item>
+              <ion-label>Your Mark:</ion-label>
+              <ion-input placeholder="Required" [(ngModel)]="mark"></ion-input>
+            </ion-item>
+
+            <p align="center">
+              <ion-button (click)="recordMark(mark)" expand="block" color="success" size="small" style="margin-top: 15px; width: 150px;">
+                Record the mark
+              </ion-button>
+            </p>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h2>Exam's Questions list</h2>
+      </ion-col>
+    </ion-row>
+
+    <div *ngFor="let question of questionsList; let i = index">
+      <div *ngFor="let q1 of question; let j = index">
+        <ion-row>
+          <ion-col>
+            <div class="keepCardQuestions">
+                <ion-card>
+                    <ion-item>
+                      <ion-icon name="help-circle" slot="start" color="light"></ion-icon>
+                      <ion-label>Question ID) {{ q1.QID }}</ion-label>
+                      <ion-button expand="block" color="warning" (click)="goToQuestion(q1.QID , q1.Type)" slot="end">
+                        Evaluate</ion-button>
+                    </ion-item>
+      
+                    <ion-card-content>
+                      <p>{{ q1.Name }}</p>      
+                    </ion-card-content>
+                  </ion-card>
+            </div>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+
+  </ion-grid>
+
+</ion-content>

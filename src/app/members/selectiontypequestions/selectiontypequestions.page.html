@@ -1,0 +1,548 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-dropleft-circle" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-title>Selection Type Questions</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg" text-center>
+
+    <ion-grid>
+      <h3>Question</h3>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Question Name:</ion-label>
+            <ion-input placeholder="Required" [(ngModel)]="name"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Select Main Title<span style="color:red"> *</span></ion-label>
+            <ionic-selectable item-content [(ngModel)]="mainTitle" [items]="mainTitles" itemValueField="mtID"
+              itemTextField="MainTitle" [canSearch]="true" (onchange)="userChanged($event)" (onClose)="onClose($event)">
+
+            </ionic-selectable>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Select Sub Title<span style="color:red"> *</span></ion-label>
+            <ionic-selectable item-content [(ngModel)]="subTitle" [items]="subTitles" itemValueField="SubTID"
+              itemTextField="SubTitle" [canSearch]="true" (onchange)="userChanged($event)">
+
+            </ionic-selectable>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Question(English):</ion-label>
+            <ion-input placeholder="Required" [(ngModel)]="question"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Question(Arabic):</ion-label>
+            <ion-input [(ngModel)]="questionAr"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Question(Arabizi):</ion-label>
+            <ion-input [(ngModel)]="questionAz"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Max Time:</ion-label>
+            <ion-input [(ngModel)]="maxTime"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Description(English):</ion-label>
+            <ion-textarea [(ngModel)]="descriptionEn"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Description(Arabic):</ion-label>
+            <ion-textarea [(ngModel)]="descriptionAr"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Question Image</ion-card-title>
+              <p align="center"><img class="questionImage" src="{{ questionImg }}"></p>
+
+              <ion-item *ngIf="myQuestionImgID">
+                <p align="center">The QuestionImgID: {{myQuestionImgID}}</p>
+              </ion-item>
+
+            </ion-card-header>
+
+            <ion-card-content>
+
+              <p align="center">
+                <ion-button expand="block" size="small" color="success" (click)="selectImage(root='question', imageName=name)">
+                  <ion-icon slot="start" name="camera"></ion-icon>
+                  Select Image
+                </ion-button>
+              </p>
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Question Voice</ion-card-title>
+              <p align="center">
+                <ion-button expand="block" color="primary"
+                  (click)="stopAudio(root='question', voiceNameEn=name, voiceNameAr=name)" size="small"
+                  *ngIf="recording">
+                  <ion-icon name="mic-off"></ion-icon>&nbsp;&nbsp;Stop Recording
+                </ion-button>
+                <ion-button expand="block" color="primary"
+                  (click)="startAudio(root='question', voiceNameEn=name, voiceNameAr=name)" size="small"
+                  *ngIf="!recording">
+                  <ion-icon name="mic"></ion-icon>&nbsp;&nbsp;Start Recording
+                </ion-button>
+              </p>
+            </ion-card-header>
+
+            <ion-card-content>
+
+              <ion-item *ngIf="questionAudiofileName">
+                <p>{{questionAudiofileName}}</p>
+                <button ion-button clear item-end large (click)="playAudio(questionAudiofileName,root='question')">
+                  <ion-icon name="play"></ion-icon>
+                </button>&nbsp;
+              </ion-item>
+
+              <ion-item *ngIf="myQuestionVoiceID">
+                <p>the Voice VID: {{myQuestionVoiceID}}</p>
+              </ion-item>
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <p><br></p>
+        </ion-col>
+      </ion-row>
+
+      <h3>Answers</h3>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>First Choice</ion-card-title>
+              <p align="center"><img class="questionImage" src="{{ fstChoiceImage }}"></p>
+
+              <ion-item *ngIf="myFstImgID">
+                <p align="center">The FstImgID: {{myFstImgID}}</p>
+              </ion-item>
+
+            </ion-card-header>
+
+            <ion-item>
+              <p>*Note: you can choose your previous Choices. if you choosed, then do not select image or record
+                voice for this Choice. <br></p>
+            </ion-item>
+            <ion-item>
+              <ion-label>Select Choice</ion-label>
+              <ionic-selectable item-content [(ngModel)]="fstChoice" [items]="selectionChoices" itemValueField="SID"
+                itemTextField="NameEn" [canSearch]="true" (onchange)="userChanged($event)"
+                (onClose)="onCloseFstChoice($event)">
+
+              </ionic-selectable>
+            </ion-item>
+
+            <ion-card-content>
+
+              <ion-item>
+                <ion-label>English Text:</ion-label>
+                <ion-input placeholder="Required" [(ngModel)]="fstChoiceEn" value="{{ fstNameEn }}"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Arabic Text:</ion-label>
+                <ion-input placeholder="Required" [(ngModel)]="fstChoiceAr" value="{{ fstNameAr }}"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Arabizi Text:</ion-label>
+                <ion-input [(ngModel)]="fstChoiceAz" value="{{ fstNameAz }}"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Picture: </ion-label>
+                <p align="center">
+                  <ion-button expand="block" color="success"
+                    (click)="selectImage(root='fstChoice', imageName=fstChoiceEn)">
+                    <ion-icon slot="start" name="camera"></ion-icon>
+                    Select Image
+                  </ion-button>
+                </p>
+              </ion-item>
+
+              <ion-item *ngIf="fstImage">
+                <ion-label>Picture: </ion-label>
+                <p align="center"><img class="fstChoiceChosenImg" src="{{ fstImage }}"></p>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Voice: </ion-label>
+                <p align="center">
+                  <ion-button expand="block" color="primary"
+                    (click)="stopAudio(root='fstChoice', voiceNameEn=fstChoiceEn, voiceNameAr=fstChoiceAr)" size="small"
+                    *ngIf="fstRecording">
+                    <ion-icon name="mic-off"></ion-icon>&nbsp;&nbsp;Stop Recording
+                  </ion-button>
+                  <ion-button expand="block" color="primary"
+                    (click)="startAudio(root='fstChoice', voiceNameEn=fstChoiceEn, voiceNameAr=fstChoiceAr)"
+                    size="small" *ngIf="!fstRecording">
+                    <ion-icon name="mic"></ion-icon>&nbsp;&nbsp;Start Recording
+                  </ion-button>
+                </p>
+              </ion-item>
+
+              <ion-item *ngIf="fstAudioFileName">
+                <p>{{fstAudioFileName}}
+                  <button ion-button clear item-end large (click)="playAudio(fstAudioFileName,root='fstChoice')">
+                    <ion-icon name="play"></ion-icon>
+                  </button>&nbsp;
+                </p>
+              </ion-item>
+
+              <ion-item *ngIf="fstChoice">
+                <ion-label>Voice: {{ fstVoice }}</ion-label>
+              </ion-item>
+
+              <ion-item *ngIf="myFstVoiceID">
+                <ion-label>Voice VID: {{ myFstVoiceID }}</ion-label>
+              </ion-item>
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Second Choice</ion-card-title>
+              <p align="center"><img class="questionImage" src="{{ secChoiceImage }}"></p>
+
+              <ion-item *ngIf="mySecImgID">
+                <p align="center">The SecImgID: {{mySecImgID}}</p>
+              </ion-item>
+
+            </ion-card-header>
+
+            <ion-item>
+              <p>*Note: you can choose your previous Choices. if you choosed, then do not select image or record
+                voice for this Choice. <br></p>
+            </ion-item>
+            <ion-item>
+              <ion-label>Select Choice</ion-label>
+              <ionic-selectable item-content [(ngModel)]="secChoice" [items]="selectionChoices" itemValueField="SID"
+                itemTextField="NameEn" [canSearch]="true" (onchange)="userChanged($event)"
+                (onClose)="onCloseSecChoice($event)">
+
+              </ionic-selectable>
+            </ion-item>
+
+            <ion-card-content>
+
+              <ion-item>
+                <ion-label>English Text:</ion-label>
+                <ion-input placeholder="Required" [(ngModel)]="secChoiceEn" value="{{ secNameEn }}"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Arabic Text:</ion-label>
+                <ion-input placeholder="Required" [(ngModel)]="secChoiceAr" value="{{ secNameAr }}"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Arabizi Text:</ion-label>
+                <ion-input [(ngModel)]="secChoiceAz" value="{{ secNameAz }}"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Picture: </ion-label>
+                <p align="center">
+                  <ion-button expand="block" color="success"
+                    (click)="selectImage(root='secChoice', imageName=secChoiceEn)">
+                    <ion-icon slot="start" name="camera"></ion-icon>
+                    Select Image
+                  </ion-button>
+                </p>
+              </ion-item>
+
+              <ion-item *ngIf="secImage">
+                <ion-label>Picture: </ion-label>
+                <p align="center"><img class="fstChoiceChosenImg" src="{{ secImage }}"></p>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Voice: </ion-label>
+                <p align="center">
+                  <ion-button expand="block" color="primary"
+                    (click)="stopAudio(root='secChoice', voiceNameEn=secChoiceEn, voiceNameAr=secChoiceAr)" size="small"
+                    *ngIf="secRecording">
+                    <ion-icon name="mic-off"></ion-icon>&nbsp;&nbsp;Stop Recording
+                  </ion-button>
+                  <ion-button expand="block" color="primary"
+                    (click)="startAudio(root='secChoice', voiceNameEn=secChoiceEn, voiceNameAr=secChoiceAr)"
+                    size="small" *ngIf="!secRecording">
+                    <ion-icon name="mic"></ion-icon>&nbsp;&nbsp;Start Recording
+                  </ion-button>
+                </p>
+              </ion-item>
+
+              <ion-item *ngIf="secAudioFileName">
+                <p>{{secAudioFileName}}
+                  <button ion-button clear item-end large (click)="playAudio(secAudioFileName,root='secChoice')">
+                    <ion-icon name="play"></ion-icon>
+                  </button>&nbsp;
+                </p>
+              </ion-item>
+
+              <ion-item *ngIf="secChoice">
+                <ion-label>Voice: {{ secVoice }}</ion-label>
+              </ion-item>
+
+              <ion-item *ngIf="mySecVoiceID">
+                <ion-label>Voice VID: {{ mySecVoiceID }}</ion-label>
+              </ion-item>
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Third Choice</ion-card-title>
+              <p align="center"><img class="questionImage" src="{{ trdChoiceImage }}"></p>
+
+              <ion-item *ngIf="myTrdImgID">
+                <p align="center">The TrdImgID: {{myTrdImgID}}</p>
+              </ion-item>
+
+            </ion-card-header>
+
+            <ion-item>
+              <p>*Note: you can choose your previous Choices. if you choosed, then do not select image or record
+                voice for this Choice. <br></p>
+            </ion-item>
+            <ion-item>
+              <ion-label>Select Choice</ion-label>
+              <ionic-selectable item-content [(ngModel)]="trdChoice" [items]="selectionChoices" itemValueField="SID"
+                itemTextField="NameEn" [canSearch]="true" (onchange)="userChanged($event)"
+                (onClose)="onCloseTrdChoice($event)">
+
+              </ionic-selectable>
+            </ion-item>
+
+            <ion-card-content>
+
+              <ion-item>
+                <ion-label>English Text:</ion-label>
+                <ion-input placeholder="Required" [(ngModel)]="trdChoiceEn" value="{{ trdNameEn }}"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Arabic Text:</ion-label>
+                <ion-input placeholder="Required" [(ngModel)]="trdChoiceAr" value="{{ trdNameAr }}"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Arabizi Text:</ion-label>
+                <ion-input [(ngModel)]="trdChoiceAz" value="{{ trdNameAz }}"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Picture: </ion-label>
+                <p align="center">
+                  <ion-button expand="block" color="success"
+                    (click)="selectImage(root='trdChoice', imageName=trdChoiceEn)">
+                    <ion-icon slot="start" name="camera"></ion-icon>
+                    Select Image
+                  </ion-button>
+                </p>
+              </ion-item>
+
+              <ion-item *ngIf="trdImage">
+                <ion-label>Picture: </ion-label>
+                <p align="center"><img class="fstChoiceChosenImg" src="{{ trdImage }}"></p>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Voice: </ion-label>
+                <p align="center">
+                  <ion-button expand="block" color="primary"
+                    (click)="stopAudio(root='trdChoice', voiceNameEn=trdChoiceEn, voiceNameAr=trdChoiceAr)" size="small"
+                    *ngIf="trdRecording">
+                    <ion-icon name="mic-off"></ion-icon>&nbsp;&nbsp;Stop Recording
+                  </ion-button>
+                  <ion-button expand="block" color="primary"
+                    (click)="startAudio(root='trdChoice', voiceNameEn=trdChoiceEn, voiceNameAr=trdChoiceAr)"
+                    size="small" *ngIf="!trdRecording">
+                    <ion-icon name="mic"></ion-icon>&nbsp;&nbsp;Start Recording
+                  </ion-button>
+                </p>
+              </ion-item>
+
+              <ion-item *ngIf="trdAudioFileName">
+                <p>{{trdAudioFileName}}
+                  <button ion-button clear item-end large (click)="playAudio(trdAudioFileName,root='trdChoice')">
+                    <ion-icon name="play"></ion-icon>
+                  </button>&nbsp;
+                </p>
+              </ion-item>
+
+              <ion-item *ngIf="trdVoice">
+                <ion-label>Voice: {{ trdVoice }}</ion-label>
+              </ion-item>
+
+              <ion-item *ngIf="myTrdVoiceID">
+                <ion-label>Voice VID: {{ myTrdVoiceID }}</ion-label>
+              </ion-item>
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Correct Choices</ion-card-title>
+            </ion-card-header>
+
+            <ion-item>
+              <ion-label>Multi Selection</ion-label>
+              <ion-toggle color="warning" [(ngModel)]="multi"></ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <p>*Note: here you should choose this question to be Single Selection or Multi-Selection. <br></p>
+            </ion-item>
+
+            <ion-item>
+              <p>*Note: Also you should Choose the Correct Choices. <br></p>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Select Correct Choice/s<span style="color:red"> *</span></ion-label>
+              <ionic-selectable item-content [(ngModel)]="correctChoice" [items]="correctCoices" itemValueField="id"
+                itemTextField="choices" [canSearch]="true" (onchange)="userChanged($event)"
+                (onClose)="onCloseCorrectChoice($event)">
+
+              </ionic-selectable>
+            </ion-item>
+
+            <ion-card-content>
+
+              <ion-item *ngIf="correctChoice">
+                <ion-label>Correct Choice/s: {{ correctChoice.choices }}</ion-label>
+              </ion-item>
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <h3>Prepared Information</h3>
+            </ion-card-header>
+
+            <ion-card-content>
+
+              <ion-item>
+                <p>The First Selection ID: {{myFstChoiceID}}</p>
+              </ion-item>
+
+              <ion-item>
+                <p>The Second Selection ID: {{mySecChoiceID}}</p>
+              </ion-item>
+
+              <ion-item>
+                <p>The Third Selection ID: {{myTrdChoiceID}}</p>
+              </ion-item>
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" color="secondary"
+            (click)="prepareQuestion(fstChoiceEn, fstChoiceAr, fstChoiceAz, secChoiceEn, secChoiceAr, secChoiceAz, trdChoiceEn, trdChoiceAr, trdChoiceAz)">
+            Prepare to Insert
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" color="success"
+            (click)="insertQuestion(name, question, questionAr, questionAz, maxTime, descriptionEn, descriptionAr)">
+            Insert Question
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+</ion-content>

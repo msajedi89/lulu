@@ -1,0 +1,179 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-dropleft-circle" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-title>Draw Letter & Word Questions</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg" text-center>
+
+    <ion-grid>
+
+      <h3>Question</h3>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Question Name:</ion-label>
+            <ion-input placeholder="Required" [(ngModel)]="name"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Select Main Title</ion-label>
+            <ionic-selectable item-content [(ngModel)]="mainTitle" [items]="mainTitles" itemValueField="mtID"
+              itemTextField="MainTitle" [canSearch]="true" (onchange)="userChanged($event)" (onClose)="onClose($event)">
+
+            </ionic-selectable>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Select Sub Title</ion-label>
+            <ionic-selectable item-content [(ngModel)]="subTitle" [items]="subTitles" itemValueField="SubTID"
+              itemTextField="SubTitle" [canSearch]="true" (onchange)="userChanged($event)">
+
+            </ionic-selectable>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Question(English):</ion-label>
+            <ion-input placeholder="Required" [(ngModel)]="question"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Question(Arabic):</ion-label>
+            <ion-input [(ngModel)]="questionAr"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Question(Arabizi):</ion-label>
+            <ion-input [(ngModel)]="questionAz"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Max Time:</ion-label>
+            <ion-input [(ngModel)]="maxTime"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Description(English):</ion-label>
+            <ion-textarea [(ngModel)]="descriptionEn"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Description(Arabic):</ion-label>
+            <ion-textarea [(ngModel)]="descriptionAr"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <h3>Question Image</h3>
+              <p align="center"><img class="questionImage" src="{{ questionImg }}"></p>
+
+              <ion-item *ngIf="myQuestionImgID">
+                <p align="center">The QuestionImgID: {{myQuestionImgID}}</p>
+              </ion-item>
+
+            </ion-card-header>
+
+            <ion-card-content>
+
+              <p align="center">
+                <ion-button expand="block" size="small" color="success" (click)="selectImage(root='question', imageName=name)">
+                  <ion-icon slot="start" name="camera"></ion-icon>
+                  Select Image
+                </ion-button>
+              </p>
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <h3>Question Voice</h3>
+              <p align="center">
+                <ion-button expand="block" color="primary"
+                  (click)="stopAudio(root='question', voiceNameEn=name, voiceNameAr=name)" size="small"
+                  *ngIf="recording">
+                  <ion-icon name="mic-off"></ion-icon>&nbsp;&nbsp;Stop Recording
+                </ion-button>
+                <ion-button expand="block" color="primary"
+                  (click)="startAudio(root='question', voiceNameEn=name, voiceNameAr=name)" size="small"
+                  *ngIf="!recording">
+                  <ion-icon name="mic"></ion-icon>&nbsp;&nbsp;Start Recording
+                </ion-button>
+              </p>
+            </ion-card-header>
+
+            <ion-card-content>
+
+              <ion-item *ngIf="questionAudiofileName">
+                <p>{{questionAudiofileName}}</p>
+                <button ion-button clear item-end large (click)="playAudio(questionAudiofileName,root='question')">
+                  <ion-icon name="play"></ion-icon>
+                </button>
+              </ion-item>
+
+              <ion-item *ngIf="myQuestionVoiceID">
+                <p>the Voice VID: {{myQuestionVoiceID}}</p>
+              </ion-item>
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" color="success"
+            (click)="insertQuestion(name, question, questionAr, questionAz, maxTime, descriptionEn, descriptionAr)">
+            Insert Question
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+</ion-content>

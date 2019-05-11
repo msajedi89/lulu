@@ -1,0 +1,85 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-dropleft-circle" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-title>Create an Homework</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg" text-center>
+
+  <h1>Homework</h1>
+
+  <ion-grid>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Homework Name:</ion-label>
+          <ion-input placeholder="Required" [(ngModel)]="name"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Homework Subject:</ion-label>
+          <ion-input placeholder="Required" [(ngModel)]="subject"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Homework Date:</ion-label>
+          <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY" [(ngModel)]="homeworkDate">
+          </ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Choose Questions</ion-label>
+          <ionic-selectable item-content [(ngModel)]="questions" [items]="allQuestions" itemValueField="QID"
+            itemTextField="Question" [canSearch]="true" (onchange)="userChanged($event)" (onClose)="onClose($event)"
+            [isMultiple]="true">
+
+          </ionic-selectable>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Choose Students</ion-label>
+          <ionic-selectable item-content [(ngModel)]="students" [items]="allStudents" itemValueField="stID"
+            itemTextField="NameFamily" [canSearch]="true" (onchange)="userChanged($event)"
+            (onClose)="onCloseStudent($event)" [isMultiple]="true">
+
+          </ionic-selectable>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p>*Note: After filling the Required fields, Choose your Questions to be in this Homework. Then Choose
+          Students to send them.</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="insertHomework(name, subject, homeworkDate)" expand="block" color="success">
+          Create Homework
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,104 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <span slot="start" (click)="goBack()" style="margin-left:10px;">Back</span>
+  
+      <ion-title>Connect To Picture</ion-title>
+  
+      <span (click)="goNext()" color="medium" slot="end" style="margin-right:10px;">Next</span>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content forceOverscroll="false" class="bg">
+
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+
+        <ion-row>
+          <ion-col size="3">
+            <ion-button (click)="playVoice()" size="small">
+              <ion-icon name="volume-high"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="9">
+            <p class="mainQuestion">{{ question.Question }}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="3">
+            <ion-button (click)="presentPopover($event)" size="small">
+              <ion-icon name="help-circle"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="9">
+            <p>{{ question.QuestionAz }}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <p class="arabicWords">{{ question.QuestionAr }}</p>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid>
+
+    <ion-row no-padding class="matrix">
+
+      <ion-col size="8" class="q1">
+        <ion-row>
+          <ion-col size="6">
+            <div class="q-header"><img src="{{ fstImage }}"></div>
+          </ion-col>
+          <ion-col size="6">
+            <ion-list dragula="bag" [(dragulaModel)]="q1" lines="none">
+              <div *ngFor="let item of q1" class="elements" expand="block" text-wrap>
+                <p>{{ item.value }}</p>
+              </div>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <div class="q-header"><img src="{{ secImage }}"></div>
+          </ion-col>
+          <ion-col size="6">
+            <ion-list dragula="bag" [(dragulaModel)]="q2" lines="none">
+              <div *ngFor="let item of q2" class="elements" expand="block" text-wrap>
+                <p>{{ item.value }}</p>
+              </div>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <div class="q-header"><img src="{{ trdImage }}"></div>
+          </ion-col>
+          <ion-col size="6">
+            <ion-list dragula="bag" [(dragulaModel)]="q3" lines="none">
+              <div *ngFor="let item of q3" class="elements" expand="block" text-wrap>
+                <p>{{ item.value }}</p>
+              </div>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+      </ion-col>
+
+      <ion-col size="4" class="q4">
+        <ion-list dragula="bag" [(dragulaModel)]="q4" lines="none">
+          <div *ngFor="let item of q4" class="elements" expand="block" text-wrap>
+            <p>{{ item.value }}</p>
+          </div>
+        </ion-list>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

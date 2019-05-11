@@ -1,0 +1,71 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-dropleft-circle" slot="start" (click)="goBack()" style="margin-left: 10px;"></ion-icon>
+    <ion-title>Exam's Questions</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg">
+
+  <div class="keepCardTitle">
+    <ion-card>
+      <ion-item>
+        <p class="cardTitle">{{ exam.Name }}</p>
+      </ion-item>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <p><span class="mainTexts">Subject: </span><span class="subTexts">{{ exam.Subject }}</span></p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <p><span class="mainTexts">Exam Date: </span><span class="subTexts">{{ exam.ExamDate }}</span></p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <p>
+                <span class="mainTexts">Mark: </span>
+                <span *ngIf="exam.Mark" class="subTexts">{{ exam.Mark }}</span>
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
+
+  <div *ngFor="let q1 of questions; let i = index">
+    <div *ngFor="let q2 of q1; let j = index">
+      <ion-row>
+        <ion-col>
+          <div class="keepCardQuestions">
+            <ion-card>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="4">
+                    <img src="{{ imagePath + q2.Image }}">
+                  </ion-col>
+                  <ion-col size="8">
+                    <p><span class="mainTexts">Name: </span><span class="subTexts">{{ q2.Name }}</span></p>
+                    <p><span class="mainTexts">Main Title: </span><span class="subTexts">{{ q2.MainTitle }}</span></p>
+                    <p><span class="mainTexts">Sub Title: </span><span class="subTexts">{{ q2.SubTitle }}</span></p>
+                    <p style="text-align:right;">
+                      <ion-button size="small" color="success" (click)="goToQuestion(q2.Type , q2.QID)"
+                        style="margin: 0px !important;padding: 0px !important;">CHECK</ion-button>
+                    </p>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+</ion-content>

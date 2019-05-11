@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-dropleft-circle" (click)="goBack()" color="medium" slot="start" style="margin-left:10px;">
+    </ion-icon>
+    <ion-title>Drag To Table</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg">
+
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+
+        <ion-row>
+          <ion-col size="12">
+            <p class="mainQuestion">{{ question.Question }}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <p>{{ question.QuestionAz }}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <p class="arabicWords">{{ question.QuestionAr }}</p>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid>
+
+    <ion-row class="titleRow">
+      <ion-col size="6">
+        <div><span>Correct Answer</span></div>
+      </ion-col>
+      <ion-col size="6">
+        <div><span>Student's Answer</span></div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <div class="q-header">
+          <p class="englishTitle">{{ answer.TblOneEn }}</p>
+          <p class="arabicTitle">( {{ answer.TblOneAz }} ) {{ answer.TblOneAr }}</p>
+        </div>
+        <div *ngFor="let item of q1" class="texts">
+          <p>{{ item }}</p>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div class="q-header">
+          <p class="englishTitle">{{ answer.TblOneEn }}</p>
+          <p class="arabicTitle">( {{ answer.TblOneAz }} ) {{ answer.TblOneAr }}</p>
+        </div>
+        <div *ngFor="let item of stTableOne" class="studentTexts" [style.background]="item.color" expand="block"
+          text-wrap>
+          <p>{{ item.value }}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <div class="q-header">
+          <p class="englishTitle">{{ answer.TblTwoEn }}</p>
+          <p class="arabicTitle">( {{ answer.TblTwoAz }} ) {{ answer.TblTwoAR }}</p>
+        </div>
+        <div *ngFor="let item of q2" class="texts">
+          <p>{{ item }}</p>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div class="q-header">
+          <p class="englishTitle">{{ answer.TblTwoEn }}</p>
+          <p class="arabicTitle">( {{ answer.TblTwoAz }} ) {{ answer.TblTwoAR }}</p>
+        </div>
+        <div *ngFor="let item of stTableTwo" class="studentTexts" [style.background]="item.color" expand="block"
+          text-wrap>
+          <p>{{ item.value }}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div class="evaluationField" *ngIf="studentAnswer.EvaluationState">
+          <p class="mark"><span>Your Mark is: {{ studentAnswer.EvaluationState }}</span></p>
+          <p class="description"><span *ngIf="studentAnswer.Evaluation">Description:
+              {{ studentAnswer.Evaluation }}</span></p>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <div class="giveMark" *ngIf="whoIs=='teacher'">
+          <p>*Note: Give an Score to this Question from 1 to 5.</p>
+          <div class="inputs">
+            <ion-item>
+              <ion-label>Score:</ion-label>
+              <ion-input [(ngModel)]="score"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Description:</ion-label>
+              <ion-textarea [(ngModel)]="evaluationDescription"></ion-textarea>
+            </ion-item>
+          </div>
+          <p align="center">
+            <ion-button (click)="recordScore(score, evaluationDescription)" size="small" expand="block">Record Student
+              Mark</ion-button>
+          </p>
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>
