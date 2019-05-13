@@ -1,23 +1,25 @@
 <ion-header text-center>
   <ion-toolbar color="primary">
-    <ion-icon name="arrow-dropleft-circle" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-icon name="arrow-back" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
     <ion-title>Lectern</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg">
+<ion-content>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Choose a Sub Title of <span> {{ mainTitle.MainTitle }}</span></ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <div *ngFor="let subtitle of subTitles;" class="keepMainTitles">
-        <ion-item (click)="goToSubTitle(subtitle.SubTID)">
-          <p>{{ subtitle.SubTitle }}</p>
-        </ion-item>
-      </div>
-    </ion-card-content>
-  </ion-card>
+  <div class="bg">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Choose a Sub Title of <span> {{ mainTitle.MainTitle }}</span></ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div *ngFor="let subtitle of subTitles;" class="keepMainTitles">
+          <ion-item (click)="goToSubTitle(subtitle.SubTID)">
+            <p>{{ subtitle.SubTitle }}</p>
+          </ion-item>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
 
 </ion-content>

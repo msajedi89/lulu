@@ -1,57 +1,59 @@
 <ion-header text-center>
   <ion-toolbar color="primary">
-    <ion-icon name="arrow-dropleft-circle" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-icon name="arrow-back" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
     <ion-title>Exams List</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg">
+<ion-content>
 
-  <div *ngFor="let exam of examList; let i = index">
-    <ion-row>
-      <ion-col>
-        <ion-card>
-          <ion-item>
-            <p class="cardTitle">{{ exam.Name }}</p>
-          </ion-item>
-          <ion-card-content>
-            <ion-grid>
-              <ion-row>
-                <ion-col size="12">
-                  <p><span class="mainTexts">Subject: </span><span class="subTexts">{{ exam.Subject }}</span></p>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <p><span class="mainTexts">Exam Date: </span><span class="subTexts">{{ exam.ExamDate }}</span></p>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <p>
-                    <span class="mainTexts">Mark: </span>
-                    <span *ngIf="exam.Mark" class="subTexts">{{ exam.Mark }}</span>
-                  </p>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col>
-                  <p class="completed">Completed</p>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <p align="center">
-                    <ion-button expand="block" color="success" size="small" (click)="goToStudentExam(exam.stExamID)">
-                      CHECK YOUR RESULT</ion-button>
-                  </p>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
+  <div class="bg">
+    <div *ngFor="let exam of examList; let i = index">
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-item>
+              <p class="cardTitle">{{ exam.Name }}</p>
+            </ion-item>
+            <ion-card-content>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12">
+                    <p><span class="mainTexts">Subject: </span><span class="subTexts">{{ exam.Subject }}</span></p>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <p><span class="mainTexts">Exam Date: </span><span class="subTexts">{{ exam.ExamDate }}</span></p>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <p>
+                      <span class="mainTexts">Mark: </span>
+                      <span *ngIf="exam.Mark" class="subTexts">{{ exam.Mark }}</span>
+                    </p>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <p class="completed">Completed</p>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <p align="center">
+                      <ion-button expand="block" color="success" size="small" (click)="goToStudentExam(exam.stExamID)">
+                        CHECK YOUR RESULT</ion-button>
+                    </p>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
   </div>
 
 </ion-content>

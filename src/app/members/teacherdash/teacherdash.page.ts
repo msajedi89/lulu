@@ -20,6 +20,15 @@ export class TeacherdashPage implements OnInit {
   teacher: any = '';
   profileImg = '../../../assets/imgs/default-user.jpg';
 
+  myColor1 = '#fff';
+  myColor2 = '#fff';
+  myColor3 = '#fff';
+  myColor4 = '#fff';
+  myColor5 = '#fff';
+  myColor6 = '#fff';
+  myColor7 = '#fff';
+  myColor8 = '#fff';
+
   constructor(private router: Router, public navCtrl: NavController, public storage: Storage, private authService: AuthenticationService,
     private network: NetworkEngineService) {
   }
@@ -51,6 +60,10 @@ export class TeacherdashPage implements OnInit {
   }
 
   goToQuestions() {
+    this.myColor1 = '#0fadf0';
+    setInterval(() => {
+      this.myColor1 = '#fff';
+    }, 200);
     this.router.navigate(['members', 'questions']);
   }
 
@@ -59,14 +72,33 @@ export class TeacherdashPage implements OnInit {
   }
 
   goToMakingExam() {
+    this.myColor3 = '#0fadf0';
+    setInterval(() => {
+      this.myColor3 = '#fff';
+    }, 200);
     this.router.navigate(['members', 'makingexam']);
   }
 
   goToMakingHomework() {
+    this.myColor2 = '#0fadf0';
+    setInterval(() => {
+      this.myColor2 = '#fff';
+    }, 200);
     this.router.navigate(['members', 'makinghomework']);
   }
 
   goToStudentsList(fromWhere) {
+    if (fromWhere == 'homework') {
+      this.myColor4 = '#0fadf0';
+      setInterval(() => {
+        this.myColor4 = '#fff';
+      }, 200);
+    } else if (fromWhere == 'exam') {
+      this.myColor5 = '#0fadf0';
+      setInterval(() => {
+        this.myColor5 = '#fff';
+      }, 200);
+    }
     // determines for the next pages for rooting and where to go and come back
     this.storage.set(ROOT, fromWhere).then(() => {
       this.router.navigate(['members', 'studentsexam']);
@@ -74,14 +106,26 @@ export class TeacherdashPage implements OnInit {
   }
 
   goToManageTitles() {
+    this.myColor7 = '#0fadf0';
+    setInterval(() => {
+      this.myColor7 = '#fff';
+    }, 200);
     this.router.navigate(['members', 'managetitles']);
   }
 
   goToManageStudents() {
+    this.myColor6 = '#0fadf0';
+    setInterval(() => {
+      this.myColor6 = '#fff';
+    }, 200);
     this.router.navigate(['members', 'managestudents']);
   }
 
   goToEditProfile() {
+    this.myColor8 = '#0fadf0';
+    setInterval(() => {
+      this.myColor8 = '#fff';
+    }, 200);
     this.router.navigate(['members', 'editteacherprofile']);
   }
 

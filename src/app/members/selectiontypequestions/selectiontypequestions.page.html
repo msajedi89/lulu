@@ -1,12 +1,13 @@
 <ion-header text-center>
   <ion-toolbar color="primary">
-    <ion-icon name="arrow-dropleft-circle" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-icon name="arrow-back" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
     <ion-title>Selection Type Questions</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg" text-center>
+<ion-content text-center>
 
+  <div class="bg">
     <ion-grid>
       <h3>Question</h3>
 
@@ -113,7 +114,8 @@
             <ion-card-content>
 
               <p align="center">
-                <ion-button expand="block" size="small" color="success" (click)="selectImage(root='question', imageName=name)">
+                <ion-button expand="block" size="small" color="success"
+                  (click)="selectImage(root='question', imageName=name)">
                   <ion-icon slot="start" name="camera"></ion-icon>
                   Select Image
                 </ion-button>
@@ -544,5 +546,6 @@
       </ion-row>
 
     </ion-grid>
+  </div>
 
 </ion-content>

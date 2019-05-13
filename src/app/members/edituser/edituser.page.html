@@ -1,59 +1,62 @@
 <ion-header text-center>
   <ion-toolbar color="primary">
-    <ion-icon name="arrow-dropleft-circle" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-icon name="arrow-back" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
     <ion-title>Edit Information</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg">
+<ion-content>
 
-  <ion-card>
-    <ion-card-header text-center>
-      <div class="keepImage">
-        <p align="center"><img class="profileImg" src="{{ profileImg }}"></p>
-        <p class="changeImg" (click)="selectImage()">Change Profile Photo</p>
-      </div>
-    </ion-card-header>
+  <div class="bg">
+    <ion-card>
+      <ion-card-header text-center>
+        <div class="keepImage">
+          <p align="center"><img class="profileImg" src="{{ profileImg }}"></p>
+          <p class="changeImg" (click)="selectImage()">Change Profile Photo</p>
+        </div>
+      </ion-card-header>
 
-    <ion-card-content>
+      <ion-card-content>
 
-      <ion-item>
-        <ion-label>Name & Family:</ion-label>
-        <ion-input placeholder="Required" [(ngModel)]="nameFamily" value="{{ student.NameFamily }}"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label>Name & Family:</ion-label>
+          <ion-input placeholder="Required" [(ngModel)]="nameFamily" value="{{ student.NameFamily }}"></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Username:</ion-label>
-        <ion-input placeholder="Required" [(ngModel)]="username" value="{{ student.Username }}"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label>Username:</ion-label>
+          <ion-input placeholder="Required" [(ngModel)]="username" value="{{ student.Username }}"></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Password:</ion-label>
-        <ion-input placeholder="Required" [(ngModel)]="password" value="{{ student.Pass }}"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label>Password:</ion-label>
+          <ion-input placeholder="Required" [(ngModel)]="password" value="{{ student.Pass }}"></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Address:</ion-label>
-        <ion-textarea [(ngModel)]="address" value="{{ student.Address }}"></ion-textarea>
-      </ion-item>
+        <ion-item>
+          <ion-label>Address:</ion-label>
+          <ion-textarea [(ngModel)]="address" value="{{ student.Address }}"></ion-textarea>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Birthdate:</ion-label>
-        <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY" [(ngModel)]="birthdate"></ion-datetime>
-        <p>{{ student.Birthdate }}</p>
-      </ion-item>
+        <ion-item>
+          <ion-label>Birthdate:</ion-label>
+          <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY" [(ngModel)]="birthdate"></ion-datetime>
+          <p>{{ student.Birthdate }}</p>
+        </ion-item>
 
-      <ion-item *ngIf="whoIs == 'teacher'">
-        <ion-label>Status</ion-label>
-        <ion-toggle color="warning" [(ngModel)]="studentStatus" size="small"></ion-toggle>
-      </ion-item>
+        <ion-item *ngIf="whoIs == 'teacher'">
+          <ion-label>Status</ion-label>
+          <ion-toggle color="warning" [(ngModel)]="studentStatus" size="small"></ion-toggle>
+        </ion-item>
 
-      <p align="center" class="keepButton">
-        <ion-button expand="block" color="success" size="small" (click)="saveChanges(nameFamily, username, password, address, birthdate)" slot="end">SAVE
-          CHANGES
-        </ion-button>
-      </p>
-    </ion-card-content>
-  </ion-card>
+        <p align="center" class="keepButton">
+          <ion-button expand="block" color="success" size="small"
+            (click)="saveChanges(nameFamily, username, password, address, birthdate)" slot="end">SAVE
+            CHANGES
+          </ion-button>
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
 
 </ion-content>

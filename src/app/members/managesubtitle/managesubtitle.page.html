@@ -1,39 +1,41 @@
 <ion-header text-center>
   <ion-toolbar color="primary">
-    <ion-icon name="arrow-dropleft-circle" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-icon name="arrow-back" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
     <ion-title>Manage Sub Titles</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg">
+<ion-content>
 
-  <ion-toolbar>
-    <ion-searchbar placeholder="Search Sub Title" [(ngModel)]="mySearch" [showCancelButton]="shouldShowCancel"
-      (ionChange)="updateSubTitles($event)" debounce="1000"></ion-searchbar>
-  </ion-toolbar>
+  <div class="bg">
+    <ion-toolbar>
+      <ion-searchbar placeholder="Search Sub Title" [(ngModel)]="mySearch" [showCancelButton]="shouldShowCancel"
+        (ionChange)="updateSubTitles($event)" debounce="1000"></ion-searchbar>
+    </ion-toolbar>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Sub Titles List</ion-card-title>
-      <ion-item>
-        <p>Click on the Sub Title to Edit or Disable.</p>
-      </ion-item>
-      <p align="center">
-        <ion-button expand="block" color="success" size="small" (click)="goToAddSubTitle()" slot="end">ADD SUB TITLE
-        </ion-button>
-      </p>
-    </ion-card-header>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Sub Titles List</ion-card-title>
+        <ion-item>
+          <p>Click on the Sub Title to Edit or Disable.</p>
+        </ion-item>
+        <p align="center">
+          <ion-button expand="block" color="success" size="small" (click)="goToAddSubTitle()" slot="end">ADD SUB TITLE
+          </ion-button>
+        </p>
+      </ion-card-header>
 
-    <ion-card-content>
-      <div *ngFor="let subTitle of subTitles; let i = index">
-        <div class="keepMainTitles">
-          <ion-item (click)="goForEditing(subTitle.SubTID)">
-            <p>#{{ i+1 }}) {{ subTitle.SubTitle }} (ID: {{subTitle.SubTID}})<span *ngIf="subTitle.Status == true"
-                class="dot"></span><span *ngIf="subTitle.Status == false" class="dotError"></span></p>
-          </ion-item>
+      <ion-card-content>
+        <div *ngFor="let subTitle of subTitles; let i = index">
+          <div class="keepMainTitles">
+            <ion-item (click)="goForEditing(subTitle.SubTID)">
+              <p>#{{ i+1 }}) {{ subTitle.SubTitle }} (ID: {{subTitle.SubTID}})<span *ngIf="subTitle.Status == true"
+                  class="dot"></span><span *ngIf="subTitle.Status == false" class="dotError"></span></p>
+            </ion-item>
+          </div>
         </div>
-      </div>
-    </ion-card-content>
-  </ion-card>
+      </ion-card-content>
+    </ion-card>
+  </div>
 
 </ion-content>

@@ -1,12 +1,13 @@
 <ion-header text-center>
   <ion-toolbar color="primary">
-    <ion-icon name="arrow-dropleft-circle" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-icon name="arrow-back" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
     <ion-title>Connect To Picture Questions</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg" text-center>
+<ion-content text-center>
 
+  <div class="bg">
     <ion-grid>
       <h3>Question</h3>
 
@@ -290,12 +291,13 @@
         <ion-col>
           <ion-button expand="block" color="success"
             (click)="insertQuestion(name, question, questionAr, questionAz, maxTime, descriptionEn, descriptionAr,
-                  fstChoiceEn, fstChoiceAr, fstChoiceAz, secChoiceEn, secChoiceAr, secChoiceAz, trdChoiceEn, trdChoiceAr, trdChoiceAz)">
+                    fstChoiceEn, fstChoiceAr, fstChoiceAz, secChoiceEn, secChoiceAr, secChoiceAz, trdChoiceEn, trdChoiceAr, trdChoiceAz)">
             Insert Question
           </ion-button>
         </ion-col>
       </ion-row>
 
     </ion-grid>
+  </div>
 
 </ion-content>

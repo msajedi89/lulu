@@ -1,15 +1,17 @@
 <ion-header text-center>
   <ion-toolbar color="primary">
-    <ion-icon name="arrow-dropleft-circle" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-icon name="arrow-back" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
     <ion-title>Students List</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg" text-center>
+<ion-content class="bg">
+
   <ion-toolbar>
     <ion-searchbar placeholder="Search Student" [(ngModel)]="mySearch" [showCancelButton]="shouldShowCancel"
       (ionChange)="updateStudents($event)" debounce="1000"></ion-searchbar>
   </ion-toolbar>
+
   <ion-grid>
 
     <ion-row>
@@ -20,10 +22,10 @@
           </ion-item>
 
           <ion-card-content>
-            <div *ngFor="let student of allStudents; let i = index">
+            <div *ngFor="let student of allStudents; let i = index" class="keepNames">
               <div>
                 <ion-item (click)="showStudentDetails(student.stID)">
-                  <ion-label>#{{ i+1 }}) {{ student.NameFamily }} (ID: {{student.stID}})</ion-label>
+                  <p>#{{ i+1 }}) {{ student.NameFamily }} (ID: {{student.stID}})</p>
                 </ion-item>
               </div>
             </div>

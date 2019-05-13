@@ -1,54 +1,67 @@
 .bg{
-    --ion-background-color: url(../../../assets/imgs/login-background.jpg) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
+    //--ion-background-color: url(../../../assets/imgs/login-background.jpg) no-repeat center center fixed; 
+    //-webkit-background-size: cover;
+    //-moz-background-size: cover;
+    //background-size: cover;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: #fff;
+    //border: 2px solid red;
+    //margin-top: 100px !important;
+}
 
-    .headerDiv {
-        margin-bottom: 0px !important;
+.headerDiv {
+    //border: 2px solid red;
+    background: #fff;
+    padding-bottom: 0px;
+    height: 50%;
 
-        .headerImg {
-            width: 100%;
-            height: 100%;
+    .headerImg {
+        width: 100%;
+        height: 70%;
+    }
+
+    .profileDiv {
+        background: transparent !important;
+        //border: 2px solid red;
+        width: 120px;
+        //margin-top: -50px;
+        position: absolute;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -40%);
+        text-align: center;
+        z-index: 2;
+    
+        .profileImg {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
         }
+    
+        .studentName {
+            margin: 0px !important;
+            padding: 0px !important;
+            font-size: 14px;
+            font-weight: bold;
+            color: #626262;
+        }
+    
+        .studentBirthdate {
+            margin: 0px !important;
+            padding: 0px !important;
+            font-size: 10px !important;
+            color: #626262;
 
-        .profileDiv {
-            //border: 2px solid red;
-            position: relative;
-            top: 0%;
-            left: 50%;
-            transform: translate(-50%, -40%);
-            text-align: center;
-
-            .profileImg {
-                width: 100px;
-                height: 100px;
-                border-radius: 10px;
-            }
-
-            .studentName {
-                margin: 0px !important;
-                padding: 0px !important;
-                font-size: 14px;
-                font-weight: bold;
-                color: #626262;
-            }
-
-            .studentBirthdate {
-                margin: 0px !important;
-                padding: 0px !important;
-                font-size: 10px !important;
-                color: #626262;
+            .larger {
+                font-size: 18px;
             }
         }
-    }  
+    }
 }
 
 ion-grid {
     margin: 0px !important;
-    margin-top: -30px !important;
-    //background: #af5a5a;
+    //margin-top: 100px !important;
     padding: 0px !important;
 
     ion-row {
@@ -75,12 +88,25 @@ ion-grid {
     }
 }
 
-ion-toolbar {
-    position: absolute;
-    bottom: 0px;
 
-    .larger {
-        font-size: 30px;
+.fixed[scrollx=true], div[scrolly=true] {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  
+    ::-webkit-scrollbar {
+      display: none;
     }
 }
+  
+.fixed[scrollx=true] {
+    overflow-x: auto;
+}
+  
+.fixed[scrolly=true] {
+    overflow-y: auto;
+}
 
+.larger {
+    font-size: 30px;
+}

@@ -16,6 +16,12 @@ export class DashboardPage implements OnInit {
   studentID = '';
   student: any = '';
   profileImg = '';
+  myColor1 = '#fff';
+  myColor2 = '#fff';
+  myColor3 = '#fff';
+  myColor4 = '#fff';
+  myColor5 = '#fff';
+  myColor6 = '#fff';
 
 // tslint:disable-next-line: max-line-length
   constructor(private router: Router, private authService: AuthenticationService, private storage: Storage, private network: NetworkEngineService) { }
@@ -74,26 +80,51 @@ export class DashboardPage implements OnInit {
   }
 
   goToExamsList() {
+    this.myColor1 = '#0fadf0';
+    setInterval(() => {
+      this.myColor1 = '#fff';
+    }, 200);
     this.router.navigate(['members', 'listofstudentexams']);
+    
   }
 
   goToHomeworksList() {
+    this.myColor2 = '#0fadf0';
+    setInterval(() => {
+      this.myColor2 = '#fff';
+    }, 200);
     this.router.navigate(['members', 'listofstudenthomeworks']);
   }
 
   goToListOfTakenExam() {
+    this.myColor3 = '#0fadf0';
+    setInterval(() => {
+      this.myColor3 = '#fff';
+    }, 200);
     this.router.navigate(['members', 'listofstudentstakenexam']);
   }
 
   goToListOfTakenHomeworks() {
+    this.myColor4 = '#0fadf0';
+    setInterval(() => {
+      this.myColor4 = '#fff';
+    }, 200);
     this.router.navigate(['members', 'listofstudenttakenhomework']);
   }
 
   goToLecterns() {
+    this.myColor5 = '#0fadf0';
+    setInterval(() => {
+      this.myColor5 = '#fff';
+    }, 200);
     this.router.navigate(['members', 'lecternmaintitlepage']);
   }
 
   goToEditProfile() {
+    this.myColor6 = '#0fadf0';
+    setInterval(() => {
+      this.myColor6 = '#fff';
+    }, 200);
     this.router.navigate(['members', 'edituser']);
   }
 

@@ -1,76 +1,80 @@
+<div class="headerDiv">
+  <img class="headerImg" src="../../../assets/imgs/family-logo.jpg">
+
+  <div class="profileDiv">
+    <img class="profileImg" src="{{ profileImg }}">
+    <p class="studentName">{{ teacher.Name + ' ' + teacher.Family }}</p>
+    <p class="studentBirthdate">Account: {{ teacher.Username }}&nbsp;&nbsp;<ion-icon name="create" color="primary"
+        slot="end" (click)="goToEditProfile()" class="larger"></ion-icon>
+    </p>
+  </div>
+</div>
+
 <ion-content class="bg" text-center>
 
-  <div class="headerDiv">
-    <img class="headerImg" src="../../../assets/imgs/family-logo.jpg">
-
-    <div class="profileDiv">
-      <img class="profileImg" src="{{ profileImg }}">
-      <p class="studentName">{{ teacher.Name + ' ' + teacher.Family }}</p>
-      <p class="studentBirthdate">Account: {{ teacher.Username }}&nbsp;&nbsp;<ion-icon name="create" color="primary"
-          slot="end" (click)="goToEditProfile()"></ion-icon>
-      </p>
-    </div>
+  <div class="fixed">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <ion-card (click)="goToQuestions()" [style.background-color]="myColor1">
+            <ion-icon name="help-circle-outline" color="primary" class="larger"></ion-icon>
+            <p>Create Question</p>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card (click)="goToMakingHomework()" [style.background-color]="myColor2">
+            <ion-icon name="home" color="primary" class="larger"></ion-icon>
+            <p>Create Homework</p>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card (click)="goToMakingExam()" [style.background-color]="myColor3">
+            <ion-icon name="paper" color="primary" class="larger"></ion-icon>
+            <p>Create Exam</p>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="4">
+          <ion-card (click)="goToStudentsList('homework')" [style.background-color]="myColor4">
+            <ion-icon name="list-box" color="primary" class="larger"></ion-icon>
+            <p>Student Homeworks</p>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card (click)="goToStudentsList('exam')" [style.background-color]="myColor5">
+            <ion-icon name="clipboard" color="primary" class="larger"></ion-icon>
+            <p>Student Exams</p>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card (click)="goToManageStudents()" [style.background-color]="myColor6">
+            <ion-icon name="people" color="primary" class="larger"></ion-icon>
+            <p>Manage Students</p>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="4">
+          <ion-card (click)="goToManageTitles()" [style.background-color]="myColor7">
+            <ion-icon name="card" color="primary" class="larger"></ion-icon>
+            <p>Manage Titles</p>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card (click)="goToEditProfile()" [style.background-color]="myColor8">
+            <ion-icon name="contact" color="primary" class="larger"></ion-icon>
+            <p>Edit Profile</p>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col size="4">
-        <ion-card (click)="goToQuestions()">
-          <ion-icon name="help-circle-outline" color="primary" class="larger"></ion-icon>
-          <p>Create Question</p>
-        </ion-card>
-      </ion-col>
-      <ion-col size="4">
-        <ion-card (click)="goToMakingHomework()">
-          <ion-icon name="home" color="primary" class="larger"></ion-icon>
-          <p>Create Homework</p>
-        </ion-card>
-      </ion-col>
-      <ion-col size="4">
-        <ion-card (click)="goToMakingExam()">
-          <ion-icon name="paper" color="primary" class="larger"></ion-icon>
-          <p>Create Exam</p>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="4">
-        <ion-card (click)="goToStudentsList('homework')">
-          <ion-icon name="list-box" color="primary" class="larger"></ion-icon>
-          <p>Student Homeworks</p>
-        </ion-card>
-      </ion-col>
-      <ion-col size="4">
-        <ion-card (click)="goToStudentsList('exam')">
-          <ion-icon name="clipboard" color="primary" class="larger"></ion-icon>
-          <p>Student Exams</p>
-        </ion-card>
-      </ion-col>
-      <ion-col size="4">
-        <ion-card (click)="goToManageStudents()">
-          <ion-icon name="people" color="primary" class="larger"></ion-icon>
-          <p>Manage Students</p>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="4">
-        <ion-card (click)="goToManageTitles()">
-          <ion-icon name="card" color="primary" class="larger"></ion-icon>
-          <p>Manage Titles</p>
-        </ion-card>
-      </ion-col>
-      <ion-col size="4">
-        <ion-card (click)="goToEditProfile()">
-          <ion-icon name="contact" color="primary" class="larger"></ion-icon>
-          <p>Edit Profile</p>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+</ion-content>
 
+<ion-footer text-center>
   <ion-toolbar>
     <ion-icon name="power" color="primary" class="larger" (click)="logout()"></ion-icon>
   </ion-toolbar>
-
-</ion-content>
+</ion-footer>

@@ -1,104 +1,107 @@
 <ion-header text-center>
   <ion-toolbar color="primary">
-    <ion-icon name="arrow-dropleft-circle" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-icon name="arrow-back" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
     <ion-title>Student Exam List</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg" text-center>
+<ion-content text-center>
 
-  <ion-grid>
+  <div class="bg">
+    <ion-grid>
 
-    <ion-row>
-      <ion-col size="12">
-        <div class="cards">
-          <ion-card>
-            <ion-card-content class="profileContent">
-              <ion-item>
-                <img class="profileImg" src="{{ profileImgUrl }}" alt="">
-              </ion-item>
-
-              <div><span>{{ namefamily }} with ID: {{ stID }}</span></div>
-              <div>Birthdate: <span>{{ birthdate }}</span></div>
-            </ion-card-content>
-          </ion-card>
-        </div>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <h1>Exams List of {{ namefamily }}</h1>
-      </ion-col>
-    </ion-row>
-
-    <div *ngFor="let exam of examList; let i = index">
       <ion-row>
-        <ion-col>
-          <div class="keepCardExams">
+        <ion-col size="12">
+          <div class="cards">
             <ion-card>
-              <ion-item>
-                <ion-icon name="help-circle" slot="start" color="light"></ion-icon>
-                <ion-label>Exam #ID) {{ exam.ExamID }}</ion-label><span *ngIf="exam.Mark" style="color: red;">
-                  {{ exam.Mark }}</span>
-                <ion-button expand="block" color="warning" (click)="goToStudentExam(exam.stExamID)" slot="end">Evaluate
-                </ion-button>
-              </ion-item>
+              <ion-card-content class="profileContent">
+                <ion-item>
+                  <img class="profileImg" src="{{ profileImgUrl }}" alt="">
+                </ion-item>
 
-              <ion-card-content>
-
-                <ion-grid>
-                  <ion-row>
-                    <ion-col size="4">
-                      <ion-label color="dark">Name</ion-label>
-                    </ion-col>
-                    <ion-col size="4">
-                      <ion-label color="dark">Subject</ion-label>
-                    </ion-col>
-                    <ion-col size="4">
-                      <ion-label color="dark">Exam Date</ion-label>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="4">{{ exam.Name }}</ion-col>
-                    <ion-col size="4">{{ exam.Subject }}</ion-col>
-                    <ion-col size="4">{{ exam.ExamDate }}</ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="4">
-                      <ion-label color="warning">Has Seen</ion-label>
-                    </ion-col>
-                    <ion-col size="4">
-                      <ion-label color="warning">Has Done</ion-label>
-                    </ion-col>
-                    <ion-col size="4">
-                      <ion-label color="warning">Completed</ion-label>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="4">
-                      <p *ngIf="exam.HasSeen == true"><span class="dot"></span></p>
-                      <p *ngIf="exam.HasSeen == false"><span class="dotError"></span></p>
-                    </ion-col>
-                    <ion-col size="4">
-                      <p *ngIf="exam.HasDone == true"><span class="dot"></span></p>
-                      <p *ngIf="exam.HasDone == false"><span class="dotError"></span></p>
-                    </ion-col>
-                    <ion-col size="4">
-                      <p *ngIf="exam.HasCompleted == true"><span class="dot"></span></p>
-                      <p *ngIf="exam.HasCompleted == false"><span class="dotError"></span></p>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-
+                <div><span>{{ namefamily }} with ID: {{ stID }}</span></div>
+                <div>Birthdate: <span>{{ birthdate }}</span></div>
               </ion-card-content>
             </ion-card>
           </div>
         </ion-col>
       </ion-row>
-    </div>
+
+      <ion-row>
+        <ion-col>
+          <h1>Exams List of {{ namefamily }}</h1>
+        </ion-col>
+      </ion-row>
+
+      <div *ngFor="let exam of examList; let i = index">
+        <ion-row>
+          <ion-col>
+            <div class="keepCardExams">
+              <ion-card>
+                <ion-item>
+                  <ion-icon name="help-circle" slot="start" color="light"></ion-icon>
+                  <ion-label>Exam #ID) {{ exam.ExamID }}</ion-label><span *ngIf="exam.Mark" style="color: red;">
+                    {{ exam.Mark }}</span>
+                  <ion-button expand="block" color="warning" (click)="goToStudentExam(exam.stExamID)" slot="end">
+                    Evaluate
+                  </ion-button>
+                </ion-item>
+
+                <ion-card-content>
+
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col size="4">
+                        <ion-label color="dark">Name</ion-label>
+                      </ion-col>
+                      <ion-col size="4">
+                        <ion-label color="dark">Subject</ion-label>
+                      </ion-col>
+                      <ion-col size="4">
+                        <ion-label color="dark">Exam Date</ion-label>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="4">{{ exam.Name }}</ion-col>
+                      <ion-col size="4">{{ exam.Subject }}</ion-col>
+                      <ion-col size="4">{{ exam.ExamDate }}</ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="4">
+                        <ion-label color="warning">Has Seen</ion-label>
+                      </ion-col>
+                      <ion-col size="4">
+                        <ion-label color="warning">Has Done</ion-label>
+                      </ion-col>
+                      <ion-col size="4">
+                        <ion-label color="warning">Completed</ion-label>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="4">
+                        <p *ngIf="exam.HasSeen == true"><span class="dot"></span></p>
+                        <p *ngIf="exam.HasSeen == false"><span class="dotError"></span></p>
+                      </ion-col>
+                      <ion-col size="4">
+                        <p *ngIf="exam.HasDone == true"><span class="dot"></span></p>
+                        <p *ngIf="exam.HasDone == false"><span class="dotError"></span></p>
+                      </ion-col>
+                      <ion-col size="4">
+                        <p *ngIf="exam.HasCompleted == true"><span class="dot"></span></p>
+                        <p *ngIf="exam.HasCompleted == false"><span class="dotError"></span></p>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+
+                </ion-card-content>
+              </ion-card>
+            </div>
+          </ion-col>
+        </ion-row>
+      </div>
 
 
-  </ion-grid>
+    </ion-grid>
+  </div>
 
 </ion-content>

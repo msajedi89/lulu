@@ -1,12 +1,13 @@
 <ion-header text-center>
   <ion-toolbar color="primary">
-    <ion-icon name="arrow-dropleft-circle" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-icon name="arrow-back" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
     <ion-title>Drag To Table Type Questions</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg" text-center>
+<ion-content text-center>
 
+  <div class="bg">
     <ion-grid>
 
       <h3>Question</h3>
@@ -208,12 +209,13 @@
         <ion-col>
           <ion-button expand="block" color="success"
             (click)="insertQuestion(name, question, questionAr, questionAz, maxTime, descriptionEn, descriptionAr,
-                    tblOneEn, tblOneAr, tblOneAz, tblTwoEn, tblTwoAr, tblTwoAz, text1, text2, text3, text4, text5, text6)">
+                      tblOneEn, tblOneAr, tblOneAz, tblTwoEn, tblTwoAr, tblTwoAz, text1, text2, text3, text4, text5, text6)">
             Insert Question
           </ion-button>
         </ion-col>
       </ion-row>
 
     </ion-grid>
+  </div>
 
 </ion-content>

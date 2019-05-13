@@ -1,84 +1,86 @@
 <ion-header text-center>
   <ion-toolbar color="primary">
-    <ion-icon name="arrow-dropleft-circle" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-icon name="arrow-back" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
     <ion-title>Questions</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg">
+<ion-content>
 
-  <ion-grid>
+  <div class="bg">
+    <ion-grid>
 
-    <ion-row>
-      <ion-col size="12">
-        <ion-card>
-          <ion-item>
-            <ion-icon name="help-circle" slot="start" color="light"></ion-icon>
-            <ion-label>Add Question</ion-label>
-          </ion-item>
-
-          <ion-card-content>
+      <ion-row>
+        <ion-col size="12">
+          <ion-card>
             <ion-item>
-              <ion-label>Selections</ion-label>
-              <ion-button expand="block" color="success" (click)="goToSelectionTypeQuestions()" slot="end">Create
-              </ion-button>
+              <ion-icon name="help-circle" slot="start" color="light"></ion-icon>
+              <ion-label>Add Question</ion-label>
             </ion-item>
 
+            <ion-card-content>
+              <ion-item>
+                <ion-label>Selections</ion-label>
+                <ion-button expand="block" color="success" (click)="goToSelectionTypeQuestions()" slot="end">Create
+                </ion-button>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Drag & Drop</ion-label>
+                <ion-button expand="block" color="success" (click)="goToDragDropTypeQuestions()" slot="end">Create
+                </ion-button>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Drag To Tables</ion-label>
+                <ion-button expand="block" color="success" (click)="goToDragToTableTypeQuestions()" slot="end">Create
+                </ion-button>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Draw The Letter</ion-label>
+                <ion-button expand="block" color="success" (click)="goToDrawLetterTypeQuestions()" slot="end">Create
+                </ion-button>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Descriptive Questions</ion-label>
+                <ion-button expand="block" color="success" (click)="goToAnswersTypeQuestions()" slot="end">Create
+                </ion-button>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Recite The Quran</ion-label>
+                <ion-button expand="block" color="success" (click)="goToReciteTheQuranTypeQuestions()" slot="end">Create
+                </ion-button>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-card>
             <ion-item>
-              <ion-label>Drag & Drop</ion-label>
-              <ion-button expand="block" color="success" (click)="goToDragDropTypeQuestions()" slot="end">Create
-              </ion-button>
+              <ion-icon name="help-circle" slot="start" color="light"></ion-icon>
+              <ion-label>100 Latest Questions</ion-label>
             </ion-item>
 
-            <ion-item>
-              <ion-label>Drag To Tables</ion-label>
-              <ion-button expand="block" color="success" (click)="goToDragToTableTypeQuestions()" slot="end">Create
-              </ion-button>
-            </ion-item>
-
-            <ion-item>
-              <ion-label>Draw The Letter</ion-label>
-              <ion-button expand="block" color="success" (click)="goToDrawLetterTypeQuestions()" slot="end">Create
-              </ion-button>
-            </ion-item>
-
-            <ion-item>
-              <ion-label>Answer Questions</ion-label>
-              <ion-button expand="block" color="success" (click)="goToAnswersTypeQuestions()" slot="end">Create
-              </ion-button>
-            </ion-item>
-
-            <ion-item>
-              <ion-label>Recite The Quran</ion-label>
-              <ion-button expand="block" color="success" (click)="goToReciteTheQuranTypeQuestions()" slot="end">Create
-              </ion-button>
-            </ion-item>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="12">
-        <ion-card>
-          <ion-item>
-            <ion-icon name="help-circle" slot="start" color="light"></ion-icon>
-            <ion-label>100 Latest Questions</ion-label>
-          </ion-item>
-
-          <ion-card-content>
-            <div *ngFor="let item of qIds; let i = index">
-              <div>
-                <ion-item>
-                  <ion-label>ID#:{{qIds[i]}}) {{qEn[i]}}</ion-label>
-                </ion-item>
+            <ion-card-content>
+              <div *ngFor="let item of qIds; let i = index">
+                <div>
+                  <ion-item>
+                    <ion-label>ID#:{{qIds[i]}}) {{qEn[i]}}</ion-label>
+                  </ion-item>
+                </div>
               </div>
-            </div>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
 
-  </ion-grid>
+    </ion-grid>
+  </div>
 
 </ion-content>
