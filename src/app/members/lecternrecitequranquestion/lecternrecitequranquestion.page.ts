@@ -110,7 +110,7 @@ export class LecternrecitequranquestionPage implements OnInit {
 
   // Generate the name by Datetime of system
   generateAudioFileName() {
-    var d = new Date(), n = d.getTime(), newFileName = n + ".mp3";
+    var d = new Date(), n = d.getTime(), newFileName = n + ".wav";
 
     return newFileName;
   }
