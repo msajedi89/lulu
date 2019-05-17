@@ -1,6 +1,10 @@
 <ion-header text-center>
   <ion-toolbar color="primary">
-    <ion-icon name="arrow-back" slot="start" style="margin-left:10px" (click)="goBack()"></ion-icon>
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Questions</ion-title>
   </ion-toolbar>
 </ion-header>

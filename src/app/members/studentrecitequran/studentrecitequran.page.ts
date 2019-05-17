@@ -149,7 +149,7 @@ export class StudentrecitequranPage implements OnInit {
 
   // Generate the name by Datetime of system
   generateAudioFileName() {
-    var d = new Date(), n = d.getTime(), newFileName = n + ".mp3";
+    var d = new Date(), n = d.getTime(), newFileName = n + ".m4a";
 
     return newFileName;
   }
@@ -157,7 +157,7 @@ export class StudentrecitequranPage implements OnInit {
   // the method for stopping the recorder
   stopAudio() {
     this.stVoice.stopRecord();
-    this.myStudentVoice = 'data:audio/mp3;base64, ' + this.stVoice;
+    this.myStudentVoice = 'data:audio/m4a;base64, ' + this.stVoice;
     this.recording = false;
   }
 

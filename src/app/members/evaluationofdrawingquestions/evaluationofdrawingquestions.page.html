@@ -1,7 +1,10 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-icon name="arrow-back" (click)="goBack()" color="medium" slot="start" style="margin-left:10px;">
-    </ion-icon>
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Drawing</ion-title>
   </ion-toolbar>
 </ion-header>

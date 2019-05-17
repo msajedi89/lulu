@@ -388,7 +388,7 @@ export class SelectiontypequestionsPage implements OnInit {
 
   // Generate the name by Datetime of system
   generateAudioFileName() {
-    var d = new Date(), n = d.getTime(), newFileName = n + ".wav";
+    var d = new Date(), n = d.getTime(), newFileName = n + ".m4a";
 
     return newFileName;
   }
@@ -398,7 +398,7 @@ export class SelectiontypequestionsPage implements OnInit {
     if ((voiceNameEn != null) && (voiceNameAr != null)) {
       if (root == "question") {
         this.questionAudio.stopRecord();
-        this.myQuestionAudio = 'data:audio/wav;base64, ' + this.questionAudio;
+        this.myQuestionAudio = 'data:audio/m4a;base64, ' + this.questionAudio;
         this.recording = false;
         // Insert & Upload Question Voice
         this.insertVoice(this.questionAudiofileName, this.questionAudioFilePath, voiceNameEn, voiceNameAr, root);

@@ -1,6 +1,10 @@
 <ion-header text-center>
   <ion-toolbar color="primary">
-    <ion-icon name="arrow-back" slot="start" (click)="goBack()" style="margin-left:10px"></ion-icon>
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>New Homeworks List</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -42,7 +46,7 @@
                   <ion-col size="12">
                     <p align="center" style="margin-top: 10px !important;">
                       <ion-button expand="block" color="warning" size="small"
-                        (click)="goToStudentHomework(homework.hwkID,homework.HasCompleted)">TAKE THE Homework
+                        (click)="goToStudentHomework(homework.hwkID,homework.HasCompleted)">TAKE THE HOMEWORK
                       </ion-button>
                     </p>
                   </ion-col>
