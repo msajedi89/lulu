@@ -132,7 +132,10 @@ export class EvaluationofdragtotablequestionPage implements OnInit {
                   console.log('the studentAnswer: ' + JSON.stringify(this.studentAnswer));
 
                   if (this.studentAnswer == '0') {
-                    alert('Student did not answer this Question');
+                    this.toastCtrl.create({
+                      message: 'Student did not answer this Question',
+                      duration: 4000
+                    }).then(toast => toast.present());
                   } else {
 
                     // get the Student Exam/Homework Question ID
@@ -237,7 +240,10 @@ export class EvaluationofdragtotablequestionPage implements OnInit {
                   console.log('the studentAnswer: ' + JSON.stringify(this.studentAnswer));
 
                   if (this.studentAnswer == '0') {
-                    alert('Student did not answer this Question');
+                    this.toastCtrl.create({
+                      message: 'Student did not answer this Question',
+                      duration: 4000
+                    }).then(toast => toast.present());
                   } else {
 
                     // get the Student Exam/Homework Question ID

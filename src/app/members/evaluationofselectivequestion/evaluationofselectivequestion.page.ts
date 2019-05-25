@@ -164,7 +164,10 @@ export class EvaluationofselectivequestionPage implements OnInit {
                   this.studentAnswer = jsonArray6[0];
                   console.log('the studentAnswer: ' + JSON.stringify(this.studentAnswer));
                   if (this.studentAnswer == '0') {
-                    alert('Student did not answer this Question');
+                    this.toastCtrl.create({
+                      message: 'Student did not answer this Question',
+                      duration: 4000
+                    }).then(toast => toast.present());
                   } else {
                     // get the Student Exam/Homework Question ID
                     if (this.fromWhere == 'exam') {
@@ -314,7 +317,10 @@ export class EvaluationofselectivequestionPage implements OnInit {
                   this.studentAnswer = jsonArray6[0];
                   console.log('the studentAnswer: ' + JSON.stringify(this.studentAnswer));
                   if (this.studentAnswer == '0') {
-                    alert('Student did not answer this Question');
+                    this.toastCtrl.create({
+                      message: 'Student did not answer this Question',
+                      duration: 4000
+                    }).then(toast => toast.present());
                   } else {
                     // get the Student Exam/Homework Question ID
                     if (this.fromWhere == 'exam') {
