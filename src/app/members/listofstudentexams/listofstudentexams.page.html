@@ -11,7 +11,7 @@
 
 <ion-content>
 
-  <div>
+  <div *ngIf="examList != '0 result'">
     <div *ngFor="let exam of examList; let i = index">
       <ion-row *ngIf="exam.HasCompleted == false">
         <ion-col>

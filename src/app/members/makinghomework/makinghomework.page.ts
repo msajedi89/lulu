@@ -119,8 +119,8 @@ export class MakinghomeworkPage implements OnInit {
       let myHomeworkID;
       this.network.insertHomework(name, subject, homeworkDate, this.myQuestionIDs, this.myStudentIDs).then(data => {
         myHomeworkID = this.showData(data);
-        console.log("The inserted Exam ID is: " + myHomeworkID);
-        this.presentToast("A new Exam with ID: " + myHomeworkID + " has been inserted.");
+        console.log("The inserted exercise ID is: " + myHomeworkID);
+        this.presentToast("A new exercise with ID: " + myHomeworkID + " has been inserted.");
 
         // insert an Exam record for Chosen students
         for (let i = 0; i < this.studentIDs.length; i++) {

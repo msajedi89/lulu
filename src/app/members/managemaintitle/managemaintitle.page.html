@@ -5,7 +5,7 @@
         <ion-icon name="arrow-back" slot="start"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Manage Main Titles</ion-title>
+    <ion-title>Manage Categories</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,18 +13,18 @@
 
   <div>
     <ion-toolbar>
-      <ion-searchbar placeholder="Search Main Title" [(ngModel)]="mySearch" [showCancelButton]="shouldShowCancel"
+      <ion-searchbar placeholder="Search Category" [(ngModel)]="mySearch" [showCancelButton]="shouldShowCancel"
         (ionChange)="updateMainTitles($event)" debounce="1000"></ion-searchbar>
     </ion-toolbar>
 
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Main Titles List</ion-card-title>
+        <ion-card-title>Categories List</ion-card-title>
         <ion-item>
-          <p>Click on the Main Title to Edit or Disable.</p>
+          <p>Click on the Category to Edit or Disable.</p>
         </ion-item>
         <p align="center">
-          <ion-button expand="block" color="success" size="small" (click)="goToAddMainTitle()" slot="end">ADD MAIN TITLE
+          <ion-button expand="block" color="success" size="small" (click)="goToAddMainTitle()" slot="end">ADD CATEGORY
           </ion-button>
         </p>
       </ion-card-header>

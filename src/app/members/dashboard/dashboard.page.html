@@ -12,48 +12,56 @@
 <ion-content class="bg" text-center>
 
   <div class="fixed">
-      <ion-grid>
-        <ion-row>
-          <ion-col size="4">
-            <ion-card (click)="goToExamsList()" [style.background-color]="myColor1">
-              <ion-icon name="paper" color="primary" class="larger"></ion-icon>
-              <p>New Exams</p>
-            </ion-card>
-          </ion-col>
-          <ion-col size="4">
-            <ion-card (click)="goToListOfTakenExam()" [style.background-color]="myColor3">
-              <ion-icon name="paper" color="primary" class="larger"></ion-icon>
-              <p>Exams</p>
-            </ion-card>
-          </ion-col>
-          <ion-col size="4">
-            <ion-card (click)="goToLecterns()" [style.background-color]="myColor5">
-              <ion-icon name="easel" color="primary" class="larger"></ion-icon>
-              <p>Lecterns</p>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col size="4">
-            <ion-card (click)="goToHomeworksList()" [style.background-color]="myColor2">
-              <ion-icon name="home" color="primary" class="larger"></ion-icon>
-              <p>New Homeworks</p>
-            </ion-card>
-          </ion-col>
-          <ion-col size="4">
-            <ion-card (click)="goToListOfTakenHomeworks()" [style.background-color]="myColor4">
-              <ion-icon name="home" color="primary" class="larger"></ion-icon>
-              <p>Homeworks</p>
-            </ion-card>
-          </ion-col>
-          <ion-col size="4">
-            <ion-card (click)="goToEditProfile()" [style.background-color]="myColor6">
-              <ion-icon name="contact" color="primary" class="larger"></ion-icon>
-              <p>Edit Profile</p>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <ion-card (click)="goToExamsList()" [style.background-color]="myColor1">
+            <ion-icon name="paper" color="primary" class="larger"></ion-icon>
+            <p>New Exams</p>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card (click)="goToListOfTakenExam()" [style.background-color]="myColor3">
+            <ion-icon name="paper" color="primary" class="larger"></ion-icon>
+            <p>Exams</p>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card (click)="goToLecterns()" [style.background-color]="myColor5">
+            <ion-icon name="easel" color="primary" class="larger"></ion-icon>
+            <p>Lecterns</p>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="4">
+          <ion-card (click)="goToHomeworksList()" [style.background-color]="myColor2">
+            <ion-icon name="albums" color="primary" class="larger"></ion-icon>
+            <p>New Exercises</p>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card (click)="goToListOfTakenHomeworks()" [style.background-color]="myColor4">
+            <ion-icon name="albums" color="primary" class="larger"></ion-icon>
+            <p>Exercises</p>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card (click)="goToHomeworks()" [style.background-color]="myColor7">
+            <ion-icon name="home" color="primary" class="larger"></ion-icon>
+            <p>Homeworks</p>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="4">
+          <ion-card (click)="goToEditProfile()" [style.background-color]="myColor6">
+            <ion-icon name="contact" color="primary" class="larger"></ion-icon>
+            <p>Edit Profile</p>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 
 </ion-content>

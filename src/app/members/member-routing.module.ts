@@ -56,7 +56,10 @@ const routes: Routes = [
   { path: 'editsubtitle', loadChildren: './editsubtitle/editsubtitle.module#EditsubtitlePageModule' },
   { path: 'managestudents', loadChildren: './managestudents/managestudents.module#ManagestudentsPageModule' },
   { path: 'edituser', loadChildren: './edituser/edituser.module#EdituserPageModule' },
-  { path: 'editteacherprofile', loadChildren: './editteacherprofile/editteacherprofile.module#EditteacherprofilePageModule' }
+  { path: 'editteacherprofile', loadChildren: './editteacherprofile/editteacherprofile.module#EditteacherprofilePageModule' },
+  { path: 'homeworkslist', loadChildren: './homeworkslist/homeworkslist.module#HomeworkslistPageModule' },
+  { path: 'studenthomeworks', loadChildren: './studenthomeworks/studenthomeworks.module#StudenthomeworksPageModule' },
+  { path: 'studenthomeworkdetails', loadChildren: './studenthomeworkdetails/studenthomeworkdetails.module#StudenthomeworkdetailsPageModule' }
   
 ];
 

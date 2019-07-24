@@ -1,0 +1,77 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Create an Homework</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content text-center>
+
+  <div>
+    <h1>Homework</h1>
+
+    <ion-grid>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Homework Name:</ion-label>
+            <ion-input placeholder="Required" [(ngModel)]="name"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Homeworks:</ion-label>
+            <ion-textarea placeholder="Required" [(ngModel)]="homeworks"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Homework Date:</ion-label>
+            <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY" [(ngModel)]="homeworkDate">
+            </ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Choose Student</ion-label>
+            <ionic-selectable item-content [(ngModel)]="students" [items]="allStudents" itemValueField="stID"
+              itemTextField="NameFamily" [canSearch]="true" (onchange)="userChanged($event)"
+              (onClose)="onCloseStudent($event)" [isMultiple]="false">
+
+            </ionic-selectable>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <p>*Note: After filling the Required fields, Choose one Student to send homework.</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="insertHomework(name, homeworks, homeworkDate)" expand="block" color="success">
+            Send Homework
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </div>
+
+</ion-content>

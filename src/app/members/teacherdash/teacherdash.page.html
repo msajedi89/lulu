@@ -23,8 +23,8 @@
         </ion-col>
         <ion-col size="4">
           <ion-card (click)="goToMakingHomework()" [style.background-color]="myColor2">
-            <ion-icon name="home" color="primary" class="larger"></ion-icon>
-            <p>Create Homework</p>
+            <ion-icon name="albums" color="primary" class="larger"></ion-icon>
+            <p>Create Exercise</p>
           </ion-card>
         </ion-col>
         <ion-col size="4">
@@ -38,7 +38,7 @@
         <ion-col size="4">
           <ion-card (click)="goToStudentsList('homework')" [style.background-color]="myColor4">
             <ion-icon name="list-box" color="primary" class="larger"></ion-icon>
-            <p>Student Homeworks</p>
+            <p>Student Exercises</p>
           </ion-card>
         </ion-col>
         <ion-col size="4">
@@ -48,9 +48,9 @@
           </ion-card>
         </ion-col>
         <ion-col size="4">
-          <ion-card (click)="goToManageStudents()" [style.background-color]="myColor6">
-            <ion-icon name="people" color="primary" class="larger"></ion-icon>
-            <p>Manage Students</p>
+          <ion-card (click)="goToHomework()" [style.background-color]="myColor9">
+            <ion-icon name="home" color="primary" class="larger"></ion-icon>
+            <p>Homework</p>
           </ion-card>
         </ion-col>
       </ion-row>
@@ -58,7 +58,13 @@
         <ion-col size="4">
           <ion-card (click)="goToManageTitles()" [style.background-color]="myColor7">
             <ion-icon name="card" color="primary" class="larger"></ion-icon>
-            <p>Manage Titles</p>
+            <p>Manage Categories</p>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card (click)="goToManageStudents()" [style.background-color]="myColor6">
+            <ion-icon name="people" color="primary" class="larger"></ion-icon>
+            <p>Manage Students</p>
           </ion-card>
         </ion-col>
         <ion-col size="4">

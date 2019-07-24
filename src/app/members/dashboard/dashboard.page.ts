@@ -22,6 +22,7 @@ export class DashboardPage implements OnInit {
   myColor4 = '#fff';
   myColor5 = '#fff';
   myColor6 = '#fff';
+  myColor7 = '#fff';
 
 // tslint:disable-next-line: max-line-length
   constructor(private router: Router, private authService: AuthenticationService, private storage: Storage, private network: NetworkEngineService) { }
@@ -94,6 +95,14 @@ export class DashboardPage implements OnInit {
       this.myColor2 = '#fff';
     }, 200);
     this.router.navigate(['members', 'listofstudenthomeworks']);
+  }
+
+  goToHomeworks() {
+    this.myColor7 = '#0fadf0';
+    setInterval(() => {
+      this.myColor7 = '#fff';
+    }, 200);
+    this.router.navigate(['members', 'studenthomeworks']);
   }
 
   goToListOfTakenExam() {

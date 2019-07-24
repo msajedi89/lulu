@@ -28,7 +28,7 @@
       <ion-row>
         <ion-col size="12">
           <ion-item>
-            <ion-label>Select Main Title</ion-label>
+            <ion-label>Select Category</ion-label>
             <ionic-selectable item-content [(ngModel)]="mainTitle" [items]="mainTitles" itemValueField="mtID"
               itemTextField="MainTitle" [canSearch]="true" (onchange)="userChanged($event)" (onClose)="onClose($event)">
 
@@ -40,7 +40,7 @@
       <ion-row>
         <ion-col size="12">
           <ion-item>
-            <ion-label>Select Sub Title</ion-label>
+            <ion-label>Select Sub Category</ion-label>
             <ionic-selectable item-content [(ngModel)]="subTitle" [items]="subTitles" itemValueField="SubTID"
               itemTextField="SubTitle" [canSearch]="true" (onchange)="userChanged($event)">
 
@@ -52,7 +52,7 @@
       <ion-row>
         <ion-col size="12">
           <ion-item>
-            <ion-label>Question(English):</ion-label>
+            <ion-label>Main Title:</ion-label>
             <ion-input placeholder="Required" [(ngModel)]="question"></ion-input>
           </ion-item>
         </ion-col>
@@ -61,7 +61,7 @@
       <ion-row>
         <ion-col size="12">
           <ion-item>
-            <ion-label>Question(Arabic):</ion-label>
+            <ion-label>Sub Title:</ion-label>
             <ion-input [(ngModel)]="questionAr"></ion-input>
           </ion-item>
         </ion-col>
@@ -70,7 +70,7 @@
       <ion-row>
         <ion-col size="12">
           <ion-item>
-            <ion-label>Question(Arabizi):</ion-label>
+            <ion-label>Arabizi:</ion-label>
             <ion-input [(ngModel)]="questionAz"></ion-input>
           </ion-item>
         </ion-col>

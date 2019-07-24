@@ -5,7 +5,7 @@
         <ion-icon name="arrow-back" slot="start"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Sub Titles</ion-title>
+    <ion-title>Sub Categories</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,21 +14,21 @@
   <div>
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Sub Titles</ion-card-title>
+        <ion-card-title>Sub Categories</ion-card-title>
         <ion-item>
-          <p>In this page you can Add/Edit/Disable a Sub Title.</p>
+          <p>In this page you can Add/Edit/Disable a Sub Category.</p>
         </ion-item>
       </ion-card-header>
 
       <ion-card-content>
 
         <ion-item>
-          <ion-label>Sub Title:</ion-label>
+          <ion-label>Sub Category:</ion-label>
           <ion-input placeholder="Required" [(ngModel)]="newSubTitle" value="{{ subTitle }}"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label>Select Main Title<span style="color:red"> *</span></ion-label>
+          <ion-label>Select Main Category<span style="color:red"> *</span></ion-label>
           <ionic-selectable item-content [(ngModel)]="mainTitle" [items]="mainTitles" itemValueField="mtID"
             itemTextField="MainTitle" [canSearch]="true" (onchange)="userChanged($event)" (onClose)="onClose($event)">
 
@@ -36,7 +36,7 @@
         </ion-item>
 
         <ion-item>
-          <ion-label>Sub Title Of:</ion-label>
+          <ion-label>Sub Category Of:</ion-label>
           <ion-input placeholder="Required" value="{{ subTitleOf }}" disabled></ion-input>
         </ion-item>
 

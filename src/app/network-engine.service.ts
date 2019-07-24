@@ -894,4 +894,59 @@ export class NetworkEngineService {
     return request.toPromise();
   }
 
+  // the method for inserting Homeworks list
+  insertHomeworksList(name, homeworks, homeworkDate, studentID): Promise<any> {
+
+    const url = this.mainUrl + 'insertHomeworksList.php';
+
+    const param = {
+      name: name, homeworks: homeworks, homeworkDate: homeworkDate, studentID: studentID
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+
+  // get Student's Homeworks list for parents to see their children's homeworks
+  getStudentHomeworks(stID): Promise<any> {
+    const url = this.mainUrl + 'getHomeworksListNEW.php';
+
+    const param = {
+      stID: stID
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+
+  // Update the HasSeen field of Homeworks List
+  updateHasSeenHomework(homeID): Promise<any> {
+    const url = this.mainUrl + 'updateHomeworkSeen.php';
+
+    const param = {
+      homeID: homeID
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // get Student's Homeworks list By HomeID
+  getHomeworkListByID(homeID): Promise<any> {
+    const url = this.mainUrl + 'getHomeworkListByID.php';
+
+    const param = {
+      homeID: homeID
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
 }

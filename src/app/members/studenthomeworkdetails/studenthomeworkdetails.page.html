@@ -1,0 +1,35 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Homework Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-item>
+      <p><span class="cardTitle">{{ homework.Name }}</span>&nbsp;&nbsp;<span *ngIf="homework.HasSeen == false"
+          style="color:#ffce00;">New</span></p>
+    </ion-item>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <p><span class="mainTexts">Homeworks: </span><span class="subTexts">{{ homework.Homework }}</span></p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <p style="margin-top: 15px !important;"><span class="mainTexts">Homework Date: </span><span class="subTexts">{{ homework.HwkDate }}</span></p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
