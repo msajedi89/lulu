@@ -11,25 +11,28 @@
 
 <ion-content class="bg" text-center>
 
-  <div class="fixed">
+  <div class="fixed" *ngIf="language != ''">
     <ion-grid>
       <ion-row>
         <ion-col size="4">
           <ion-card (click)="goToExamsList()" [style.background-color]="myColor1">
             <ion-icon name="paper" color="primary" class="larger"></ion-icon>
-            <p>New Exams</p>
+            <p *ngIf="language == 'english'">New Exams</p>
+            <p *ngIf="language == 'arabic'">الامتحانات الجديدة</p>
           </ion-card>
         </ion-col>
         <ion-col size="4">
           <ion-card (click)="goToListOfTakenExam()" [style.background-color]="myColor3">
             <ion-icon name="paper" color="primary" class="larger"></ion-icon>
-            <p>Exams</p>
+            <p *ngIf="language == 'english'">Exams</p>
+            <p *ngIf="language == 'arabic'">الامتحانات</p>
           </ion-card>
         </ion-col>
         <ion-col size="4">
           <ion-card (click)="goToLecterns()" [style.background-color]="myColor5">
             <ion-icon name="easel" color="primary" class="larger"></ion-icon>
-            <p>Lecterns</p>
+            <p *ngIf="language == 'english'">Lecterns</p>
+            <p *ngIf="language == 'arabic'">الكراسي</p>
           </ion-card>
         </ion-col>
       </ion-row>
@@ -37,19 +40,22 @@
         <ion-col size="4">
           <ion-card (click)="goToHomeworksList()" [style.background-color]="myColor2">
             <ion-icon name="albums" color="primary" class="larger"></ion-icon>
-            <p>New Exercises</p>
+            <p *ngIf="language == 'english'">New Exercises</p>
+            <p *ngIf="language == 'arabic'">تمارين جديدة</p>
           </ion-card>
         </ion-col>
         <ion-col size="4">
           <ion-card (click)="goToListOfTakenHomeworks()" [style.background-color]="myColor4">
             <ion-icon name="albums" color="primary" class="larger"></ion-icon>
-            <p>Exercises</p>
+            <p *ngIf="language == 'english'">Exercises</p>
+            <p *ngIf="language == 'arabic'">تمارين</p>
           </ion-card>
         </ion-col>
         <ion-col size="4">
           <ion-card (click)="goToHomeworks()" [style.background-color]="myColor7">
             <ion-icon name="home" color="primary" class="larger"></ion-icon>
-            <p>Homeworks</p>
+            <p *ngIf="language == 'english'">Homeworks</p>
+            <p *ngIf="language == 'arabic'">الواجبات</p>
           </ion-card>
         </ion-col>
       </ion-row>
@@ -57,7 +63,15 @@
         <ion-col size="4">
           <ion-card (click)="goToEditProfile()" [style.background-color]="myColor6">
             <ion-icon name="contact" color="primary" class="larger"></ion-icon>
-            <p>Edit Profile</p>
+            <p *ngIf="language == 'english'">Edit Profile</p>
+            <p *ngIf="language == 'arabic'">تعديل الملف الشخصي</p>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card (click)="goToReports()" [style.background-color]="myColor8">
+            <ion-icon name="list-box" color="primary" class="larger"></ion-icon>
+            <p *ngIf="language == 'english'">Reports</p>
+            <p *ngIf="language == 'arabic'">تقارير</p>
           </ion-card>
         </ion-col>
       </ion-row>

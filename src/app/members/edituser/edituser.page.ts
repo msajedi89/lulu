@@ -9,9 +9,8 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 const WHOIS = 'whois';
 const FORADDOREDIT = 'addoreditstudent';
 const STUDENTID = 'studentid';
-
-// get the ID of Student for Editing Profile
 const USERID = 'userid';
+const LANGUAGE = 'language';
 
 @Component({
   selector: 'app-edituser',
@@ -34,9 +33,17 @@ export class EdituserPage implements OnInit {
 
   fromDevice = false;
 
+  language = '';
+
   constructor(private router: Router, public platform: Platform, private network: NetworkEngineService, public navCtrl: NavController,
     public storage: Storage, private toastController: ToastController, private actionSheetController: ActionSheetController,
     private camera: Camera, private transfer: FileTransfer) {
+
+    // get the language from storage and set the dashboard language
+    this.storage.get(LANGUAGE).then(resultLanguage => {
+      this.language = resultLanguage;
+      console.log('the language is: ' + this.language);
+    });
   }
 
   ngOnInit() {

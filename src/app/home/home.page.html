@@ -50,6 +50,22 @@
                 LOG IN
               </ion-button>
             </p>
+
+            <p class="register">
+              You don't have account, <b><a routerLink="/register">Register Now</a></b>
+            </p>
+
+            <p style="margin-top:15px;">
+              <ion-segment value="english">
+                <ion-segment-button value="english" (ionSelect)="segment1ButtonClicked($event)">
+                  <ion-label>English</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="arabic" (ionSelect)="segment2ButtonClicked($event)">
+                  <ion-label>Arabic</ion-label>
+                </ion-segment-button>
+              </ion-segment>
+            </p>
+            
             <span class="loginMsgs">{{ responseTxt }}</span>
           </div>
 

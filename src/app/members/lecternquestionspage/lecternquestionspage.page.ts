@@ -7,6 +7,7 @@ import { Platform, NavController } from '@ionic/angular';
 const MAINTITLE = 'maintitleid';
 const SUBTITLE = 'subtitleid';
 const LECTERNQUESTIONID = 'lecternqid';
+const LANGUAGE = 'language';
 
 @Component({
   selector: 'app-lecternquestionspage',
@@ -19,8 +20,17 @@ export class LecternquestionspagePage implements OnInit {
   subTitle: any = '';
   questionsList: any = '';
 
+  language = '';
+
   constructor(private storage: Storage, private router: Router, public platform: Platform, private network: NetworkEngineService,
-    public navCtrl: NavController) { }
+    public navCtrl: NavController) {
+
+    // get the language from storage and set the dashboard language
+    this.storage.get(LANGUAGE).then(resultLanguage => {
+      this.language = resultLanguage;
+      console.log('the language is: ' + this.language);
+    });
+  }
 
   ngOnInit() {
 

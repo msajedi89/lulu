@@ -106,7 +106,7 @@
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <ion-card-title>Question Voice</ion-card-title>
+              <ion-card-title style="color:#0FADF0;">Question Voice</ion-card-title>
               <p align="center">
                 <ion-button expand="block" color="primary"
                   (click)="stopAudio(root='question', voiceNameEn=name, voiceNameAr=name)" size="small"
@@ -141,18 +141,27 @@
 
       <ion-row>
         <ion-col>
+          <ion-button expand="block" color="primary"
+            (click)="insertQuestion(name, question, questionAr, questionAz, maxTime, descriptionEn, descriptionAr)">
+            Insert Question
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
           <p><br></p>
         </ion-col>
       </ion-row>
 
-      <h3>Answers</h3>
+      <h3 style="color:#6BC357;">Answers</h3>
 
 
       <ion-row>
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <ion-card-title>First Choice</ion-card-title>
+              <ion-card-title style="color:#6BC357;">First Choice</ion-card-title>
               <p align="center"><img class="questionImage" src="{{ fstChoiceImage }}"></p>
 
               <ion-item *ngIf="myFstImgID">
@@ -200,7 +209,7 @@
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <ion-card-title>Second Choice</ion-card-title>
+              <ion-card-title style="color:#6BC357;">Second Choice</ion-card-title>
               <p align="center"><img class="questionImage" src="{{ secChoiceImage }}"></p>
 
               <ion-item *ngIf="mySecImgID">
@@ -248,7 +257,7 @@
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <ion-card-title>Third Choice</ion-card-title>
+              <ion-card-title style="color:#6BC357;">Third Choice</ion-card-title>
               <p align="center"><img class="questionImage" src="{{ trdChoiceImage }}"></p>
 
               <ion-item *ngIf="myTrdImgID">
@@ -294,8 +303,7 @@
       <ion-row>
         <ion-col>
           <ion-button expand="block" color="success"
-            (click)="insertQuestion(name, question, questionAr, questionAz, maxTime, descriptionEn, descriptionAr,
-                    fstChoiceEn, fstChoiceAr, fstChoiceAz, secChoiceEn, secChoiceAr, secChoiceAz, trdChoiceEn, trdChoiceAr, trdChoiceAz)">
+            (click)="insertQuestionAnswer(fstChoiceEn, fstChoiceAr, fstChoiceAz, secChoiceEn, secChoiceAr, secChoiceAz, trdChoiceEn, trdChoiceAr, trdChoiceAz)">
             Insert Question
           </ion-button>
         </ion-col>

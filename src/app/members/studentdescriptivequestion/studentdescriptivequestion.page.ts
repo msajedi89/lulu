@@ -212,6 +212,8 @@ export class StudentdescriptivequestionPage implements OnInit {
   // **************** Record the Student's Answer *********************
   goNext(stAnswer) {
 
+    if (stAnswer == null) { stAnswer = ''; }
+
     // Upload the student voice if he/she record his/her voice
     if (this.stVoiceFileName != '') {
       this.uploadAudio(this.stVoiceFileName, this.stVoiceFilePath);

@@ -1,0 +1,54 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Student Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div>
+        <ion-card>    
+          <ion-card-content>
+    
+            <ion-item>
+              <ion-label>Name & Family:</ion-label>
+              <ion-input placeholder="Required" [(ngModel)]="nameFamily"></ion-input>
+            </ion-item>
+    
+            <ion-item>
+              <ion-label>Username:</ion-label>
+              <ion-input placeholder="Required" [(ngModel)]="username"></ion-input>
+            </ion-item>
+    
+            <ion-item>
+              <ion-label>Password:</ion-label>
+              <ion-input placeholder="Required" [(ngModel)]="password"></ion-input>
+            </ion-item>
+    
+            <ion-item>
+              <ion-label>Address:</ion-label>
+              <ion-textarea [(ngModel)]="address"></ion-textarea>
+            </ion-item>
+    
+            <ion-item>
+              <ion-label>Birthdate:</ion-label>
+              <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY" [(ngModel)]="birthdate"></ion-datetime>
+            </ion-item>
+    
+            <p align="center" class="keepButton">
+              <ion-button expand="block" color="success" size="small"
+                (click)="register(nameFamily, username, password, address, birthdate)" slot="end">Register
+              </ion-button>
+            </p>
+
+            <span class="loginMsgs">{{ responseTxt }}</span>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+</ion-content>

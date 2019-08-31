@@ -102,11 +102,13 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
+      
+      <!--  ********* Question Image Section ***********
+<ion-row>
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <ion-card-title>Question Image</ion-card-title>
+              <ion-card-title style="color:#0FADF0;">Question Image</ion-card-title>
               <p align="center"><img class="questionImage" src="{{ questionImg }}"></p>
 
               <ion-item *ngIf="myQuestionImgID">
@@ -129,12 +131,13 @@
           </ion-card>
         </ion-col>
       </ion-row>
+      -->
 
       <ion-row>
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <ion-card-title>Question Voice</ion-card-title>
+              <ion-card-title style="color:#0FADF0;">Question Voice</ion-card-title>
               <p align="center">
                 <ion-button expand="block" color="primary"
                   (click)="stopAudio(root='question', voiceNameEn=name, voiceNameAr=name)" size="small"
@@ -169,18 +172,27 @@
 
       <ion-row>
         <ion-col>
+          <ion-button expand="block" color="primary"
+            (click)="insertQuestion(name, question, questionAr, questionAz, maxTime, descriptionEn, descriptionAr)">
+            Insert Question
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
           <p><br></p>
         </ion-col>
       </ion-row>
 
-      <h3>Answers</h3>
+      <h3 style="color:#6BC357;">Answers</h3>
 
 
       <ion-row>
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <ion-card-title>First Choice</ion-card-title>
+              <ion-card-title style="color:#6BC357;">First Choice</ion-card-title>
               <p align="center"><img class="questionImage" src="{{ fstChoiceImage }}"></p>
 
               <ion-item *ngIf="myFstImgID">
@@ -267,6 +279,14 @@
                 <ion-label>Voice VID: {{ myFstVoiceID }}</ion-label>
               </ion-item>
 
+              <p align="center">
+                <ion-button expand="block" color="warning"
+                  (click)="insertFstChoice(fstChoiceEn, fstChoiceAr, fstChoiceAz)" size="small"
+                  style="width:150px;margin-top:15px;">
+                  Insert First Choice
+                </ion-button>
+              </p>
+
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -277,7 +297,7 @@
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <ion-card-title>Second Choice</ion-card-title>
+              <ion-card-title style="color:#6BC357;">Second Choice</ion-card-title>
               <p align="center"><img class="questionImage" src="{{ secChoiceImage }}"></p>
 
               <ion-item *ngIf="mySecImgID">
@@ -364,6 +384,14 @@
                 <ion-label>Voice VID: {{ mySecVoiceID }}</ion-label>
               </ion-item>
 
+              <p align="center">
+                <ion-button expand="block" color="warning"
+                  (click)="insertSecChoice(secChoiceEn, secChoiceAr, secChoiceAz)" size="small"
+                  style="width:150px;margin-top:15px;">
+                  Insert Second Choice
+                </ion-button>
+              </p>
+
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -373,7 +401,7 @@
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <ion-card-title>Third Choice</ion-card-title>
+              <ion-card-title style="color:#6BC357;">Third Choice</ion-card-title>
               <p align="center"><img class="questionImage" src="{{ trdChoiceImage }}"></p>
 
               <ion-item *ngIf="myTrdImgID">
@@ -460,6 +488,14 @@
                 <ion-label>Voice VID: {{ myTrdVoiceID }}</ion-label>
               </ion-item>
 
+              <p align="center">
+                <ion-button expand="block" color="warning"
+                  (click)="insertTrdChoice(trdChoiceEn, trdChoiceAr, trdChoiceAz)" size="small"
+                  style="width:150px;margin-top:15px;">
+                  Insert Third Choice
+                </ion-button>
+              </p>
+
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -469,7 +505,7 @@
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <ion-card-title>Correct Choices</ion-card-title>
+              <ion-card-title style="color:#6BC357;">Correct Choices</ion-card-title>
             </ion-card-header>
 
             <ion-item>
@@ -487,7 +523,7 @@
 
             <ion-item>
               <ion-label>Select Correct Choice/s<span style="color:red"> *</span></ion-label>
-              <ionic-selectable item-content [(ngModel)]="correctChoice" [items]="correctCoices" itemValueField="id"
+              <ionic-selectable item-content [(ngModel)]="correctChoice" [items]="correctChoices" itemValueField="id"
                 itemTextField="choices" [canSearch]="true" (onchange)="userChanged($event)"
                 (onClose)="onCloseCorrectChoice($event)">
 
@@ -509,10 +545,14 @@
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <h3>Prepared Information</h3>
+              <h3 style="color:#6BC357;">Prepared Information</h3>
             </ion-card-header>
 
             <ion-card-content>
+
+              <ion-item>
+                <p>The Question ID: {{ myQuestionID }}</p>
+              </ion-item>
 
               <ion-item>
                 <p>The First Selection ID: {{myFstChoiceID}}</p>
@@ -533,21 +573,13 @@
 
       <ion-row>
         <ion-col>
-          <ion-button expand="block" color="secondary"
-            (click)="prepareQuestion(fstChoiceEn, fstChoiceAr, fstChoiceAz, secChoiceEn, secChoiceAr, secChoiceAz, trdChoiceEn, trdChoiceAr, trdChoiceAz)">
-            Prepare to Insert
+          <ion-button expand="block" color="success" (click)="insertQuestionAnswer()">
+            Insert Question Answer
           </ion-button>
         </ion-col>
       </ion-row>
 
-      <ion-row>
-        <ion-col>
-          <ion-button expand="block" color="success"
-            (click)="insertQuestion(name, question, questionAr, questionAz, maxTime, descriptionEn, descriptionAr)">
-            Insert Question
-          </ion-button>
-        </ion-col>
-      </ion-row>
+
 
     </ion-grid>
   </div>

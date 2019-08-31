@@ -7,6 +7,7 @@ import { Platform, NavController } from '@ionic/angular';
 const STUDENTEXAMID = 'examid';
 const QUESTIONID = 'questionid';
 const ROOT = 'questionroot';
+const LANGUAGE = 'language';
 
 @Component({
   selector: 'app-studenttakenexamquestionlist',
@@ -21,8 +22,17 @@ export class StudenttakenexamquestionlistPage implements OnInit {
   questions: any = '';
   imagePath = '';
 
+  language = '';
+
   constructor(private storage: Storage, private router: Router, public platform: Platform, private network: NetworkEngineService,
-    public navCtrl: NavController) { }
+    public navCtrl: NavController) {
+
+    // get the language from storage and set the dashboard language
+    this.storage.get(LANGUAGE).then(resultLanguage => {
+      this.language = resultLanguage;
+      console.log('the language is: ' + this.language);
+    });
+  }
 
   ngOnInit() {
 
@@ -52,7 +62,7 @@ export class StudenttakenexamquestionlistPage implements OnInit {
     this.router.navigate(['members', 'listofstudentstakenexam']);
   }
 
-  goToQuestion( questionType, qID) {
+  goToQuestion(questionType, qID) {
 
     console.log('the questionType is: ' + questionType);
     this.storage.set(QUESTIONID, qID).then(() => {

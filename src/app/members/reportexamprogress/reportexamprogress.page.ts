@@ -5,18 +5,18 @@ import { Router } from '@angular/router';
 import { Platform, NavController } from '@ionic/angular';
 
 const USERID = 'userid';
-const STUDENTHOMEWORKID = 'homeworkid';
+const STUDENTEXAMID = 'examid';
 const LANGUAGE = 'language';
 
 @Component({
-  selector: 'app-listofstudenthomeworks',
-  templateUrl: './listofstudenthomeworks.page.html',
-  styleUrls: ['./listofstudenthomeworks.page.scss'],
+  selector: 'app-reportexamprogress',
+  templateUrl: './reportexamprogress.page.html',
+  styleUrls: ['./reportexamprogress.page.scss'],
 })
-export class ListofstudenthomeworksPage implements OnInit {
+export class ReportexamprogressPage implements OnInit {
 
   studentID = '';
-  homeworkList: any = '';
+  examsList: any = '';
 
   language = '';
 
@@ -36,27 +36,24 @@ export class ListofstudenthomeworksPage implements OnInit {
       this.studentID = userID;
 
       // get the student's Homeworks List
-      this.network.getHomeworksList(this.studentID).then(homeworkData => {
-        this.homeworkList = homeworkData;
-        console.log('I received Exams: ' + JSON.stringify(this.homeworkList));
+      this.network.reportStudentExamProgress(this.studentID).then(examsData => {
+        this.examsList = examsData;
+        console.log('I received Exams: ' + JSON.stringify(this.examsList));
 
-        if (this.homeworkList == '0 result') {
-          alert('There is no New Exercise for you!');
+        if (this.examsList == '0 result') {
+          console.log('There is no exam!');
         }
       });
     });
   }
 
   goBack() {
-    this.router.navigate(['members', 'dashboard']);
+    this.router.navigate(['members', 'studentreports']);
   }
 
-  goToStudentHomework(hwkID, hasCompleted) {
-    this.network.updateStudentHomework(hwkID, 1, 1, hasCompleted).then(() => {
-      this.storage.set(STUDENTHOMEWORKID, hwkID).then(result => {
-        console.log('the hwkID for next page: ' + result);
-        this.router.navigate(['members', 'studenthomeworkquestionslist']);
-      });
+  goToExamQuestions(stExamID) {
+    this.storage.set(STUDENTEXAMID, stExamID).then(() => {
+      this.router.navigate(['members', 'studenttakenexamquestionlist']);
     });
   }
 

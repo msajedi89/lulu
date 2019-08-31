@@ -5,13 +5,16 @@
         <ion-icon name="arrow-back" slot="start"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Exam's Questions</ion-title>
+    <div *ngIf="language != ''">
+      <ion-title *ngIf="language == 'english'">Exam's Questions</ion-title>
+      <ion-title *ngIf="language == 'arabic'">أسئلة الامتحان</ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="bg">
 
-  <div class="keepCardTitle">
+  <div class="keepCardTitle" *ngIf="language != ''">
     <ion-card>
       <ion-item>
         <p class="cardTitle">{{ exam.Name }}</p>
@@ -20,18 +23,24 @@
         <ion-grid>
           <ion-row>
             <ion-col size="12">
-              <p><span class="mainTexts">Subject: </span><span class="subTexts">{{ exam.Subject }}</span></p>
+              <p *ngIf="language == 'english'"><span class="mainTexts">Subject: </span><span class="subTexts">{{ exam.Subject }}</span></p>
+              <p *ngIf="language == 'arabic'" style="direction: rtl;"><span class="mainTexts">موضوع : </span><span class="subTexts">{{ exam.Subject }}</span></p>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="12">
-              <p><span class="mainTexts">Exam Date: </span><span class="subTexts">{{ exam.ExamDate }}</span></p>
+              <p *ngIf="language == 'english'"><span class="mainTexts">Exam Date: </span><span class="subTexts">{{ exam.ExamDate }}</span></p>
+              <p *ngIf="language == 'arabic'" style="direction: rtl;"><span class="mainTexts">موعد الامتحان : </span><span class="subTexts">{{ exam.ExamDate }}</span></p>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="12">
-              <p>
+              <p *ngIf="language == 'english'">
                 <span class="mainTexts">Mark: </span>
+                <span *ngIf="exam.Mark" class="subTexts">{{ exam.Mark }}</span>
+              </p>
+              <p *ngIf="language == 'arabic'" style="direction: rtl;">
+                <span class="mainTexts">نتيجة : </span>
                 <span *ngIf="exam.Mark" class="subTexts">{{ exam.Mark }}</span>
               </p>
             </ion-col>
@@ -42,33 +51,44 @@
   </div>
 
 
+  <div *ngIf="language != ''">
+    <div *ngFor="let q1 of questions; let i = index">
+      <div *ngFor="let q2 of q1; let j = index">
+        <ion-row>
+          <ion-col>
+            <div class="keepCardQuestions">
+              <ion-card>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="4">
+                      <img src="{{ imagePath + q2.Image }}">
+                    </ion-col>
+                    <ion-col size="8">
+                      <p *ngIf="language == 'english'"><span class="mainTexts">Name: </span><span class="subTexts">{{ q2.Name }}</span></p>
+                      <p *ngIf="language == 'arabic'" style="direction: rtl;"><span class="mainTexts">اسم : </span><span class="subTexts">{{ q2.Name }}</span></p>
 
-  <div *ngFor="let q1 of questions; let i = index">
-    <div *ngFor="let q2 of q1; let j = index">
-      <ion-row>
-        <ion-col>
-          <div class="keepCardQuestions">
-            <ion-card>
-              <ion-grid>
-                <ion-row>
-                  <ion-col size="4">
-                    <img src="{{ imagePath + q2.Image }}">
-                  </ion-col>
-                  <ion-col size="8">
-                    <p><span class="mainTexts">Name: </span><span class="subTexts">{{ q2.Name }}</span></p>
-                    <p><span class="mainTexts">Category: </span><span class="subTexts">{{ q2.MainTitle }}</span></p>
-                    <p><span class="mainTexts">Sub Category: </span><span class="subTexts">{{ q2.SubTitle }}</span></p>
-                    <p style="text-align:right;">
-                      <ion-button size="small" color="success" (click)="goToQuestion(q2.Type , q2.QID)"
-                        style="margin: 0px !important;padding: 0px !important;">CHECK</ion-button>
-                    </p>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-card>
-          </div>
-        </ion-col>
-      </ion-row>
+                      <p *ngIf="language == 'english'"><span class="mainTexts">Category: </span><span class="subTexts">{{ q2.MainTitle }}</span></p>
+                      <p *ngIf="language == 'arabic'" style="direction: rtl;"><span class="mainTexts">الفئة : </span><span class="subTexts">{{ q2.MainTitle }}</span></p>
+
+                      <p *ngIf="language == 'english'"><span class="mainTexts">Sub Category: </span><span class="subTexts">{{ q2.SubTitle }}</span></p>
+                      <p *ngIf="language == 'arabic'" style="direction: rtl;"><span class="mainTexts">الفئة الفرعية : </span><span class="subTexts">{{ q2.SubTitle }}</span></p>
+                      
+                      <p style="text-align:right;" *ngIf="language == 'english'">
+                        <ion-button size="small" color="success" (click)="goToQuestion(q2.Type , q2.QID)"
+                          style="margin: 0px !important;padding: 0px !important;">CHECK</ion-button>
+                      </p>
+                      <p style="text-align:right;" *ngIf="language == 'arabic'">
+                        <ion-button size="small" color="success" (click)="goToQuestion(q2.Type , q2.QID)"
+                          style="margin: 0px !important;padding: 0px !important;">التحقق من</ion-button>
+                      </p>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card>
+            </div>
+          </ion-col>
+        </ion-row>
+      </div>
     </div>
   </div>
 

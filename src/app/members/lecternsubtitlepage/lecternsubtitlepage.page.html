@@ -5,7 +5,10 @@
         <ion-icon name="arrow-back" slot="start"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Lectern</ion-title>
+    <div *ngIf="language != ''">
+      <ion-title *ngIf="language == 'english'">Lectern</ion-title>
+      <ion-title *ngIf="language == 'arabic'">منضدة للقراءة</ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +17,8 @@
   <div>
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Choose a Sub Category of <span> {{ mainTitle.MainTitle }}</span></ion-card-title>
+        <ion-card-title *ngIf="language == 'english'">Choose a Sub Category of <span> {{ mainTitle.MainTitle }}</span></ion-card-title>
+        <ion-card-title *ngIf="language == 'arabic'" style="direction: rtl;">اختر فئة فرعية من <span> {{ mainTitle.MainTitle }}</span></ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <div *ngFor="let subtitle of subTitles;" class="keepMainTitles">

@@ -59,7 +59,9 @@ const routes: Routes = [
   { path: 'editteacherprofile', loadChildren: './editteacherprofile/editteacherprofile.module#EditteacherprofilePageModule' },
   { path: 'homeworkslist', loadChildren: './homeworkslist/homeworkslist.module#HomeworkslistPageModule' },
   { path: 'studenthomeworks', loadChildren: './studenthomeworks/studenthomeworks.module#StudenthomeworksPageModule' },
-  { path: 'studenthomeworkdetails', loadChildren: './studenthomeworkdetails/studenthomeworkdetails.module#StudenthomeworkdetailsPageModule' }
+  { path: 'studenthomeworkdetails', loadChildren: './studenthomeworkdetails/studenthomeworkdetails.module#StudenthomeworkdetailsPageModule' },
+  { path: 'studentreports', loadChildren: './studentreports/studentreports.module#StudentreportsPageModule' },
+  { path: 'reportexamprogress', loadChildren: './reportexamprogress/reportexamprogress.module#ReportexamprogressPageModule' }
   
 ];
 

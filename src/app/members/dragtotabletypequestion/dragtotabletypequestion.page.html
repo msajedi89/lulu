@@ -105,18 +105,27 @@
 
       <ion-row>
         <ion-col>
+          <ion-button expand="block" color="primary"
+            (click)="insertQuestion(name, question, questionAr, questionAz, maxTime, descriptionEn, descriptionAr)">
+            Insert Question
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
           <p><br></p>
         </ion-col>
       </ion-row>
 
-      <h3>Answers</h3>
+      <h3 style="color:#6BC357;">Answers</h3>
 
 
       <ion-row>
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <h3>Table One</h3>
+              <h3 style="color:#6BC357;">Table One</h3>
             </ion-card-header>
 
             <ion-card-content>
@@ -165,7 +174,7 @@
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <h3>Table Two</h3>
+              <h3 style="color:#6BC357;">Table Two</h3>
             </ion-card-header>
 
             <ion-card-content>
@@ -212,9 +221,8 @@
       <ion-row>
         <ion-col>
           <ion-button expand="block" color="success"
-            (click)="insertQuestion(name, question, questionAr, questionAz, maxTime, descriptionEn, descriptionAr,
-                      tblOneEn, tblOneAr, tblOneAz, tblTwoEn, tblTwoAr, tblTwoAz, text1, text2, text3, text4, text5, text6)">
-            Insert Question
+            (click)="insertQuestionAnswer(tblOneEn, tblOneAr, tblOneAz, tblTwoEn, tblTwoAr, tblTwoAz, text1, text2, text3, text4, text5, text6)">
+            Insert Question Answer
           </ion-button>
         </ion-col>
       </ion-row>

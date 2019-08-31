@@ -40,7 +40,7 @@ export class SelectiontypequestionsPage implements OnInit {
   subTitles: any;
   subTitle = null;
 
-  //******* the variables for Selection Choice.********
+  // ******* the variables for Selection Choice. ********
   // Main Variables:
   fstChoiceImage: any;
   secChoiceImage: any;
@@ -89,7 +89,7 @@ export class SelectiontypequestionsPage implements OnInit {
   testVoiceID = null;
 
   // Multi Selection variable
-  multi: boolean = false;
+  multi = true;
 
   // the child for viewing select component.
   @ViewChild('myselect') selectComponent: IonicSelectableComponent;
@@ -550,7 +550,7 @@ export class SelectiontypequestionsPage implements OnInit {
 
   // the choices for choosing the correct Choice.
   correctChoice = null;
-  correctCoices = [
+  correctChoices = [
     {
       id: 1,
       choices: '1'
@@ -591,154 +591,126 @@ export class SelectiontypequestionsPage implements OnInit {
   mySecChoiceID: any;
   myTrdChoiceID: any;
 
-
-  prepareQuestion(fstChoiceEn, fstChoiceAr, fstChoiceAz, secChoiceEn, secChoiceAr, secChoiceAz, trdChoiceEn, trdChoiceAr, trdChoiceAz) {
-
+  // Insert First Choice
+  insertFstChoice(fstChoiceEn, fstChoiceAr, fstChoiceAz) {
     if (fstChoiceEn == null) { fstChoiceEn = ""; }
     if (fstChoiceAr == null) { fstChoiceAr = ""; }
     if (fstChoiceAz == null) { fstChoiceAz = ""; }
-    if (secChoiceEn == null) { secChoiceEn = ""; }
-    if (secChoiceAr == null) { secChoiceAr = ""; }
-    if (secChoiceAz == null) { secChoiceAz = ""; }
-    if (trdChoiceEn == null) { trdChoiceEn = ""; }
-    if (trdChoiceAr == null) { trdChoiceAr = ""; }
-    if (trdChoiceAz == null) { trdChoiceAz = ""; }
     if (this.myFstImgID == null) { this.myFstImgID = 1; }
-    if (this.mySecImgID == null) { this.mySecImgID = 1; }
-    if (this.myTrdImgID == null) { this.myTrdImgID = 1; }
     if (this.myFstVoiceID == null) { this.myFstVoiceID = 1; }
-    if (this.mySecVoiceID == null) { this.mySecVoiceID = 1; }
-    if (this.myTrdVoiceID == null) { this.myTrdVoiceID = 1; }
 
-    // insert First Selection Choices
     if (this.fstChoice == null) {
       this.network.insertSelectionCoice(fstChoiceEn, fstChoiceAr, fstChoiceAz, this.myFstImgID, this.myFstVoiceID).then(data => {
         this.myFstChoiceID = this.showData(data);
-        console.log('the FstChoiceID is: ' + this.myFstChoiceID);
-
-        // insert Second Selection Choices
-        if (this.secChoice == null) {
-          this.network.insertSelectionCoice(secChoiceEn, secChoiceAr, secChoiceAz, this.mySecImgID, this.mySecVoiceID).then(data => {
-            this.mySecChoiceID = this.showData(data);
-            console.log('the SecChoiceID is: ' + this.mySecChoiceID);
-
-            // insert Third Selection Choices
-            if (this.trdChoice == null) {
-              this.network.insertSelectionCoice(trdChoiceEn, trdChoiceAr, trdChoiceAz, this.myTrdImgID, this.myTrdVoiceID).then(data => {
-                this.myTrdChoiceID = this.showData(data);
-                console.log('the TrdChoiceID is: ' + this.myTrdChoiceID);
-              }, (err) => {
-                alert(err);
-              });
-            } else {
-              this.myTrdChoiceID = this.trdChoice.SID;
-            }
-          }, (err) => {
-            alert(err);
-          });
-        } else {
-          this.mySecChoiceID = this.secChoice.SID;
-
-          // insert Third Selection Choices
-          if (this.trdChoice == null) {
-            this.network.insertSelectionCoice(trdChoiceEn, trdChoiceAr, trdChoiceAz, this.myTrdImgID, this.myTrdVoiceID).then(data => {
-              this.myTrdChoiceID = this.showData(data);
-              console.log('the TrdChoiceID is: ' + this.myTrdChoiceID);
-            }, (err) => {
-              alert(err);
-            });
-          } else {
-            this.myTrdChoiceID = this.trdChoice.SID;
-          }
-        }
+        console.log('the myFstChoiceID is: ' + this.myFstChoiceID);
+        this.presentToast('First Choice has been inserted successfully...');
       }, (err) => {
         alert(err);
       });
     } else {
       this.myFstChoiceID = this.fstChoice.SID;
+    }
+  }
 
-      // insert Second Selection Choices
-      if (this.secChoice == null) {
-        this.network.insertSelectionCoice(secChoiceEn, secChoiceAr, secChoiceAz, this.mySecImgID, this.mySecVoiceID).then(data => {
-          this.mySecChoiceID = this.showData(data);
-          console.log('the SecChoiceID is: ' + this.mySecChoiceID);
+  // Insert Second Choice
+  insertSecChoice(secChoiceEn, secChoiceAr, secChoiceAz) {
+    if (secChoiceEn == null) { secChoiceEn = ""; }
+    if (secChoiceAr == null) { secChoiceAr = ""; }
+    if (secChoiceAz == null) { secChoiceAz = ""; }
+    if (this.mySecImgID == null) { this.mySecImgID = 1; }
+    if (this.mySecVoiceID == null) { this.mySecVoiceID = 1; }
 
-          // insert Third Selection Choices
-          if (this.trdChoice == null) {
-            this.network.insertSelectionCoice(trdChoiceEn, trdChoiceAr, trdChoiceAz, this.myTrdImgID, this.myTrdVoiceID).then(data => {
-              this.myTrdChoiceID = this.showData(data);
-              console.log('the TrdChoiceID is: ' + this.myTrdChoiceID);
-            }, (err) => {
-              alert(err);
-            });
-          } else {
-            this.myTrdChoiceID = this.trdChoice.SID;
-          }
-        }, (err) => {
-          alert(err);
-        });
-      } else {
-        this.mySecChoiceID = this.secChoice.SID;
+    if (this.secChoice == null) {
+      this.network.insertSelectionCoice(secChoiceEn, secChoiceAr, secChoiceAz, this.mySecImgID, this.mySecVoiceID).then(data => {
+        this.mySecChoiceID = this.showData(data);
+        console.log('the mySecChoiceID is: ' + this.mySecChoiceID);
+        this.presentToast('Second Choice has been inserted successfully...');
+      }, (err) => {
+        alert(err);
+      });
+    } else {
+      this.mySecChoiceID = this.secChoice.SID;
+    }
+  }
 
-        // insert Third Selection Choices
-        if (this.trdChoice == null) {
-          this.network.insertSelectionCoice(trdChoiceEn, trdChoiceAr, trdChoiceAz, this.myTrdImgID, this.myTrdVoiceID).then(data => {
-            this.myTrdChoiceID = this.showData(data);
-            console.log('the TrdChoiceID is: ' + this.myTrdChoiceID);
-          }, (err) => {
-            alert(err);
-          });
-        } else {
-          this.myTrdChoiceID = this.trdChoice.SID;
-        }
-      }
+  // Insert Third Choice
+  insertTrdChoice(trdChoiceEn, trdChoiceAr, trdChoiceAz) {
+    if (trdChoiceEn == null) { trdChoiceEn = ""; }
+    if (trdChoiceAr == null) { trdChoiceAr = ""; }
+    if (trdChoiceAz == null) { trdChoiceAz = ""; }
+    if (this.myTrdImgID == null) { this.myTrdImgID = 1; }
+    if (this.myTrdVoiceID == null) { this.myTrdVoiceID = 1; }
+
+    if (this.trdChoice == null) {
+      this.network.insertSelectionCoice(trdChoiceEn, trdChoiceAr, trdChoiceAz, this.myTrdImgID, this.myTrdVoiceID).then(data => {
+        this.myTrdChoiceID = this.showData(data);
+        console.log('the myTrdChoiceID is: ' + this.myTrdChoiceID);
+        this.presentToast('Third Choice has been inserted successfully...');
+      }, (err) => {
+        alert(err);
+      });
+    } else {
+      this.myTrdChoiceID = this.trdChoice.SID;
     }
   }
 
 
-
-
-
   // **************** the Inserting Question Section ******************
+  myQuestionID: any;
 
   insertQuestion(name, question, questionAr, questionAz, maxTime, descriptionEn, descriptionAr) {
 
     if (questionAr == null) { questionAr = ""; }
     if (questionAz == null) { questionAz = ""; }
-    if (maxTime == null) { maxTime = ""; }
+    if (maxTime == null) { maxTime = 0; }
     if (descriptionEn == null) { descriptionEn = ""; }
     if (descriptionAr == null) { descriptionAr = ""; }
     if (this.myQuestionVoiceID == null) { this.myQuestionVoiceID = 1; }
     if (this.myQuestionImgID == null) { this.myQuestionImgID = 1; }
-    if (this.myFstChoiceID == null) { this.myFstChoiceID = 1; }
-    if (this.mySecChoiceID == null) { this.mySecChoiceID = 1; }
-    if (this.myTrdChoiceID == null) { this.myTrdChoiceID = 1; }
 
     // ****** insert Question ******
-    if ((name != null) && (question != null) && (this.mainTitle != null) && (this.subTitle != null) && (this.correctChoice != null)) {
-      let myQuestionID;
+    if ((name != null) && (question != null) && (this.mainTitle != null) && (this.subTitle != null)) {
+
       this.network.insertQuestion(name, this.mainTitle.mtID, this.subTitle.SubTID, maxTime, question, questionAr, questionAz,
         this.myQuestionVoiceID, this.myQuestionImgID, descriptionEn, descriptionAr, 2).then(data => {
-          myQuestionID = this.showData(data);
-          //alert("The inserted Question ID is: " + myQuestionID);
-          console.log("The inserted Question ID is: " + myQuestionID);
-
-          // insert Question Answer to tbl_SelectionAnswersType
-          let myAnswerID;
-          this.network.insertSelectionAnswer(myQuestionID, this.multi, this.myFstChoiceID, this.mySecChoiceID, this.myTrdChoiceID, this.correctChoice.choices).then(data => {
-            myAnswerID = this.showData(data);
-            this.presentToast("The Question has been inserted. with the QuestionID: " + myQuestionID + " and AnswerID: " + myAnswerID);
-            //alert("The inserted Answer ID is: " + myAnswerID);
-            console.log("The insertSelectionAnswer ID is: " + myAnswerID);
-          }, (err) => {
-            alert(err);
-          });
+          this.myQuestionID = this.showData(data);
+          console.log('The inserted Question ID is: ' + this.myQuestionID);
+          this.presentToast('The Question has been inserted. with the QuestionID: ' + this.myQuestionID);
         }, (err) => {
           alert(err);
         });
     } else {
-      alert("Please fill the Required fields");
+      alert('Please fill the Required fields');
     }
+  }
+
+
+
+  // **************** the Inserting Question Answer ******************
+  insertQuestionAnswer() {
+    if (this.myFstChoiceID == null) { this.myFstChoiceID = 1; }
+    if (this.mySecChoiceID == null) { this.mySecChoiceID = 1; }
+    if (this.myTrdChoiceID == null) { this.myTrdChoiceID = 1; }
+
+    let multiSelection;
+    if (this.multi === true) {
+      multiSelection = 1;
+    } else {
+      multiSelection = 0;
+    }
+
+    console.log('The multi is: ' + this.multi);
+    console.log('The multiSelection is: ' + multiSelection);
+
+    // insert Question Answer to tbl_SelectionAnswersType
+    let myAnswerID;
+    this.network.insertSelectionAnswer(this.myQuestionID, multiSelection, this.myFstChoiceID, this.mySecChoiceID, this.myTrdChoiceID, this.correctChoice.choices).then(data => {
+      myAnswerID = this.showData(data);
+      this.presentToast('The Question has been inserted. with the QuestionID: ' + this.myQuestionID + ' and AnswerID: ' + myAnswerID);
+      console.log('The insertSelectionAnswer ID is: ' + myAnswerID);
+    }, (err) => {
+      alert(err);
+    });
   }
 
 

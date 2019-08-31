@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 const TEACHERID = 'teacherid';
 const USERID = 'userid';
 const WHOIS = 'whois';
+const LANGUAGE = 'language';
 
 @Component({
   selector: 'app-home',
@@ -22,17 +23,30 @@ export class HomePage {
   user: any = '';
   whoIs = 'student';
 
+  language = 'english';
+
   constructor(public navCtrl: NavController, public network: NetworkEngineService, private storage: Storage,
     private authService: AuthenticationService, private router: Router, public plt: Platform) {
 
   }
 
-  /*
-  exit() {
-    navigator['app'].exitApp();
-  }*/
+  segmentChanged(ev: any, value) {
+    console.log('Segment changed', value);
+  }
+
+  segment1ButtonClicked($event) {
+    this.language = 'english';
+    console.log('language changed to: ' + this.language);
+  }
+
+  segment2ButtonClicked($event) {
+    this.language = 'arabic';
+    console.log('language changed to: ' + this.language);
+  }
 
   login(username, userpass) {
+
+    this.storage.set(LANGUAGE, this.language);
 
     this.network.readTable(username, userpass, this.whoIs).then(data => {
 

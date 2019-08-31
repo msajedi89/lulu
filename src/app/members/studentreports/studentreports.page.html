@@ -1,0 +1,43 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div *ngIf="language != ''">
+      <ion-title *ngIf="language == 'english'">Reports</ion-title>
+      <ion-title *ngIf="language == 'arabic'">تقارير</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="language != ''">
+    <ion-card>
+      <ion-item *ngIf="language == 'english'">
+        <ion-icon name="list-box" slot="start" color="primary"></ion-icon>
+        <ion-label>List of Reports</ion-label>
+      </ion-item>
+      <ion-item *ngIf="language == 'arabic'" style="direction: rtl;">
+        <ion-icon name="list-box" slot="start" color="primary"></ion-icon>
+        <ion-label style="margin-right: 15px;">قائمة التقارير</ion-label>
+      </ion-item>
+
+      <ion-card-content>
+        <ion-item *ngIf="language == 'english'">
+          <ion-label>Exam Progress</ion-label>
+          <ion-button expand="block" color="success" (click)="goToCheckExamProgress()" slot="end">CHECK
+          </ion-button>
+        </ion-item>
+        <ion-item *ngIf="language == 'arabic'" style="direction: rtl;">
+          <ion-label>تقدم الامتحان</ion-label>
+          <ion-button expand="block" color="success" (click)="goToCheckExamProgress()" slot="end">التحقق من
+          </ion-button>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>

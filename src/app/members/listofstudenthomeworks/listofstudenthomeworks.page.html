@@ -5,57 +5,79 @@
         <ion-icon name="arrow-back" slot="start"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>New Homeworks List</ion-title>
+    <div *ngIf="language != ''">
+      <ion-title *ngIf="language == 'english'">New Exercise List</ion-title>
+      <ion-title *ngIf="language == 'arabic'">قائمة التمرينات الجديدة</ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <div>
-    <div *ngFor="let homework of homeworkList; let i = index">
-      <ion-row *ngIf="homework.HasCompleted == false">
-        <ion-col>
-          <ion-card>
-            <ion-item>
-              <p class="cardTitle">
-                <span>{{ homework.Name }}</span>&nbsp;&nbsp;<span *ngIf="homework.HasSeen == false"
-                  style="color:#ffce00;">New</span>
-              </p>
-            </ion-item>
-            <ion-card-content>
-              <ion-grid>
-                <ion-row>
-                  <ion-col size="12">
-                    <p><span class="mainTexts">Subject: </span><span class="subTexts">{{ homework.Subject }}</span></p>
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col size="12">
-                    <p><span class="mainTexts">Completed: </span>
-                      <span *ngIf="homework.HasCompleted == false" class="hasNotCompleted">No</span>
-                    </p>
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col size="12">
-                    <p><span class="mainTexts">Homework Date: </span><span
-                        class="subTexts">{{ homework.HomeworkDate }}</span></p>
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col size="12">
-                    <p align="center" style="margin-top: 10px !important;">
-                      <ion-button expand="block" color="warning" size="small"
-                        (click)="goToStudentHomework(homework.hwkID,homework.HasCompleted)">TAKE THE HOMEWORK
-                      </ion-button>
-                    </p>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-row>
+  <div *ngIf="language != ''">
+    <div *ngIf="homeworkList != '0 result'">
+      <div *ngFor="let homework of homeworkList; let i = index">
+        <ion-row *ngIf="homework.HasCompleted == false">
+          <ion-col>
+            <ion-card>
+              <ion-item>
+                <p class="cardTitle" *ngIf="language == 'english'">
+                  <span>{{ homework.Name }}</span>&nbsp;&nbsp;<span *ngIf="homework.HasSeen == false"
+                    style="color:#ffce00;">New</span>
+                </p>
+                <p class="cardTitle" *ngIf="language == 'arabic'">
+                  <span>{{ homework.Name }}</span>&nbsp;&nbsp;<span *ngIf="homework.HasSeen == false"
+                    style="color:#ffce00;">الجديد</span>
+                </p>
+              </ion-item>
+              <ion-card-content>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="12">
+                      <p *ngIf="language == 'english'"><span class="mainTexts">Subject: </span><span
+                          class="subTexts">{{ homework.Subject }}</span></p>
+                      <p *ngIf="language == 'arabic'" style="direction: rtl;"><span class="mainTexts">موضوع :
+                        </span><span class="subTexts">{{ homework.Subject }}</span></p>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="12">
+                      <p *ngIf="language == 'english'"><span class="mainTexts">Completed: </span>
+                        <span *ngIf="homework.HasCompleted == false" class="hasNotCompleted">No</span>
+                      </p>
+                      <p *ngIf="language == 'arabic'" style="direction: rtl;"><span class="mainTexts">منجز : </span>
+                        <span *ngIf="homework.HasCompleted == false" class="hasNotCompleted">No</span>
+                      </p>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="12">
+                      <p *ngIf="language == 'english'"><span class="mainTexts">Exercise Date: </span><span
+                          class="subTexts">{{ homework.HomeworkDate }}</span></p>
+                      <p *ngIf="language == 'arabic'" style="direction: rtl;"><span class="mainTexts">تاريخ التمرين :
+                        </span><span class="subTexts">{{ homework.HomeworkDate }}</span></p>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="12">
+                      <p align="center" style="margin-top: 10px !important;" *ngIf="language == 'english'">
+                        <ion-button expand="block" color="warning" size="small"
+                          (click)="goToStudentHomework(homework.hwkID,homework.HasCompleted)">TAKE THE EXERCISE
+                        </ion-button>
+                      </p>
+                      <p align="center" style="margin-top: 10px !important;" *ngIf="language == 'arabic'">
+                        <ion-button expand="block" color="warning" size="small"
+                          (click)="goToStudentHomework(homework.hwkID,homework.HasCompleted)">خذ التمرين
+                        </ion-button>
+                      </p>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </div>
     </div>
   </div>
 

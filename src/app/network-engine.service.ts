@@ -949,4 +949,30 @@ export class NetworkEngineService {
     return request.toPromise();
   }
 
+  // get Student's Exam Progress report
+  reportStudentExamProgress(stID): Promise<any> {
+    const url = this.mainUrl + 'reportStudentExamProgress.php';
+
+    const param = {
+      stID: stID
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // get Student Username for checking in register page
+  getStudentByUsername(stUsername): Promise<any> {
+    const url = this.mainUrl + 'getStudentByUsername.php';
+
+    const param = {
+      stUsername: stUsername
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
 }

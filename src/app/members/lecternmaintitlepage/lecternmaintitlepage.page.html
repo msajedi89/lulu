@@ -5,16 +5,20 @@
         <ion-icon name="arrow-back" slot="start"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Lectern</ion-title>
+    <div *ngIf="language != ''">
+      <ion-title *ngIf="language == 'english'">Lectern</ion-title>
+      <ion-title *ngIf="language == 'arabic'">منضدة للقراءة</ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <div>
+  <div *ngIf="language != ''">
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Choose a Category</ion-card-title>
+        <ion-card-title *ngIf="language == 'english'">Choose a Category</ion-card-title>
+        <ion-card-title *ngIf="language == 'arabic'" style="direction: rtl;">اختر فئة</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <div *ngFor="let mainTitle of mainTitles;" class="keepMainTitles">

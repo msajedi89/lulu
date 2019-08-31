@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { NetworkEngineService } from '../../network-engine.service';
 
 const USERID = 'userid';
+const LANGUAGE = 'language';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,9 +24,19 @@ export class DashboardPage implements OnInit {
   myColor5 = '#fff';
   myColor6 = '#fff';
   myColor7 = '#fff';
+  myColor8 = '#fff';
+
+  language = '';
 
 // tslint:disable-next-line: max-line-length
-  constructor(private router: Router, private authService: AuthenticationService, private storage: Storage, private network: NetworkEngineService) { }
+  constructor(private router: Router, private authService: AuthenticationService, private storage: Storage, private network: NetworkEngineService) { 
+
+    // get the language from storage and set the dashboard language
+    this.storage.get(LANGUAGE).then(resultLanguage => {
+      this.language = resultLanguage;
+      console.log('the language is: ' + this.language);
+    });
+  }
 
   ngOnInit() {
     this.storage.get(USERID).then(userID => {
@@ -135,6 +146,14 @@ export class DashboardPage implements OnInit {
       this.myColor6 = '#fff';
     }, 200);
     this.router.navigate(['members', 'edituser']);
+  }
+
+  goToReports() {
+    this.myColor8 = '#0fadf0';
+    setInterval(() => {
+      this.myColor8 = '#fff';
+    }, 200);
+    this.router.navigate(['members', 'studentreports']);
   }
 
 }

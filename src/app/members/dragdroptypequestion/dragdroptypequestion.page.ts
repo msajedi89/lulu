@@ -21,19 +21,19 @@ export class DragdroptypequestionPage implements OnInit {
   subTitles: any;
   subTitle = null;
 
-  //required variables for inserting Question
+  // required variables for inserting Question
   myQuestionVoiceID: any;
   myQuestionImgID: any = 1;
 
   // required variables for Question's Image
   questionImg: any;
 
-  //required variables for Choices Image
+  // required variables for Choices Image
   fstChoiceImage: any;
   secChoiceImage: any;
   trdChoiceImage: any;
 
-  //required variables for inserting Choices
+  // required variables for inserting Choices
   myFstImgID: any;
   mySecImgID: any;
   myTrdImgID: any;
@@ -375,52 +375,58 @@ export class DragdroptypequestionPage implements OnInit {
 
 
   // **************** the Inserting Question Section ******************
+  myQuestionID: any;
 
-  insertQuestion(name, question, questionAr, questionAz, maxTime, descriptionEn, descriptionAr,
-    fstChoiceEn, fstChoiceAr, fstChoiceAz, secChoiceEn, secChoiceAr, secChoiceAz, trdChoiceEn, trdChoiceAr, trdChoiceAz) {
+  insertQuestion(name, question, questionAr, questionAz, maxTime, descriptionEn, descriptionAr) {
 
-    if (questionAr == null) { questionAr = ""; }
-    if (questionAz == null) { questionAz = ""; }
-    if (maxTime == null) { maxTime = ""; }
-    if (descriptionEn == null) { descriptionEn = ""; }
-    if (descriptionAr == null) { descriptionAr = ""; }
+    if (questionAr == null) { questionAr = ''; }
+    if (questionAz == null) { questionAz = ''; }
+    if (maxTime == null) { maxTime = 0; }
+    if (descriptionEn == null) { descriptionEn = ''; }
+    if (descriptionAr == null) { descriptionAr = ''; }
+
+    if (this.myQuestionVoiceID == null) { this.myQuestionVoiceID = 1; }
+
+    // ****** insert Question ******
+    if ((name != null) && (question != null) && (this.mainTitle != null) && (this.subTitle != null)) {
+
+      this.network.insertQuestion(name, this.mainTitle.mtID, this.subTitle.SubTID, maxTime, question, questionAr, questionAz,
+        this.myQuestionVoiceID, this.myQuestionImgID, descriptionEn, descriptionAr, 1).then(data => {
+          this.myQuestionID = this.showData(data);
+          console.log('The inserted Question ID is: ' + this.myQuestionID);
+        }, (err) => {
+          alert(err);
+        });
+    } else {
+      alert('Please fill the Required fields');
+    }
+  }
+
+
+  // Insert Question Answer
+  insertQuestionAnswer(fstChoiceEn, fstChoiceAr, fstChoiceAz, secChoiceEn, secChoiceAr, secChoiceAz, trdChoiceEn, trdChoiceAr, trdChoiceAz) {
     if (fstChoiceAz == null) { fstChoiceAz = ""; }
     if (fstChoiceAr == null) { fstChoiceAr = ""; }
     if (secChoiceAz == null) { secChoiceAz = ""; }
     if (secChoiceAr == null) { secChoiceAr = ""; }
     if (trdChoiceAz == null) { trdChoiceAz = ""; }
     if (trdChoiceAr == null) { trdChoiceAr = ""; }
-    if (this.myQuestionVoiceID == null) { this.myQuestionVoiceID = 1; }
     if (this.myFstImgID == null) { this.myFstImgID = 1; }
     if (this.mySecImgID == null) { this.mySecImgID = 1; }
     if (this.myTrdImgID == null) { this.myTrdImgID = 1; }
 
-    // ****** insert Question ******
-    if ((name != null) && (question != null) && (fstChoiceEn != null) && (secChoiceEn != null) && (trdChoiceEn != null) && 
-      (this.mainTitle != null) && (this.subTitle != null)) {
-      let myQuestionID;
-      this.network.insertQuestion(name, this.mainTitle.mtID, this.subTitle.SubTID, maxTime, question, questionAr, questionAz,
-        this.myQuestionVoiceID, this.myQuestionImgID, descriptionEn, descriptionAr, 1).then(data => {
-          myQuestionID = this.showData(data);
-          //alert("The inserted Question ID is: " + myQuestionID);
-          console.log("The inserted Question ID is: " + myQuestionID);
+    if ((fstChoiceEn != null) && (secChoiceEn != null) && (trdChoiceEn != null)) {
+      // insert Question Answer to tbl_SelectionAnswersType
+      let myAnswerID;
+      this.network.insertDragDropAnswersType(this.myQuestionID, fstChoiceEn, fstChoiceAr, fstChoiceAz, secChoiceEn, secChoiceAr,
+        secChoiceAz, trdChoiceEn, trdChoiceAr, trdChoiceAz, this.myFstImgID, this.mySecImgID, this.myTrdImgID).then(data => {
 
-          // insert Question Answer to tbl_SelectionAnswersType
-          let myAnswerID;
-          this.network.insertDragDropAnswersType(myQuestionID, fstChoiceEn, fstChoiceAr, fstChoiceAz, secChoiceEn, secChoiceAr,
-            secChoiceAz, trdChoiceEn, trdChoiceAr, trdChoiceAz, this.myFstImgID, this.mySecImgID, this.myTrdImgID).then(data => {
-
-              myAnswerID = this.showData(data);
-              this.presentToast("The Question has been inserted. with the QuestionID: " + myQuestionID + " and AnswerID: " + myAnswerID);
-              console.log("The insertedDragDropAnswer ID is: " + myAnswerID);
-            }, (err) => {
-              alert(err);
-            });
+          myAnswerID = this.showData(data);
+          this.presentToast('The Question has been inserted. with the QuestionID: ' + this.myQuestionID + ' and AnswerID: ' + myAnswerID);
+          console.log('The insertedDragDropAnswer ID is: ' + myAnswerID);
         }, (err) => {
           alert(err);
         });
-    } else {
-      alert("Please fill the Required fields");
     }
   }
 

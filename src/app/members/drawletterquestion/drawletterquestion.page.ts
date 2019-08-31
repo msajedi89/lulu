@@ -328,7 +328,7 @@ export class DrawletterquestionPage implements OnInit {
 
     if (questionAr == null) { questionAr = ""; }
     if (questionAz == null) { questionAz = ""; }
-    if (maxTime == null) { maxTime = ""; }
+    if (maxTime == null) { maxTime = 0; }
     if (descriptionEn == null) { descriptionEn = ""; }
     if (descriptionAr == null) { descriptionAr = ""; }
     if (this.myQuestionVoiceID == null) { this.myQuestionVoiceID = 1; }
