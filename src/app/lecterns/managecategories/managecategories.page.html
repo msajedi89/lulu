@@ -1,0 +1,45 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Manage Lectern Categories</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div>
+    <ion-toolbar>
+      <ion-searchbar placeholder="Search Category" [(ngModel)]="mySearch" [showCancelButton]="shouldShowCancel"
+        (ionChange)="updateCategories($event)" debounce="1000"></ion-searchbar>
+    </ion-toolbar>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Categories List</ion-card-title>
+        <ion-item>
+          <p>Click on the Category to Edit or Disable.</p>
+        </ion-item>
+        <p align="center">
+          <ion-button expand="block" color="success" size="small" (click)="goToAddCategory()" slot="end">ADD CATEGORY
+          </ion-button>
+        </p>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div *ngFor="let category of lecternCategories; let i = index">
+          <div class="keepMainTitles">
+            <ion-item (click)="goForEditing(category.LecID)">
+              <p>#{{ i+1 }}) {{ category.Category }} (ID: {{category.LecID}})<span *ngIf="category.Status == true"
+                  class="dot"></span><span *ngIf="category.Status == false" class="dotError"></span></p>
+            </ion-item>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>

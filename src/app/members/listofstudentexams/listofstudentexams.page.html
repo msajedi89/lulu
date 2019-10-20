@@ -59,11 +59,11 @@
                   <ion-row>
                     <ion-col size="12">
                       <p align="center" style="margin-top: 10px !important;" *ngIf="language == 'english'">
-                        <ion-button expand="block" color="warning" size="small"
+                        <ion-button expand="block" color="warning" size="small" *ngIf="whoIs=='student'"
                           (click)="goToStudentExam(exam.stExamID, exam.HasCompleted)">TAKE THE EXAM</ion-button>
                       </p>
                       <p align="center" style="margin-top: 10px !important;" *ngIf="language == 'arabic'">
-                        <ion-button expand="block" color="warning" size="small"
+                        <ion-button expand="block" color="warning" size="small" *ngIf="whoIs=='student'"
                           (click)="goToStudentExam(exam.stExamID, exam.HasCompleted)">أخذ الامتحان</ion-button>
                       </p>
                     </ion-col>

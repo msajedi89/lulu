@@ -36,6 +36,17 @@
           <ion-button expand="block" color="success" (click)="goToCheckExamProgress()" slot="end">التحقق من
           </ion-button>
         </ion-item>
+
+        <ion-item *ngIf="language == 'english'">
+          <ion-label>Weak & Strong Points</ion-label>
+          <ion-button expand="block" color="success" (click)="goToStrongPoints()" slot="end">CHECK
+          </ion-button>
+        </ion-item>
+        <ion-item *ngIf="language == 'arabic'" style="direction: rtl;">
+          <ion-label>نقاط الضعف والقوة</ion-label>
+          <ion-button expand="block" color="success" (click)="goToStrongPoints()" slot="end">التحقق من
+          </ion-button>
+        </ion-item>
       </ion-card-content>
     </ion-card>
   </div>

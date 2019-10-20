@@ -37,7 +37,12 @@
 
         <ion-item *ngIf="language == 'english'">
           <ion-label>Username:</ion-label>
-          <ion-input placeholder="Required" [(ngModel)]="username" value="{{ student.Username }}"></ion-input>
+          <div *ngIf="forAddOrEdit==='edit'">
+              <ion-input placeholder="Required" disabled [(ngModel)]="username" value="{{ student.Username }}"></ion-input>
+          </div>
+          <div *ngIf="forAddOrEdit==='add'">
+              <ion-input placeholder="Required" [(ngModel)]="username" value="{{ student.Username }}"></ion-input>
+          </div>
         </ion-item>
         <ion-item *ngIf="language == 'arabic'" style="direction: rtl;">
           <ion-label>اسم المستخدم :</ion-label>
@@ -71,6 +76,14 @@
           <ion-label>تاريخ الولادة :</ion-label>
           <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY" [(ngModel)]="birthdate"></ion-datetime>
           <p>{{ student.Birthdate }}</p>
+        </ion-item>
+
+        <ion-item *ngIf="whoIs == 'teacher'">
+          <ion-label>Choose Parent:</ion-label>
+          <ionic-selectable item-content [(ngModel)]="parent" [items]="allParents" itemValueField="ParentID"
+            itemTextField="Name" [canSearch]="true" (onchange)="userChanged($event)" (onClose)="onClose($event)">
+          </ionic-selectable>
+          <p *ngIf="forAddOrEdit == 'edit'" style="font-size: 14px;">ParentID: {{ parentID }}</p>
         </ion-item>
 
         <ion-item *ngIf="whoIs == 'teacher'">

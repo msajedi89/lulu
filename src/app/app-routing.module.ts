@@ -7,10 +7,18 @@ const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   {
     path: 'members',
-    canActivate: [AuthGuardService],
     loadChildren: './members/member-routing.module#MemberRoutingModule'
   },
-  { path: 'register', loadChildren: './register/register.module#RegisterPageModule' }
+  { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
+  { path: 'parentdash', loadChildren: './parents/parentdash/parentdash.module#ParentdashPageModule' },
+  { path: 'addstudent', loadChildren: './parents/addstudent/addstudent.module#AddstudentPageModule' },
+  { path: 'categoryreportmaintitlespage', loadChildren: './reports/categoryreportmaintitlespage/categoryreportmaintitlespage.module#CategoryreportmaintitlespagePageModule' },
+  { path: 'catreportmaintitlequestionslist', loadChildren: './reports/catreportmaintitlequestionslist/catreportmaintitlequestionslist.module#CatreportmaintitlequestionslistPageModule' },
+  { path: 'viewstudents', loadChildren: './parents/viewstudents/viewstudents.module#ViewstudentsPageModule' },
+  { path: 'lecternmainpage', loadChildren: './lecterns/lecternmainpage/lecternmainpage.module#LecternmainpagePageModule' },
+  { path: 'managecategories', loadChildren: './lecterns/managecategories/managecategories.module#ManagecategoriesPageModule' },
+  { path: 'editcategory', loadChildren: './lecterns/editcategory/editcategory.module#EditcategoryPageModule' },
+  { path: 'uploadlecternvideo', loadChildren: './lecterns/uploadlecternvideo/uploadlecternvideo.module#UploadlecternvideoPageModule' }
 ];
 
 @NgModule({

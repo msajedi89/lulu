@@ -7,6 +7,7 @@ import { Platform, NavController } from '@ionic/angular';
 const USERID = 'userid';
 const STUDENTEXAMID = 'examid';
 const LANGUAGE = 'language';
+const WHOIS = 'whois';
 
 @Component({
   selector: 'app-listofstudentexams',
@@ -19,6 +20,7 @@ export class ListofstudentexamsPage implements OnInit {
   examList: any = '';
 
   language = '';
+  whoIs = '';
 
   constructor(private storage: Storage, private router: Router, public platform: Platform, private network: NetworkEngineService,
     public navCtrl: NavController) {
@@ -45,10 +47,20 @@ export class ListofstudentexamsPage implements OnInit {
         }
       });
     });
+
+    // Who entered to this page
+    this.storage.get(WHOIS).then(whoIsResult => {
+      this.whoIs = whoIsResult;
+      console.log('who is in New Exams page: ' + this.whoIs);
+    });
   }
 
   goBack() {
-    this.router.navigate(['members', 'dashboard']);
+    if(this.whoIs == 'student') {
+      this.router.navigate(['members', 'dashboard']);
+    } else if(this.whoIs == 'parent') {
+      this.router.navigate(['viewstudents']);
+    }
   }
 
   goToStudentExam(stExamID, hasCompleted) {

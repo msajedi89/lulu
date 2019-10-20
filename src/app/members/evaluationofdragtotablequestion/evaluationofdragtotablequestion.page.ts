@@ -310,15 +310,17 @@ export class EvaluationofdragtotablequestionPage implements OnInit {
     if (this.whoIs == 'student') {
       if (this.fromWhere == 'exam') {
         this.router.navigate(['members', 'studenttakenexamquestionlist']);
-      } else {
+      } else if (this.fromWhere == 'homework') {
         this.router.navigate(['members', 'studenttakenhomeworkquestionlist']);
       }
-    } else {
+    } else if (this.whoIs == 'teacher') {
       if (this.fromWhere == 'exam') {
         this.router.navigate(['members', 'examevaluation']);
       } else {
         this.router.navigate(['members', 'homeworkevaluation']);
       }
+    } else {
+      this.router.navigate(['members', 'studenttakenexamquestionlist']);
     }
   }
 

@@ -6,7 +6,12 @@ import { Injectable } from '@angular/core';
 })
 export class NetworkEngineService {
 
+  // Remote Server
   mainUrl = "http://luluwa.me/";
+
+  // Local Server
+  //mainUrl = "http://localhost:88/luluwa/";
+  
   mainUploadImgUrl = "http://luluwa.me/images/QuestionImages/";
   mainUploadImgAPI = "http://luluwa.me/upload.php";
   mainUploadStudentsDrawingAPI = "http://luluwa.me/uploadStudentDrawing.php";
@@ -854,12 +859,12 @@ export class NetworkEngineService {
   }
 
   // Add or Edit Student
-  addOrEditStudent(stID, nameFamily, username, pass, address, birthdate, status, profileImg, addOrEdit): Promise<any> {
+  addOrEditStudent(stID, nameFamily, username, pass, address, birthdate, status, profileImg, addOrEdit, parentID): Promise<any> {
     const url = this.mainUrl + 'addOrEditStudent.php';
 
     const param = {
       stID: stID, nameFamily: nameFamily, username: username, pass: pass, address: address, birthdate: birthdate, status: status,
-      profileImg: profileImg, addOrEdit: addOrEdit
+      profileImg: profileImg, addOrEdit: addOrEdit, parentID: parentID
     };
 
     let request = this.http.post(url, param);
@@ -971,6 +976,177 @@ export class NetworkEngineService {
     };
 
     let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // get all Parents
+  getAllParents(): Promise<any> {
+    let url = this.mainUrl + "getAllParents.php";
+
+    let request = this.http.get(url);
+
+    return request.toPromise();
+  }
+
+  // get Parent Username for checking in Signup page
+  getParentByUsername(ptUsername): Promise<any> {
+    const url = this.mainUrl + 'getParentByUsername.php';
+
+    const param = {
+      ptUsername: ptUsername
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // Add or Edit Parent
+  addOrEditParent(parentID, nameFamily, username, pass, address, phone, status, addOrEdit): Promise<any> {
+    const url = this.mainUrl + 'addOrEditParent.php';
+
+    const param = {
+      parentID: parentID, nameFamily: nameFamily, username: username, pass: pass, address: address, phone: phone, status: status,
+      addOrEdit: addOrEdit
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // get Student by ParentID
+  getStudentByParentID(parentID): Promise<any> {
+    const url = this.mainUrl + "getStudentByParentID.php";
+
+    const param = {
+      parentID: parentID
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // get Student Category Report MainTitles
+  getStudentCategoryReportMainTitles(stID): Promise<any> {
+    const url = this.mainUrl + "getStudentCategoryReportMainTitles.php";
+
+    const param = {
+      stID: stID
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // get Student Category Report Questions List
+  getStCategoryReportQuestionsList(stID, mtID): Promise<any> {
+    const url = this.mainUrl + "getStCategoryReportQuestionsList.php";
+
+    const param = {
+      stID: stID, mtID: mtID
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // get Count of New Exams
+  countNewExams(stID): Promise<any> {
+    const url = this.mainUrl + "countNewExams.php";
+
+    const param = {
+      stID: stID
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // get Count of New Homeworks
+  countNewHomeworks(stID): Promise<any> {
+    const url = this.mainUrl + "countNewHomeworks.php";
+
+    const param = {
+      stID: stID
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // get Count of Answered Questions
+  countAnsweredQuestions(stID, stExamID): Promise<any> {
+    const url = this.mainUrl + "countAnsweredQuestions.php";
+
+    const param = {
+      stID: stID, stExamID: stExamID
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // get all lectern Categories to manage
+  getAllLecternCategories(): Promise<any> {
+    let url = this.mainUrl + "getAllLecternCategories.php";
+
+    let request = this.http.get(url);
+
+    return request.toPromise();
+  }
+
+  // filter Lectern Categoris
+  filterLecternCategoris(mySearch): Promise<any> {
+    let url = this.mainUrl + "filterLecternCategoris.php";
+
+    let param = {
+      mySearch: mySearch
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // filter Lectern Categoris By ID
+  getLecternCategoryByID(lecID): Promise<any> {
+    const url = this.mainUrl + "getLecternCategoryByID.php";
+
+    const param = {
+      lecID: lecID
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // Add or Edit Lectern Category
+  addOrEditLecternCategory(lecID, category, status, addOrEdit): Promise<any> {
+    const url = this.mainUrl + 'addOrEditLecternCategory.php';
+
+    const param = {
+      lecID: lecID, category: category, status: status, addOrEdit: addOrEdit
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // get all Active lectern Categories
+  getAllActiveLecternCategory(): Promise<any> {
+    let url = this.mainUrl + "getAllActiveLecternCategory.php";
+
+    let request = this.http.get(url);
 
     return request.toPromise();
   }

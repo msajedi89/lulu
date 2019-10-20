@@ -7,6 +7,7 @@ import { Platform, NavController } from '@ionic/angular';
 const USERID = 'userid';
 const STUDENTHOMEID = 'homeid';
 const LANGUAGE = 'language';
+const WHOIS = 'whois';
 
 @Component({
   selector: 'app-studenthomeworks',
@@ -19,6 +20,7 @@ export class StudenthomeworksPage implements OnInit {
   homeworkList: any = '';
 
   language = '';
+  whoIs = '';
 
   constructor(private storage: Storage, private router: Router, public platform: Platform, private network: NetworkEngineService,
     public navCtrl: NavController) {
@@ -42,10 +44,20 @@ export class StudenthomeworksPage implements OnInit {
       });
     });
 
+    // Who entered to this page
+    this.storage.get(WHOIS).then(whoIsResult => {
+      this.whoIs = whoIsResult;
+      console.log('who is in Homeworks page: ' + this.whoIs);
+    });
+
   }
 
   goBack() {
-    this.router.navigate(['members', 'dashboard']);
+    if(this.whoIs == 'student') {
+      this.router.navigate(['members', 'dashboard']);
+    } else if(this.whoIs == 'parent') {
+      this.router.navigate(['viewstudents']);
+    }
   }
 
 

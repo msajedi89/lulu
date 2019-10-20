@@ -384,12 +384,14 @@ export class EvaluationofdragdropquestionsPage implements OnInit {
       } else if (this.fromWhere == 'homework') {
         this.router.navigate(['members', 'studenttakenhomeworkquestionlist']);
       }
-    } else {
+    } else if (this.whoIs == 'teacher') {
       if (this.fromWhere == 'exam') {
         this.router.navigate(['members', 'examevaluation']);
       } else {
         this.router.navigate(['members', 'homeworkevaluation']);
       }
+    } else {
+      this.router.navigate(['members', 'studenttakenexamquestionlist']);
     }
   }
 

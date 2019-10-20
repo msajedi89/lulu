@@ -1,0 +1,98 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div *ngIf="language != ''">
+      <ion-title *ngIf="language == 'english'">Student Overview</ion-title>
+      <ion-title *ngIf="language == 'arabic'">نظرة عامة على الطالب</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="language != ''" text-center>
+
+    <div class="cards">
+      <ion-card>
+        <ion-card-content class="profileContent">
+          <ion-item>
+            <img class="profileImg" src="{{ profileImgUrl }}" alt="">
+          </ion-item>
+
+          <div style="margin-top: 10px;"><span>{{ student.NameFamily }} with ID: {{ stID }}</span></div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <ion-card (click)="goToReports()">
+            <ion-icon name="list-box" color="primary" class="larger"></ion-icon>
+            <p *ngIf="language == 'english'">Reports</p>
+            <p *ngIf="language == 'arabic'">تقارير</p>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card (click)="goToListOfTakenExam()">
+            <ion-icon name="paper" color="primary" class="larger"></ion-icon>
+            <p *ngIf="language == 'english'">Exams</p>
+            <p *ngIf="language == 'arabic'">الامتحانات</p>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card (click)="goToListOfHomeworks()">
+            <ion-icon name="home" color="primary" class="larger"></ion-icon>
+            <p *ngIf="language == 'english'">Homeworks</p>
+            <p *ngIf="language == 'arabic'">الواجبات</p>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+
+</ion-content>
+
+
+<div *ngIf="language != ''">
+  <div *ngIf="language == 'english'">
+    <ion-footer text-center>
+      <ion-toolbar>
+        <ion-buttons>
+          <ion-button *ngIf="newExamsCount.NewExams=='0'" class="footer" (click)="viewNewExams()">New Exams
+            ({{ newExamsCount.NewExams }})</ion-button>
+          <ion-button *ngIf="newExamsCount.NewExams!='0'" color="warning" class="footer" (click)="viewNewExams()">New
+            Exams ({{ newExamsCount.NewExams }})</ion-button>
+
+
+          <ion-button *ngIf="newHomeworksCount.NewHomeworks=='0'" class="footer" (click)="viewNewHomeworks()">New
+            Homeworks ({{ newHomeworksCount.NewHomeworks }})</ion-button>
+          <ion-button *ngIf="newHomeworksCount.NewHomeworks!='0'" color="warning" class="footer"
+            (click)="viewNewHomeworks()">New Homeworks ({{ newHomeworksCount.NewHomeworks }})</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+  </div>
+  <div *ngIf="language == 'arabic'" style="direction: rtl;">
+    <ion-footer text-center>
+      <ion-toolbar>
+        <ion-buttons>
+          <ion-button *ngIf="newExamsCount.NewExams=='0'" class="footer" (click)="viewNewExams()">الامتحانات الجديدة
+            ({{ newExamsCount.NewExams }})</ion-button>
+          <ion-button *ngIf="newExamsCount.NewExams!='0'" color="warning" class="footer" (click)="viewNewExams()">
+            الامتحانات الجديدة ({{ newExamsCount.NewExams }})</ion-button>
+
+          <ion-button *ngIf="newHomeworksCount.NewHomeworks=='0'" class="footer" (click)="viewNewHomeworks()">
+            الواجبات المنزلية الجديدة ({{ newHomeworksCount.NewHomeworks }})</ion-button>
+          <ion-button *ngIf="newHomeworksCount.NewHomeworks!='0'" color="warning" class="footer"
+            (click)="viewNewHomeworks()">الواجبات المنزلية الجديدة ({{ newHomeworksCount.NewHomeworks }})</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+  </div>
+</div>

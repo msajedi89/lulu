@@ -9,6 +9,7 @@ const TEACHERID = 'teacherid';
 const USERID = 'userid';
 const WHOIS = 'whois';
 const LANGUAGE = 'language';
+const PARENT = 'parent';
 
 @Component({
   selector: 'app-home',
@@ -44,6 +45,21 @@ export class HomePage {
     console.log('language changed to: ' + this.language);
   }
 
+  segmentChangedtoStudent($event) {
+    this.whoIs = 'student';
+    console.log('the whoIs: ' + this.whoIs);
+  }
+
+  segmentChangedtoParent($event) {
+    this.whoIs = 'parent';
+    console.log('the whoIs: ' + this.whoIs);
+  }
+
+  segmentChangedtoTeacher($event) {
+    this.whoIs = 'teacher';
+    console.log('the whoIs: ' + this.whoIs);
+  }
+
   login(username, userpass) {
 
     this.storage.set(LANGUAGE, this.language);
@@ -60,16 +76,33 @@ export class HomePage {
         if (this.user.Pass == userpass) {
           if (this.whoIs == 'teacher') {
             console.log('the TeacherID is: ' + this.user.TeacherID);
-            this.storage.set(TEACHERID, this.user.TeacherID);
-            this.storage.set(WHOIS, 'teacher');
-          } else {
+            this.storage.set(TEACHERID, this.user.TeacherID).then(() => {
+              this.storage.set(WHOIS, 'teacher').then(() => {
+                this.responseTxt = '';
+                this.router.navigate(['members', 'teacherdash']);
+              });
+            });
+            
+          } else if (this.whoIs == 'student') {
             console.log('the StudentID is: ' + this.user.stID);
-            this.storage.set(USERID, this.user.stID);
-            this.storage.set(WHOIS, 'student');
+            this.storage.set(USERID, this.user.stID).then(() => {
+              this.storage.set(WHOIS, 'student').then(() => {
+                this.responseTxt = '';
+                this.router.navigate(['members', 'dashboard']);
+              });
+            });
+            
+          } else if (this.whoIs == 'parent') {
+            console.log('the ParentID is: ' + this.user.ParentID);
+            this.storage.set(PARENT, this.user).then(() => {
+              this.storage.set(WHOIS, 'parent').then(() => {
+                this.responseTxt = '';
+                this.router.navigate(['parentdash']);
+              });
+            });
+            
           }
-
-          this.responseTxt = '';
-          this.authService.login(username, this.whoIs);
+          //this.authService.login(username, this.whoIs);
         } else {
           this.responseTxt = 'The Password is Incorrect';
         }

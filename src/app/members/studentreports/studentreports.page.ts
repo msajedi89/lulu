@@ -4,6 +4,10 @@ import { Platform, NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 const LANGUAGE = 'language';
+const USERID = 'userid';
+const WHOIS = 'whois';
+const STIDFORREPORTS = 'stidforreports';
+//const PARENT = 'parent';
 
 @Component({
   selector: 'app-studentreports',
@@ -13,6 +17,12 @@ const LANGUAGE = 'language';
 export class StudentreportsPage implements OnInit {
 
   language = '';
+
+  stID = '';
+  whoIS = '';
+
+  //parent: any = '';
+  //parentID = '';
 
   constructor(private router: Router, public platform: Platform, public navCtrl: NavController, public storage: Storage) {
 
@@ -24,14 +34,50 @@ export class StudentreportsPage implements OnInit {
   }
 
   ngOnInit() {
+
+    // get the whoIS
+    this.storage.get(WHOIS).then(whoIsResult => {
+      this.whoIS = whoIsResult;
+      console.log('who is in this page: ' + this.whoIS);
+
+      if(this.whoIS == 'student') {
+        this.storage.get(USERID).then(studentIDResult => {
+          this.stID = studentIDResult;
+        });
+      }
+      if(this.whoIS == 'parent') {
+        this.storage.get(STIDFORREPORTS).then(studentIDResult => {
+          this.stID = studentIDResult;
+        });
+      }
+      if(this.whoIS == 'teacher') {
+        this.storage.get(STIDFORREPORTS).then(studentIDResult => {
+          this.stID = studentIDResult;
+        });
+      }
+    });
   }
 
   goBack() {
-    this.router.navigate(['members', 'dashboard']);
+    if(this.whoIS == 'student') {
+      this.router.navigate(['members', 'dashboard']);
+    } else if(this.whoIS == 'parent') {
+      this.router.navigate(['viewstudents']);
+    } else if(this.whoIS == 'teacher') {
+      this.router.navigate(['members', 'allstudentsforreports']);
+    }
   }
 
   goToCheckExamProgress() {
-    this.router.navigate(['members', 'reportexamprogress']);
+    this.storage.set(USERID, this.stID).then(() => {
+      this.router.navigate(['members', 'reportexamprogress']);
+    });
+  }
+
+  goToStrongPoints() {
+    this.storage.set(STIDFORREPORTS, this.stID).then(() => {
+      this.router.navigate(['categoryreportmaintitlespage']);
+    });
   }
 
 }

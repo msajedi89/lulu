@@ -10,7 +10,7 @@ import { Platform, NavController, ToastController } from '@ionic/angular';
 })
 export class RegisterPage implements OnInit {
 
-  student: any = '';
+  parent: any = '';
   responseTxt = '';
 
   constructor(private router: Router, public platform: Platform, private network: NetworkEngineService, public navCtrl: NavController,
@@ -34,35 +34,36 @@ export class RegisterPage implements OnInit {
     toast.present();
   }
 
-  register(nameFamily, username, password, address, birthdate) {
+  register(nameFamily, username, password, address, phone) {
 
     if (address == null) { address = ''; }
-    if (birthdate == null) { birthdate = '1991-05-08'; }
+    if (phone == null) { phone = ''; }
 
     if ((nameFamily != null) && (username != null) && (password != null)) {
       this.responseTxt = '';
 
-      this.network.getStudentByUsername(username).then(studentData => {
-        const jsonArray = studentData;
-        this.student = jsonArray[0];
-        console.log('I Received student: ' + JSON.stringify(this.student));
+      // Check the Duplication of username
+      this.network.getParentByUsername(username).then(parentData => {
+        const jsonArray = parentData;
+        this.parent = jsonArray[0];
+        console.log('I Received parent: ' + JSON.stringify(this.parent));
 
         // check the Dublication of username
-        if (this.student == '0') {
-          this.network.addOrEditStudent(1, nameFamily, username, password, address, birthdate, 1, 'default-user.jpg', 'add').then(result => {
-            this.presentToast('You registered successfully..');
-            console.log('the result of saving is: ' + JSON.stringify(result));
-            this.router.navigate(['home']);
-          }, (err) => {
-            alert(err);
+        if (this.parent == '0') {
+          this.network.addOrEditParent(1, nameFamily, username, password, address, phone, 1, 'add').then(result => {
+            this.responseTxt = '';
+            this.presentToast('You signed up successfully...');
+            console.log(JSON.stringify(result));
+          }).catch(error => {
+            alert(error);
           });
         } else {
-          alert('This Username has registered before!');
           this.responseTxt = 'This Username has registered before!';
         }
-      })
+      }).catch(error => {
+        alert(error);
+      });
     } else {
-      alert('Please fill the required field');
       this.responseTxt = 'Please fill the required fields!';
     }
   }

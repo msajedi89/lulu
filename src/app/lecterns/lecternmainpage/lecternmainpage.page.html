@@ -1,0 +1,53 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Manage Lecterns</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-item>
+      <ion-icon name="list-box" slot="start" color="primary"></ion-icon>
+      <ion-label>Lecterns</ion-label>
+    </ion-item>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Manage Lectern Categories</ion-label>
+        <ion-button size="small" expand="block" color="success" (click)="goToManageCategories()" slot="end">Manage
+        </ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Upload Video</ion-label>
+        <ion-button size="small" expand="block" color="success" (click)="goToUploadVideo()" slot="end">Upload
+        </ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Create Question & Assign to Videos</ion-label>
+        <ion-button size="small" expand="block" color="success" (click)="goToCreateQuestion()" slot="end">Create
+        </ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Evaluate Student Answers</ion-label>
+        <ion-button size="small" expand="block" color="success" (click)="goToEvaluateAnswers()" slot="end">Evaluate
+        </ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>All Videos</ion-label>
+        <ion-button size="small" expand="block" color="success" (click)="goToAllVideos()" slot="end">Evaluate
+        </ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

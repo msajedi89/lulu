@@ -25,8 +25,11 @@ export class EdituserPage implements OnInit {
   // student
   student: any = '';
   stId: any = '';
-  studentStatus = false;
+  studentStatus = true;
   profileImg: any = '../../../assets/imgs/default-user.jpg';
+  studentUsername = '';
+
+  studentDuplication: any = '';
 
   // required variables for Student Image name
   studentImg = '';
@@ -34,6 +37,12 @@ export class EdituserPage implements OnInit {
   fromDevice = false;
 
   language = '';
+
+  // Parent Selectable
+  allParents: any;
+  parent = null;
+  parentID = '';
+  parentName = '';
 
   constructor(private router: Router, public platform: Platform, private network: NetworkEngineService, public navCtrl: NavController,
     public storage: Storage, private toastController: ToastController, private actionSheetController: ActionSheetController,
@@ -76,10 +85,26 @@ export class EdituserPage implements OnInit {
             } else {
               this.studentStatus = true;
             }
+
             console.log('the student is: ' + JSON.stringify(this.student));
+
+            // fetch parentID from loaded Data
+            this.parentID = this.student.ParentID;
+
+            // fetch username from loaded Data
+            this.studentUsername = this.student.Username;
           });
         });
       } else {
+
+        // get List of Parents
+        this.network.getAllParents().then(allParentsData => {
+          this.allParents = allParentsData;
+          console.log('allParents: ' + JSON.stringify(this.allParents));
+        }).catch(error => {
+          alert('The error is: ' + error);
+        });
+
         // for adding or editing
         this.storage.get(FORADDOREDIT).then(forAddOrEditResult => {
           this.forAddOrEdit = forAddOrEditResult;
@@ -104,7 +129,14 @@ export class EdituserPage implements OnInit {
                 } else {
                   this.studentStatus = true;
                 }
+
                 console.log('the student is: ' + JSON.stringify(this.student));
+
+                // fetch parentID from loaded Data
+                this.parentID = this.student.ParentID;
+
+                // fetch username from loaded Data
+                this.studentUsername = this.student.Username;
               });
             });
           }
@@ -131,6 +163,12 @@ export class EdituserPage implements OnInit {
     });
 
     toast.present();
+  }
+
+  onClose($event) {
+    this.parentID = this.parent.ParentID;
+    console.log('the parent selected is: ' + this.parentID + ' ' + this.parent.Name);
+    this.parentName = '';
   }
 
   // **************** Profile Image Part *****************
@@ -236,14 +274,48 @@ export class EdituserPage implements OnInit {
       imageName = this.studentImg;
     }
 
-    if ((nameFamily != null) && (username != null) && (password != null)) {
+    if ((nameFamily != null) && (nameFamily != '') && (username != null) && (username != '') && (password != null) && (password != '')) {
 
-      this.network.addOrEditStudent(this.stId, nameFamily, username, password, address, birthdate, this.studentStatus, imageName, this.forAddOrEdit).then(result => {
-        this.presentToast('Your data has been saved..');
-        console.log('the result of saving is: ' + JSON.stringify(result));
-      }, (err) => {
-        alert(err);
-      });
+      if (this.forAddOrEdit == 'edit') {
+        // Do not Check the Duplication of username in Edit mode
+        this.network.addOrEditStudent(this.stId, nameFamily, this.studentUsername, password, address, birthdate, this.studentStatus, imageName, this.forAddOrEdit, this.parentID).then(result => {
+          this.presentToast('Your data has been saved..');
+          console.log('the result of saving is: ' + JSON.stringify(result));
+        }, (err) => {
+          alert(err);
+        });
+      } else {
+        // Check the Duplication of username in ADD mode
+        this.network.getStudentByUsername(username).then(studentData => {
+          const jsonArray = studentData;
+          this.studentDuplication = jsonArray[0];
+          console.log('I Received studentDuplication: ' + JSON.stringify(this.studentDuplication));
+
+          // check the Dublication of username
+          if (this.studentDuplication == '0') {
+
+            if(this.studentStatus === false) {
+              this.studentStatus = false;
+            } else {
+              this.studentStatus = true;
+            }
+            if(this.parentID == '') {
+              this.parentID = '5';
+            }
+            this.network.addOrEditStudent(this.stId, nameFamily, username, password, address, birthdate, this.studentStatus, imageName, this.forAddOrEdit, this.parentID).then(result => {
+              this.presentToast('Your data has been saved..');
+              console.log('the result of saving is: ' + JSON.stringify(result));
+            }, (err) => {
+              alert(err);
+            });
+          } else {
+            alert('This Username has registered before!');
+          }
+        }).catch(error => {
+          alert(error);
+        });
+      }
+
     } else {
       alert('Please fill the required field');
     }

@@ -1,0 +1,62 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Upload Lectern Video</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Upload Video</ion-card-title>
+      <ion-item>
+        <p>In this page you can Upload your video.</p>
+      </ion-item>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-item>
+        <ion-label>Video Name:</ion-label>
+        <ion-input placeholder="Required" [(ngModel)]="videoName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Description:</ion-label>
+        <ion-textarea [(ngModel)]="description"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Select Category</ion-label>
+        <ionic-selectable item-content [(ngModel)]="category" [items]="categories" itemValueField="LecID"
+          itemTextField="Category" [canSearch]="true" (onClose)="onClose($event)">
+
+        </ionic-selectable>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Video URL:</ion-label>
+        <ion-buttons slot="end">
+          <ion-button expand="block" fill="outline" size="small" (click)="selectVideo()" style="font-size: 14px;">Select Video</ion-button>
+        </ion-buttons>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Go to assign question</ion-label>
+        <ion-toggle color="warning" [(ngModel)]="goToAssignQuestion" size="small"></ion-toggle>
+      </ion-item>
+
+      <p align="center" class="keepButton">
+        <ion-button expand="block" color="success" size="small" (click)="saveChanges(videoName,description)" slot="end">
+          Upload Video
+        </ion-button>
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,88 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div *ngIf="language != ''">
+      <ion-title *ngIf="language == 'english'">Add Student</ion-title>
+      <ion-title *ngIf="language == 'arabic'">أضف طالب</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="language != ''">
+    <ion-card>
+      <ion-card-header text-center>
+        <div class="keepImage">
+          <p align="center"><img class="profileImg" src="{{ profileImg }}"></p>
+          <p class="changeImg" (click)="selectImage()" *ngIf="language == 'english'">Set Profile Image</p>
+          <p class="changeImg" (click)="selectImage()" *ngIf="language == 'arabic'">تعيين صورة الملف الشخصي</p>
+        </div>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-item *ngIf="language == 'english'">
+          <ion-label>Name & Family:</ion-label>
+          <ion-input placeholder="Required" [(ngModel)]="nameFamily"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="language == 'arabic'" style="direction: rtl;">
+          <ion-label>الاسم والعائلة :</ion-label>
+          <ion-input placeholder="Required" [(ngModel)]="nameFamily"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="language == 'english'">
+          <ion-label>Username:</ion-label>
+          <ion-input placeholder="Required" [(ngModel)]="username"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="language == 'arabic'" style="direction: rtl;">
+          <ion-label>اسم المستخدم :</ion-label>
+          <ion-input placeholder="Required" [(ngModel)]="username"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="language == 'english'">
+          <ion-label>Password:</ion-label>
+          <ion-input placeholder="Required" [(ngModel)]="password"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="language == 'arabic'" style="direction: rtl;">
+          <ion-label>كلمه السر :</ion-label>
+          <ion-input placeholder="Required" [(ngModel)]="password"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="language == 'english'">
+          <ion-label>Address:</ion-label>
+          <ion-textarea [(ngModel)]="address"></ion-textarea>
+        </ion-item>
+        <ion-item *ngIf="language == 'arabic'" style="direction: rtl;">
+          <ion-label>عنوان :</ion-label>
+          <ion-textarea [(ngModel)]="address"></ion-textarea>
+        </ion-item>
+
+        <ion-item *ngIf="language == 'english'">
+          <ion-label>Birthdate:</ion-label>
+          <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY" [(ngModel)]="birthdate"></ion-datetime>
+        </ion-item>
+        <ion-item *ngIf="language == 'arabic'" style="direction: rtl;">
+          <ion-label>تاريخ الولادة :</ion-label>
+          <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY" [(ngModel)]="birthdate"></ion-datetime>
+        </ion-item>
+
+        <p align="center" class="keepButton" *ngIf="language == 'english'">
+          <ion-button expand="block" color="success" size="small"
+            (click)="saveChanges(nameFamily, username, password, address, birthdate)" slot="end">ADD STUDENT
+          </ion-button>
+        </p>
+        <p align="center" class="keepButton" *ngIf="language == 'arabic'">
+          <ion-button expand="block" color="success" size="small"
+            (click)="saveChanges(nameFamily, username, password, address, birthdate)" slot="end">أضف طالب
+          </ion-button>
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>

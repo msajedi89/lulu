@@ -1,0 +1,42 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Add/Edit Category</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Lectern Categories</ion-card-title>
+      <ion-item>
+        <p>In this page you can Add/Edit/Disable a Category.</p>
+      </ion-item>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-item>
+        <ion-label>Category:</ion-label>
+        <ion-input placeholder="Required" [(ngModel)]="newCategory" value="{{ category }}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Status</ion-label>
+        <ion-toggle color="warning" [(ngModel)]="catStatus" size="small"></ion-toggle>
+      </ion-item>
+
+      <p align="center" class="keepButton">
+        <ion-button expand="block" color="success" size="small" (click)="saveChanges(newCategory)" slot="end">
+          ADD/SAVE CHANGES
+        </ion-button>
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

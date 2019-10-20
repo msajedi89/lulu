@@ -61,7 +61,8 @@ const routes: Routes = [
   { path: 'studenthomeworks', loadChildren: './studenthomeworks/studenthomeworks.module#StudenthomeworksPageModule' },
   { path: 'studenthomeworkdetails', loadChildren: './studenthomeworkdetails/studenthomeworkdetails.module#StudenthomeworkdetailsPageModule' },
   { path: 'studentreports', loadChildren: './studentreports/studentreports.module#StudentreportsPageModule' },
-  { path: 'reportexamprogress', loadChildren: './reportexamprogress/reportexamprogress.module#ReportexamprogressPageModule' }
+  { path: 'reportexamprogress', loadChildren: './reportexamprogress/reportexamprogress.module#ReportexamprogressPageModule' },
+  { path: 'allstudentsforreports', loadChildren: './allstudentsforreports/allstudentsforreports.module#AllstudentsforreportsPageModule' }
   
 ];
 

@@ -5,7 +5,7 @@
         <ion-icon name="arrow-back" slot="start"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Student Register</ion-title>
+    <ion-title>Parent Signup</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -36,13 +36,13 @@
             </ion-item>
     
             <ion-item>
-              <ion-label>Birthdate:</ion-label>
-              <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY" [(ngModel)]="birthdate"></ion-datetime>
+              <ion-label>Phone No:</ion-label>
+              <ion-input [(ngModel)]="phone"></ion-input>
             </ion-item>
     
             <p align="center" class="keepButton">
               <ion-button expand="block" color="success" size="small"
-                (click)="register(nameFamily, username, password, address, birthdate)" slot="end">Register
+                (click)="register(nameFamily, username, password, address, phone)" slot="end">Sign Up
               </ion-button>
             </p>
 

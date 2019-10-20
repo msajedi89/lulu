@@ -1,0 +1,42 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div *ngIf="language != ''">
+      <ion-title *ngIf="language == 'english'">Category Reports</ion-title>
+      <ion-title *ngIf="language == 'arabic'">تقارير الفئة</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="language != ''">
+
+    <ion-card style="padding-bottom: 30px;">
+      <div *ngIf="language == 'english'" style="margin-left: 15px;">
+        <h1 style="color: #0FADF0;">Categories</h1>
+        <h5 style="color: #626262;">Choose one.</h5>
+      </div>
+      <div *ngIf="language == 'arabic'" style="direction: rtl; margin-right: 15px;">
+        <h1 style="color: #0FADF0;">فئة</h1>
+        <h5 style="color: #626262;">اختيار واحد</h5>
+      </div>
+    </ion-card>
+
+    <div *ngIf="mainTitles != '0 result'">
+      <div style="margin-left: 20px;">
+        <div *ngFor="let item of mainTitles;" style="float: left;">
+          <ion-card (click)="goToCategoryQuestionList(item)" style="width: 100px; margin: 6px!important;" text-center>
+            <p style="font-size: 14px;">{{ item.MainTitle }}</p>
+          </ion-card>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

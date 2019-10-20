@@ -3,11 +3,13 @@ import { Storage } from '@ionic/storage';
 import { NetworkEngineService } from '../../network-engine.service';
 import { Router } from '@angular/router';
 import { Platform, NavController } from '@ionic/angular';
+import { count } from 'rxjs/operators';
 
 const STUDENTEXAMID = 'examid';
 const QUESTIONID = 'questionid';
 const ROOT = 'questionroot';
 const LANGUAGE = 'language';
+const USERID = 'userid';
 
 @Component({
   selector: 'app-studenttakenexamquestionlist',
@@ -16,13 +18,20 @@ const LANGUAGE = 'language';
 })
 export class StudenttakenexamquestionlistPage implements OnInit {
 
+  stID = '';
   stExamID: any = '';
   exam: any = '';
+  QIDs = '';
 
   questions: any = '';
   imagePath = '';
 
   language = '';
+
+  // variables for statistics
+  totalQuestions = 0;
+  answeredQuestions = 0;
+  notAnsweredQuestions = 0;
 
   constructor(private storage: Storage, private router: Router, public platform: Platform, private network: NetworkEngineService,
     public navCtrl: NavController) {
@@ -38,24 +47,42 @@ export class StudenttakenexamquestionlistPage implements OnInit {
 
     this.imagePath = this.network.mainUploadImgUrl;
 
-    this.storage.get(STUDENTEXAMID).then(stExamId => {
-      this.stExamID = stExamId;
-      console.log('the stExamID is: ' + this.stExamID);
-      this.network.getStudentExamByID(this.stExamID).then(examData => {
-        const jsonArray = examData;
-        this.exam = jsonArray[0];
-        console.log('I received Exam: ' + JSON.stringify(this.exam));
+    this.storage.get(USERID).then(stIdResult => {
+      this.stID = stIdResult;
+      console.log('the stID require for statistics is: ' + this.stID);
+
+      this.storage.get(STUDENTEXAMID).then(stExamId => {
+        this.stExamID = stExamId;
+        console.log('the stExamID is: ' + this.stExamID);
+        this.network.getStudentExamByID(this.stExamID).then(examData => {
+          const jsonArray = examData;
+          this.exam = jsonArray[0];
+          console.log('I received Exam: ' + JSON.stringify(this.exam));
 
 
-        // get the Questions list from Exam Data
-        let QIDs = this.exam.QListIDs;
+          // get the Questions list from Exam Data
+          this.QIDs = this.exam.QListIDs;
 
-        this.network.getQuestionGeneralInfoByID(QIDs).then(questionData => {
-          this.questions = questionData;
-          console.log('the jsonArray2: ' + JSON.stringify(this.questions));
+          this.network.getQuestionGeneralInfoByID(this.QIDs).then(questionData => {
+            this.questions = questionData;
+            console.log('the jsonArray2: ' + JSON.stringify(this.questions));
+          });
+
+          // get the Count of Questions that this Student Answered
+          this.network.countAnsweredQuestions(this.stID, this.stExamID).then(countAnsweredQuestionsResult => {
+            const jsonArray3 = countAnsweredQuestionsResult;
+            const strAnsweredQuestions = jsonArray3[0];
+            this.answeredQuestions = parseInt(strAnsweredQuestions.QuestionsAnsweredCount);
+            console.log('the answeredQuestions is: ' + this.answeredQuestions);
+
+            // gather the statistics
+            this.countAnsweredNotAnswered(this.QIDs);
+          }).catch(err => {
+            alert(err);
+          });
         });
       });
-    });
+    })
   }
 
   goBack() {
@@ -92,6 +119,17 @@ export class StudenttakenexamquestionlistPage implements OnInit {
         }
       });
     });
+  }
+
+
+  countAnsweredNotAnswered(qIDs) {
+    let QIDsArray = qIDs.split(',');
+    console.log('the QIDsArray Count is: ' + QIDsArray.length);
+    this.totalQuestions = QIDsArray.length;
+
+    // calc number of not answered Questions
+    this.notAnsweredQuestions = this.totalQuestions - this.answeredQuestions;
+    console.log('the notAnsweredQuestions Count is: ' + this.notAnsweredQuestions);
   }
 
 }

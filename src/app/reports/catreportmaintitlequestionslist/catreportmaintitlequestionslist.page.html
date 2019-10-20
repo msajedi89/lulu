@@ -1,0 +1,45 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div *ngIf="language != ''">
+      <ion-title *ngIf="language == 'english'">Category Reports</ion-title>
+      <ion-title *ngIf="language == 'arabic'">تقارير الفئة</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="language != ''">
+
+    <div *ngIf="questionsList != '0 result'">
+      <ion-card>
+        <ion-item *ngIf="language == 'english'">
+          <ion-icon name="list-box" slot="start" color="primary"></ion-icon>
+          <ion-label>{{ category.MainTitle }}</ion-label>
+          <span style="color:#ffce00; font-size: 14px;">Average Evaluation: {{ avgEvaluation }}</span>
+        </ion-item>
+        <ion-item *ngIf="language == 'arabic'" style="direction: rtl;">
+          <ion-icon name="list-box" slot="start" color="primary"></ion-icon>
+          <ion-label style="margin-right: 15px;">{{ category.MainTitle }}</ion-label>
+          <span style="color:#ffce00; font-size: 14px;">Average Evaluation: {{ avgEvaluation }}</span>
+        </ion-item>
+        <ion-card-content>
+          <div *ngFor="let item of questionsList; let i = index">
+            <ion-item>
+              <ion-label style="direction: ltr; text-align: left; font-size: 14px;">{{ i+1 }}) {{ item.Question }}
+              </ion-label>
+              <span style="color:#ffce00; font-size: 14px;">Evaluation: {{ item.EvaluationState }}</span>
+            </ion-item>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+  </div>
+
+</ion-content>
