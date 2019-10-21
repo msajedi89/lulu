@@ -24,6 +24,9 @@ import { IonicSelectableModule } from 'ionic-selectable';
 import { DragulaModule } from 'ng2-dragula';
 import { PopoverComponent } from './popover/popover.component';
 
+import { FileChooser } from '@ionic-native/file-chooser/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
+
 @NgModule({
   declarations: [AppComponent, PopoverComponent],
   entryComponents: [PopoverComponent],
@@ -32,8 +35,15 @@ import { PopoverComponent } from './popover/popover.component';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    NetworkEngineService, Camera, File, WebView, FileTransfer, Media
+    NetworkEngineService,
+    Camera,
+    File,
+    WebView,
+    FileTransfer,
+    Media,
+    FileChooser,
+    FilePath,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,26 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Upload Lectern Video</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-button (click)="UploadFile()">Upload File</ion-button>
+  <ion-label><b>{{ uploadText }}</b></ion-label>
+  <br><br>
+  <p>videoData: {{ videoData }}</p>
+  <br><br>
+  <p>nativevideoData: {{ nativevideoData }}</p>
+  <br><br>
+  <p>Success: {{ successTxt }}</p>
+  <br><br>
+  <p>Error: {{ errorTxt }}</p>
+  <ion-button (click)="AbortUpload()">Cancel Uploading</ion-button>
+
+</ion-content>

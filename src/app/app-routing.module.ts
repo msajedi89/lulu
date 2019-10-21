@@ -18,7 +18,8 @@ const routes: Routes = [
   { path: 'lecternmainpage', loadChildren: './lecterns/lecternmainpage/lecternmainpage.module#LecternmainpagePageModule' },
   { path: 'managecategories', loadChildren: './lecterns/managecategories/managecategories.module#ManagecategoriesPageModule' },
   { path: 'editcategory', loadChildren: './lecterns/editcategory/editcategory.module#EditcategoryPageModule' },
-  { path: 'uploadlecternvideo', loadChildren: './lecterns/uploadlecternvideo/uploadlecternvideo.module#UploadlecternvideoPageModule' }
+  { path: 'uploadlecternvideo', loadChildren: './lecterns/uploadlecternvideo/uploadlecternvideo.module#UploadlecternvideoPageModule' },  { path: 'uploadvideo', loadChildren: './lecterns/uploadvideo/uploadvideo.module#UploadvideoPageModule' }
+
 ];
 
 @NgModule({

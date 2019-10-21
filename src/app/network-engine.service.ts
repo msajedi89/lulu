@@ -24,6 +24,7 @@ export class NetworkEngineService {
   mainTeacherProfileImgURL = "http://luluwa.me/images/TeacherProfileImg/";
   mainUploadStudentProfileImgAPI = "http://luluwa.me/uploadStudentProfileImg.php";
   mainUploadTeacherProfileImgAPI = "http://luluwa.me/uploadTeacherProfileImg.php";
+  mainUploadVideoAPI = "http://luluwa.me/uploadVideo.php";
 
   constructor(public http: HttpClient) {
     console.log('Hello NetworkEngineProvider Provider');

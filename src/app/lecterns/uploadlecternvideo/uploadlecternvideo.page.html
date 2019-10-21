@@ -11,6 +11,11 @@
 
 <ion-content>
 
+  <video controls="controls" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline"
+    class="videoPlayer" height="200" width="200">
+    <source src="{{ selectedVideo }}" type="video/mov" />
+  </video>
+
   <ion-card>
     <ion-card-header>
       <ion-card-title>Upload Video</ion-card-title>
@@ -21,6 +26,10 @@
 
     <ion-card-content>
 
+      <div class="video-section">
+        <video controls src="{{ selectedVideo }}"></video>
+      </div>
+
       <ion-item>
         <ion-label>Video Name:</ion-label>
         <ion-input placeholder="Required" [(ngModel)]="videoName"></ion-input>
@@ -30,6 +39,14 @@
         <ion-label>Description:</ion-label>
         <ion-textarea [(ngModel)]="description"></ion-textarea>
       </ion-item>
+
+      <p>Whole data: {{ outputVideo }}</p>
+      <p><br>Video FileName: {{ outputFileName }}</p>
+      <p><br>Video FileDIR: {{ outputFileDir }}</p>
+      <p><br>Dir Santisized: {{ outputFileDirSantisized }}</p>
+      <p><br>selectedVideo: {{ selectedVideo }}</p>
+      <p><br>videoFileName: {{ videoFileName }}</p>
+      <p><br>Error is: {{ errorMsgs }}</p>
 
       <ion-item>
         <ion-label>Select Category</ion-label>
@@ -42,7 +59,8 @@
       <ion-item>
         <ion-label>Video URL:</ion-label>
         <ion-buttons slot="end">
-          <ion-button expand="block" fill="outline" size="small" (click)="selectVideo()" style="font-size: 14px;">Select Video</ion-button>
+          <ion-button expand="block" fill="outline" size="small" (click)="selectVideo()" style="font-size: 14px;">Select
+            Video</ion-button>
         </ion-buttons>
       </ion-item>
 
@@ -58,5 +76,19 @@
       </p>
     </ion-card-content>
   </ion-card>
+
+  <div *ngIf="isUploading">
+    <div class="uploading">
+      <p>
+        <ion-spinner name="bubbles"></ion-spinner>
+      </p>
+      <p>Uploading - {{ uploadPercent }}% Complete</p>
+    </div>
+    <div class="button-options">
+      <button ion-button clear (click)="cancelUpload()">
+        <ion-icon name="close-circle" color="danger"></ion-icon>
+      </button>
+    </div>
+  </div>
 
 </ion-content>
