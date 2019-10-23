@@ -7,11 +7,11 @@ import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/n
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { Media, MediaObject } from '@ionic-native/media/ngx';
 import { File, FileEntry } from '@ionic-native/file/ngx';
-import { async } from '@angular/core/testing';
+import { Storage } from '@ionic/storage';
 
-const baseUrl = 'http://luluwa.me/';
-const MAX_FILE_SIZE = 100 * 1024 * 1024;
-const ALLOWED_MIME_TYPE = 'video/mp4';
+// for next page
+const LECTERNVIDEOIDFORADD = 'lecternvideoidforadd';
+const FROMWHEREINLECTERNVIDEOS = 'fromwhere';
 
 @Component({
   selector: 'app-uploadlecternvideo',
@@ -27,20 +27,10 @@ export class UploadlecternvideoPage implements OnInit {
   goToAssignQuestion = 1;
 
   // required variables for Video
-  selectedVideo: string;
-  uploadedVideo: string;
+  videoFileName = '1571724129762.mov';
+  uploadText: any;
+  fileTransfer: FileTransferObject;
   isUploading = false;
-  uploadPercent = 0;
-  videoFileUpload: FileTransferObject;
-  loader;
-
-  // test
-  videoFileName = '';
-  errorMsgs = '';
-  outputVideo = '';
-  outputFileName = '';
-  outputFileDir = '';
-  outputFileDirSantisized = '';
 
   // the child for viewing select component.
   @ViewChild('myselect') selectComponent: IonicSelectableComponent;
@@ -48,7 +38,7 @@ export class UploadlecternvideoPage implements OnInit {
   constructor(private router: Router, public platform: Platform, private network: NetworkEngineService,
     private toastController: ToastController, private actionSheetController: ActionSheetController, private camera: Camera,
     private transfer: FileTransfer, public navCtrl: NavController, private loadingCtrl: LoadingController,
-    private media: Media, private file: File, private alertCtrl: AlertController) { }
+    private media: Media, private file: File, private alertCtrl: AlertController, public storage: Storage) { }
 
   ngOnInit() {
 
@@ -83,26 +73,15 @@ export class UploadlecternvideoPage implements OnInit {
 
   // **************** Upload Video Part *****************
 
-  showLoader() {
-    this.loader = this.loadingCtrl.create({
-      message: 'Please wait...'
-    });
-    this.loader.present();
-  }
-
-  dismissLoader() {
-    this.loader.dismiss();
-  }
-
   // show an Action Sheet for choosing or taking image.
   async selectVideo() {
     const actionSheet = await this.actionSheetController.create({
-      header: "Select Video Source",
+      header: 'Select Video Source',
       buttons: [
         {
           text: 'Load from Library',
           handler: () => {
-            this.getPicture();
+            this.UploadFile();
           }
         },
         {
@@ -116,50 +95,97 @@ export class UploadlecternvideoPage implements OnInit {
   }
 
 
-  // get the picture from device photo library.
-  getPicture() {
-    let options: CameraOptions = {
-      mediaType: this.camera.MediaType.VIDEO,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+  UploadFile() {
+
+    let cameraOptions: CameraOptions = {
+      destinationType: this.camera.DestinationType.FILE_URI,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      mediaType: this.camera.MediaType.VIDEO
     };
 
-    // 'data:video/mp4;base64,' +
-    // 'data:image/jpeg;base64,' +
-    this.camera.getPicture(options).then( async (videoUrl) => {
+    this.camera.getPicture(cameraOptions).then((uri) => {
+      this.fileTransfer = this.transfer.create();
 
-      // this.showLoader();
+      this.videoFileName = this.createFileName();
 
-      this.outputVideo = videoUrl;
-      let filename = videoUrl.substr(videoUrl.lastIndexOf('/') + 1);
-      this.outputFileName = filename;
-      let dirpath = videoUrl.substr(0, videoUrl.lastIndexOf('/') + 1);
-      this.outputFileDir = dirpath;
-
-      dirpath = dirpath.includes("file://") ? dirpath : "file://" + dirpath;
-      this.outputFileDirSantisized = dirpath;
-
-
-      try {
-        let dirUrl = await this.file.resolveDirectoryUrl(dirpath);
-        let retrievedFile = await this.file.getFile(dirUrl, filename, {});
-
-        retrievedFile.file( data => {
-          if (data.size > MAX_FILE_SIZE) return this.errorMsgs = 'You cannot upload more than 5mb.';
-          // if (data.type !== ALLOWED_MIME_TYPE) return this.presentToast("Incorrect file type.");
-
-          this.selectedVideo = retrievedFile.nativeURL;
-      });
-      } catch(err) {
-        // this.dismissLoader();
-        return this.errorMsgs = 'Something went wrong.';
+      let options: FileUploadOptions = {
+        fileKey: 'videofile',
+        fileName: this.videoFileName,
+        chunkedMode: false,
+        headers: {}
       }
 
+      this.uploadText = 'uploading...';
+      this.isUploading = true;
 
-      this.videoFileName = videoUrl;
+      this.fileTransfer.upload(uri, this.network.mainUploadVideoAPI, options).then((data) => {
+        this.uploadText = '';
+        this.isUploading = false;
+        this.presentToast('The file was successfully Uploaded..');
+      }, (err) => {
+        this.uploadText = '';
+        this.isUploading = false;
+        this.videoFileName = '';
+        alert(JSON.stringify(err) + ' ' + 'fileTransfer');
+      });
     }, (err) => {
-      console.log(err);
-      this.errorMsgs = err;
+      this.videoFileName = '';
+      alert(JSON.stringify(err) + ' ' + 'camera');
     });
+  }
+
+  AbortUpload() {
+    this.fileTransfer.abort();
+    this.presentToast('Upload cancelled!');
+    this.uploadText = '';
+    this.isUploading = false;
+    this.videoFileName = '';
+  }
+
+  // Generate the video name by Datetime of system
+  createFileName() {
+    let d = new Date(), n = d.getTime(), newFileName = n + '.mov';
+
+    return newFileName;
+  }
+
+
+  // ************  Insert a record for this Video ************
+  saveChanges(videoName, description) {
+    if (description == null) { description = ''; }
+
+    if ((videoName != '') && (videoName != null)) {
+      if (this.category != null) {
+        if (this.videoFileName != '') {
+          this.network.insertLecternVideo(videoName, this.category.LecID, this.videoFileName, description).then(insertingResult => {
+            console.log('the result of saving is: ' + JSON.stringify(insertingResult));
+            this.presentToast('Video saved successfully...');
+
+            // get the new inserted videoID and pass it to next page to assign questions
+            if (this.goToAssignQuestion == 1) {
+              const jsonArray1 = insertingResult;
+              let newInsertedVideo = jsonArray1[0];
+              console.log('the new inserted video info: ' + JSON.stringify(newInsertedVideo));
+              let newVideoID = newInsertedVideo.VideoID;
+
+              this.storage.set(LECTERNVIDEOIDFORADD, newVideoID).then(() => {
+                this.storage.set(FROMWHEREINLECTERNVIDEOS, 'uploadlecternvideo').then(() => {
+                  this.router.navigate(['addvideoquestions']);
+                });
+              });
+            }
+          }).catch(err => {
+            alert(err);
+          })
+        } else {
+          alert('Please select a Video!');
+        }
+      } else {
+        alert('Please choose a category!');
+      }
+    } else {
+      alert('Please fill the Video Name!');
+    }
   }
 
 }

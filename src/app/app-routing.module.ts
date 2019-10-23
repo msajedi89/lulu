@@ -18,7 +18,12 @@ const routes: Routes = [
   { path: 'lecternmainpage', loadChildren: './lecterns/lecternmainpage/lecternmainpage.module#LecternmainpagePageModule' },
   { path: 'managecategories', loadChildren: './lecterns/managecategories/managecategories.module#ManagecategoriesPageModule' },
   { path: 'editcategory', loadChildren: './lecterns/editcategory/editcategory.module#EditcategoryPageModule' },
-  { path: 'uploadlecternvideo', loadChildren: './lecterns/uploadlecternvideo/uploadlecternvideo.module#UploadlecternvideoPageModule' },  { path: 'uploadvideo', loadChildren: './lecterns/uploadvideo/uploadvideo.module#UploadvideoPageModule' }
+  { path: 'uploadlecternvideo', loadChildren: './lecterns/uploadlecternvideo/uploadlecternvideo.module#UploadlecternvideoPageModule' },  { path: 'uploadvideo', loadChildren: './lecterns/uploadvideo/uploadvideo.module#UploadvideoPageModule' },
+  { path: 'lecterncategories', loadChildren: './lecterns/lecterncategories/lecterncategories.module#LecterncategoriesPageModule' },
+  { path: 'lecterncategoryvideos', loadChildren: './lecterns/lecterncategoryvideos/lecterncategoryvideos.module#LecterncategoryvideosPageModule' },
+  { path: 'addvideoquestions', loadChildren: './lecterns/addvideoquestions/addvideoquestions.module#AddvideoquestionsPageModule' },
+  { path: 'studentwatchvideo', loadChildren: './lecterns/studentwatchvideo/studentwatchvideo.module#StudentwatchvideoPageModule' },
+  { path: 'studenttakelecternexam', loadChildren: './lecterns/studenttakelecternexam/studenttakelecternexam.module#StudenttakelecternexamPageModule' }
 
 ];
 

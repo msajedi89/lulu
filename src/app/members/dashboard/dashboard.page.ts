@@ -25,6 +25,7 @@ export class DashboardPage implements OnInit {
   myColor6 = '#fff';
   myColor7 = '#fff';
   myColor8 = '#fff';
+  myColor9 = '#fff';
 
   language = '';
 
@@ -137,7 +138,7 @@ export class DashboardPage implements OnInit {
     setInterval(() => {
       this.myColor5 = '#fff';
     }, 200);
-    this.router.navigate(['members', 'lecternmaintitlepage']);
+    this.router.navigate(['lecterncategories']);
   }
 
   goToEditProfile() {
@@ -154,6 +155,14 @@ export class DashboardPage implements OnInit {
       this.myColor8 = '#fff';
     }, 200);
     this.router.navigate(['members', 'studentreports']);
+  }
+
+  goToTestYourself() {
+    this.myColor9 = '#0fadf0';
+    setInterval(() => {
+      this.myColor9 = '#fff';
+    }, 200);
+    this.router.navigate(['members', 'lecternmaintitlepage']);
   }
 
 }

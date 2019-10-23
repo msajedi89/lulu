@@ -13,6 +13,13 @@
 
   <ion-button (click)="UploadFile()">Upload File</ion-button>
   <ion-label><b>{{ uploadText }}</b></ion-label>
+  <div *ngIf="isUploading">
+    <p><ion-spinner name="bubbles"></ion-spinner></p>
+    <ion-button fill="clear" (click)="AbortUpload()">
+      <ion-icon name="close-circle" color="danger"></ion-icon>
+    </ion-button>
+  </div>
+
   <br><br>
   <p>videoData: {{ videoData }}</p>
   <br><br>
@@ -21,6 +28,5 @@
   <p>Success: {{ successTxt }}</p>
   <br><br>
   <p>Error: {{ errorTxt }}</p>
-  <ion-button (click)="AbortUpload()">Cancel Uploading</ion-button>
 
 </ion-content>

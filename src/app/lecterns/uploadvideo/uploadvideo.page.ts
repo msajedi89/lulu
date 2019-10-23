@@ -13,9 +13,11 @@ import { NetworkEngineService } from '../../network-engine.service';
 })
 export class UploadvideoPage implements OnInit {
 
+  videoFileName = '';
   uploadText: any;
-  downloadText: any;
   fileTransfer: FileTransferObject;
+  isUploading = false;
+  uploadPercent = 0;
 
   errorTxt = '';
   successTxt = '';
@@ -26,7 +28,6 @@ export class UploadvideoPage implements OnInit {
     private camera: Camera, private network: NetworkEngineService) {
 
     this.uploadText = '';
-    this.downloadText = '';
   }
 
   ngOnInit() {
@@ -44,29 +45,53 @@ export class UploadvideoPage implements OnInit {
       this.videoData = uri;
       this.fileTransfer = this.transfer.create();
 
-        let options: FileUploadOptions = {
-          fileKey: 'videofile',
-          fileName: 'video.mov',
-          chunkedMode: false,
-          headers: {}
-        }
+      this.videoFileName = this.createFileName();
 
-        this.uploadText = 'uploading...';
-        this.fileTransfer.upload(uri, this.network.mainUploadVideoAPI, options).then((data) => {
-          this.successTxt = 'transfer done.' + JSON.stringify(data);
-          this.uploadText = '';
-        }, (err) => {
-          this.uploadText = '';
-          this.errorTxt = JSON.stringify(err) + ' ' + 'fileTransfer';
-        })
+      let options: FileUploadOptions = {
+        fileKey: 'videofile',
+        fileName: this.videoFileName,
+        chunkedMode: false,
+        headers: {}
+      }
+
+      this.uploadText = 'uploading...';
+      this.isUploading = true;
+
+      this.fileTransfer.upload(uri, this.network.mainUploadVideoAPI, options).then((data) => {
+        this.successTxt = 'transfer done.' + JSON.stringify(data);
+        this.uploadText = '';
+        this.isUploading = false;
+        this.uploadPercent = 0;
+      }, (err) => {
+        this.uploadText = '';
+        this.isUploading = false;
+        this.uploadPercent = 0;
+        this.errorTxt = JSON.stringify(err) + ' ' + 'fileTransfer';
+      });
+
+      this.fileTransfer.onProgress((progressEvent) => {
+        if(progressEvent.lengthComputable) {
+          this.uploadPercent = Math.round((progressEvent.loaded / progressEvent.total) * 100);
+        } else {
+          this.uploadPercent += 1;
+        }
+      });
     }, (err) => {
       this.errorTxt = JSON.stringify(err) + ' ' + 'camera';
-    })
+    });
   }
 
   AbortUpload() {
     this.fileTransfer.abort();
     this.successTxt = 'Upload cancelled!';
+    this.uploadPercent = 0;
+  }
+
+  // Generate the video name by Datetime of system
+  createFileName() {
+    let d = new Date(), n = d.getTime(), newFileName = n + '.mov';
+
+    return newFileName;
   }
 
 }

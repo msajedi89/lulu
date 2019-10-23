@@ -1,0 +1,73 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Add Question to Video</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div style="margin: 10px; margin-top: 20px; margin-bottom: 20px;">
+    <h4 style="color: #0FADF0;">{{ lecternVideo.Name }}</h4>
+  </div>
+
+  <video controls="controls" preload="metadata" style="margin: 5px;" webkit-playsinline="webkit-playsinline"
+    class="videoPlayer" height="50%" width="100%">
+    <source src="{{ videoSrc }}" />
+  </video>
+
+  <ion-card>
+    <ion-item>
+      <ion-icon name="list-box" slot="start" color="primary"></ion-icon>
+      <ion-label>Questions</ion-label>
+    </ion-item>
+
+    <ion-card-content>
+      <div *ngIf="videoQuestions != null">
+        <div *ngFor="let item of videoQuestions; let i = index">
+          <ion-item>
+            <p style="direction: ltr; text-align: left; font-size: 14px;">{{ i+1 }}) {{ item }}</p>
+          </ion-item>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Add Question</ion-card-title>
+      <ion-item>
+        <p>In this page you can add Question to your choosen video.</p>
+      </ion-item>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-item>
+        <ion-label>Main Title:</ion-label>
+        <ion-input placeholder="Required" [(ngModel)]="mainTitle"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Sub Title:</ion-label>
+        <ion-input [(ngModel)]="subTitle"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Answer:</ion-label>
+        <ion-textarea [(ngModel)]="answer" style="font-size: 14px;"></ion-textarea>
+      </ion-item>
+
+      <p align="center" class="keepButton">
+        <ion-button expand="block" color="success" size="small" (click)="addQuestion(mainTitle,subTitle,answer)">
+          Add Question
+        </ion-button>
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

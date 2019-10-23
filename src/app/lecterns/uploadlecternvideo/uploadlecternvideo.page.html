@@ -11,11 +11,6 @@
 
 <ion-content>
 
-  <video controls="controls" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline"
-    class="videoPlayer" height="200" width="200">
-    <source src="{{ selectedVideo }}" type="video/mov" />
-  </video>
-
   <ion-card>
     <ion-card-header>
       <ion-card-title>Upload Video</ion-card-title>
@@ -26,10 +21,6 @@
 
     <ion-card-content>
 
-      <div class="video-section">
-        <video controls src="{{ selectedVideo }}"></video>
-      </div>
-
       <ion-item>
         <ion-label>Video Name:</ion-label>
         <ion-input placeholder="Required" [(ngModel)]="videoName"></ion-input>
@@ -37,16 +28,8 @@
 
       <ion-item>
         <ion-label>Description:</ion-label>
-        <ion-textarea [(ngModel)]="description"></ion-textarea>
+        <ion-textarea [(ngModel)]="description" style="font-size: 14px;"></ion-textarea>
       </ion-item>
-
-      <p>Whole data: {{ outputVideo }}</p>
-      <p><br>Video FileName: {{ outputFileName }}</p>
-      <p><br>Video FileDIR: {{ outputFileDir }}</p>
-      <p><br>Dir Santisized: {{ outputFileDirSantisized }}</p>
-      <p><br>selectedVideo: {{ selectedVideo }}</p>
-      <p><br>videoFileName: {{ videoFileName }}</p>
-      <p><br>Error is: {{ errorMsgs }}</p>
 
       <ion-item>
         <ion-label>Select Category</ion-label>
@@ -64,8 +47,21 @@
         </ion-buttons>
       </ion-item>
 
+      <ion-item *ngIf="videoFileName">
+        <ion-label>Video filename: {{ videoFileName }}</ion-label>
+        <div *ngIf="isUploading">
+          <ion-label><b>{{ uploadText }}</b></ion-label>
+          <p>
+            <ion-spinner name="bubbles"></ion-spinner>
+          </p>
+          <ion-button fill="clear" (click)="AbortUpload()">
+            <ion-icon name="close-circle" color="danger"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-item>
+
       <ion-item>
-        <ion-label>Go to assign question</ion-label>
+        <ion-label>Go to assign questions</ion-label>
         <ion-toggle color="warning" [(ngModel)]="goToAssignQuestion" size="small"></ion-toggle>
       </ion-item>
 
@@ -76,19 +72,5 @@
       </p>
     </ion-card-content>
   </ion-card>
-
-  <div *ngIf="isUploading">
-    <div class="uploading">
-      <p>
-        <ion-spinner name="bubbles"></ion-spinner>
-      </p>
-      <p>Uploading - {{ uploadPercent }}% Complete</p>
-    </div>
-    <div class="button-options">
-      <button ion-button clear (click)="cancelUpload()">
-        <ion-icon name="close-circle" color="danger"></ion-icon>
-      </button>
-    </div>
-  </div>
 
 </ion-content>

@@ -1,0 +1,67 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div *ngIf="language != ''">
+      <ion-title *ngIf="language == 'english'">Watch Video</ion-title>
+      <ion-title *ngIf="language == 'arabic'">شاهد الفيديو</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="language != ''">
+
+    <div text-center>
+      <video controls="controls" preload="metadata" style="margin: 10px;" webkit-playsinline="webkit-playsinline"
+        class="videoPlayer" height="50%" width="95%">
+        <source src="{{ videoSrc }}" />
+      </video>
+    </div>
+
+    <div style="margin: 10px; margin-bottom: 50px;" *ngIf="language == 'english'">
+      <p style="color: black; font-size: 14; font-weight: bold; margin-bottom: 10px;">{{ lecternVideo.Name }}</p>
+      <p style="color: #626262; font-size: 14; margin-bottom: 2px!important;">Category: {{ lecternVideo.CategoryName }}
+      </p>
+      <p style="color: #626262; font-size: 14; margin-top: 2px!important;">{{ lecternVideo.Description }}</p>
+    </div>
+
+    <div style="direction: rtl; margin: 10px; margin-bottom: 50px;" *ngIf="language == 'arabic'">
+      <p style="color: black; font-size: 14; font-weight: bold; margin-bottom: 10px;">{{ lecternVideo.Name }}</p>
+      <p style="color: #626262; font-size: 14; margin-bottom: 2px!important;">Category: {{ lecternVideo.CategoryName }}
+      </p>
+      <p style="color: #626262; font-size: 14; margin-top: 2px!important;">{{ lecternVideo.Description }}</p>
+    </div>
+
+    <div *ngIf="hasExam">
+      <div text-center *ngIf="language == 'english'" style="margin: 10px;">
+        <p style="color: #626262; font-size: 14px; margin-top: 2px!important;">Save your new knowledge by taking an Exam
+          after watching video.
+        </p>
+        <p align="center" class="keepButton">
+          <ion-button expand="block" color="success" size="small" (click)="takeExam()">
+            Take the Exam
+          </ion-button>
+        </p>
+      </div>
+
+      <div text-center *ngIf="language == 'arabic'" style="margin: 10px;">
+        <p style="color: #626262; font-size: 14px; margin-top: 2px!important;">حاحفظ معلوماتك الجديدة عن طريق إجراء
+          اختبار
+          بعد مشاهدة الفيديو
+        </p>
+        <p align="center" class="keepButton">
+          <ion-button expand="block" color="success" size="small" (click)="takeExam()">
+            خذ الامتحان
+          </ion-button>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

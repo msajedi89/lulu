@@ -11,20 +11,22 @@ export class NetworkEngineService {
 
   // Local Server
   //mainUrl = "http://localhost:88/luluwa/";
-  
+
   mainUploadImgUrl = "http://luluwa.me/images/QuestionImages/";
-  mainUploadImgAPI = "http://luluwa.me/upload.php";
-  mainUploadStudentsDrawingAPI = "http://luluwa.me/uploadStudentDrawing.php";
   mainStudentsDrawingURL = "http://luluwa.me/images/StudentsDrawing/";
-  mainUploadVoiceAPI = "http://luluwa.me/uploadaudio.php";
   mainStudentsProfileImgUrl = "http://luluwa.me/images/StudentsProfileImg/";
-  MainUploadStudentsVoiceAPI = "http://luluwa.me/uploadStudentsVoice.php";
   mainStudentsVoiceUrl = "http://luluwa.me/audios/StudentVoices/";
   mainQuestionVoicesUrl = "http://luluwa.me/audios/QuestionVoice/";
   mainTeacherProfileImgURL = "http://luluwa.me/images/TeacherProfileImg/";
+  mainLecternVideoURL = "http://luluwa.me/lecternVideos/";
+
+  mainUploadVoiceAPI = "http://luluwa.me/uploadaudio.php";
+  MainUploadStudentsVoiceAPI = "http://luluwa.me/uploadStudentsVoice.php";
+  mainUploadStudentsDrawingAPI = "http://luluwa.me/uploadStudentDrawing.php";
   mainUploadStudentProfileImgAPI = "http://luluwa.me/uploadStudentProfileImg.php";
   mainUploadTeacherProfileImgAPI = "http://luluwa.me/uploadTeacherProfileImg.php";
   mainUploadVideoAPI = "http://luluwa.me/uploadVideo.php";
+  mainUploadImgAPI = "http://luluwa.me/upload.php";
 
   constructor(public http: HttpClient) {
     console.log('Hello NetworkEngineProvider Provider');
@@ -1148,6 +1150,93 @@ export class NetworkEngineService {
     let url = this.mainUrl + "getAllActiveLecternCategory.php";
 
     let request = this.http.get(url);
+
+    return request.toPromise();
+  }
+
+  // Insert Lectern Videos
+  insertLecternVideo(videoName, category, videoFileName, description): Promise<any> {
+    const url = this.mainUrl + 'insertLecternVideo.php';
+
+    const param = {
+      videoName: videoName, category: category, videoFileName: videoFileName, description: description
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // get all lectern Categories
+  getLecternVideoCategories(): Promise<any> {
+    let url = this.mainUrl + "getLecternVideoCategories.php";
+
+    let request = this.http.get(url);
+
+    return request.toPromise();
+  }
+
+  // Get all lectern videos of a lectern category
+  getLecternVideoByCategory(category): Promise<any> {
+    const url = this.mainUrl + 'getLecternVideoByCategory.php';
+
+    const param = {
+      category: category
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // Get a lectern video by its VideoID
+  getLecternVideoByVideoID(videoID): Promise<any> {
+    const url = this.mainUrl + 'getLecternVideoByVideoID.php';
+
+    const param = {
+      videoID: videoID
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // Get a lectern video Questions by its VideoID ---- Just the Questions Main title
+  getLecternVideoQuestionsByVideoID(videoID): Promise<any> {
+    const url = this.mainUrl + 'getLecternVideoQuestionsByVideoID.php';
+
+    const param = {
+      videoID: videoID
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // insert a new Question for lectern Video
+  insertQuestionForLecternVideo(videoID, mainTitle, subTitle, answer): Promise<any> {
+    const url = this.mainUrl + 'insertQuestionForLecternVideo.php';
+
+    const param = {
+      videoID: videoID, mainTitle: mainTitle, subTitle: subTitle, answer: answer
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // Get a lectern video Questions by its VideoID ---- All Informations
+  getLecternVideoQuestionsByVideoIDForStudent(videoID): Promise<any> {
+    const url = this.mainUrl + 'getLecternVideoQuestionsByVideoIDForStudent.php';
+
+    const param = {
+      videoID: videoID
+    };
+
+    let request = this.http.post(url, param);
 
     return request.toPromise();
   }

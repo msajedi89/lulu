@@ -61,6 +61,13 @@
       </ion-row>
       <ion-row>
         <ion-col size="4">
+          <ion-card (click)="goToTestYourself()" [style.background-color]="myColor9">
+            <ion-icon name="medal" color="primary" class="larger"></ion-icon>
+            <p *ngIf="language == 'english'">Test Yourself</p>
+            <p *ngIf="language == 'arabic'">اختبر نفسك</p>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
           <ion-card (click)="goToEditProfile()" [style.background-color]="myColor6">
             <ion-icon name="contact" color="primary" class="larger"></ion-icon>
             <p *ngIf="language == 'english'">Edit Profile</p>

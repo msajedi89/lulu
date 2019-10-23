@@ -22,7 +22,11 @@ export class LecternmainpagePage implements OnInit {
   }
 
   goToUploadVideo() {
-    this.router.navigate(['uploadvideo']);
+    this.router.navigate(['uploadlecternvideo']);
+  }
+
+  goToCreateQuestion() {
+    this.router.navigate(['lecterncategories']);
   }
 
 }

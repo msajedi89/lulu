@@ -1,0 +1,106 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div *ngIf="language != ''">
+      <ion-title *ngIf="language == 'english'">Lectern Video Exam</ion-title>
+      <ion-title *ngIf="language == 'arabic'">محاضرة فيديو امتحان</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="language != ''">
+
+    <div *ngIf="language == 'english'">
+      <div *ngFor="let item of videoQuestions; let i = index">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Question #{{ i+1 }}</ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content>
+
+            <ion-item>
+              <p style="font-size: 14px; font-weight: bold;"><span
+                  style="font-size: 16px; color: #0FADF0; font-weight: bold;">Main
+                  Title:</span> {{ item.MainTitle }}</p>
+            </ion-item>
+
+            <ion-item *ngIf="item.SubTitle!=null">
+              <p style="font-size: 14px;"><span style="font-size: 14px; color: #0FADF0; font-weight: bold;"> Sub Title:
+                </span>{{ item.SubTitle }}</p>
+            </ion-item>
+
+            <ion-item>
+              <ion-label style="color: #ffce00; font-weight: bold;">Answer:</ion-label>
+              <ion-textarea style="font-size: 14px;"></ion-textarea>
+            </ion-item>
+
+            <ion-item *ngIf="checkAnswer">
+              <p style="font-size: 14px; color: #6BC357;"> <span style="font-size: 14px; font-weight: bold;">Correct
+                  Answer: </span>{{ item.Answer }}</p>
+            </ion-item>
+
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+      <p align="center" class="keepButton">
+        <ion-button expand="block" color="success" size="small" (click)="checkAnswers()">
+          Check your Answer
+        </ion-button>
+      </p>
+    </div>
+
+
+
+    <div *ngIf="language == 'arabic'" style="direction: rtl;">
+      <div *ngFor="let item of videoQuestions; let i = index">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>سؤال #{{ i+1 }}</ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content>
+
+            <ion-item>
+              <p style="font-size: 14px; font-weight: bold;"><span
+                  style="font-size: 16px; color: #0FADF0; font-weight: bold;">العنوان الرئيسي:</span>
+                {{ item.MainTitle }}</p>
+            </ion-item>
+
+            <ion-item *ngIf="item.SubTitle!=null">
+              <p style="font-size: 14px;"><span style="font-size: 14px; color: #0FADF0; font-weight: bold;"> العنوان
+                  الفرعي:
+                </span>{{ item.SubTitle }}</p>
+            </ion-item>
+
+            <ion-item>
+              <ion-label style="color: #ffce00; font-weight: bold;">جواب:</ion-label>
+              <ion-textarea style="font-size: 14px;"></ion-textarea>
+            </ion-item>
+
+            <ion-item *ngIf="checkAnswer">
+              <p style="font-size: 14px; color: #6BC357;"> <span style="font-size: 14px; font-weight: bold;">اجابة
+                  صحيحة: </span>{{ item.Answer }}</p>
+            </ion-item>
+
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+      <p align="center" class="keepButton">
+        <ion-button expand="block" color="success" size="small" (click)="checkAnswers()">
+          تحقق من إجابتك
+        </ion-button>
+      </p>
+    </div>
+
+  </div>
+
+</ion-content>
