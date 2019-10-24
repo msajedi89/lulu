@@ -76,6 +76,12 @@
       </ion-row>
       <ion-row>
         <ion-col size="4">
+          <ion-card (click)="goToManageParents()" [style.background-color]="myColor12">
+            <ion-icon name="people" color="primary" class="larger"></ion-icon>
+            <p>Manage Parents</p>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
           <ion-card (click)="goToReports()" [style.background-color]="myColor10">
             <ion-icon name="list-box" color="primary" class="larger"></ion-icon>
             <p>Reports</p>

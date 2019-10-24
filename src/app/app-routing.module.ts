@@ -23,7 +23,9 @@ const routes: Routes = [
   { path: 'lecterncategoryvideos', loadChildren: './lecterns/lecterncategoryvideos/lecterncategoryvideos.module#LecterncategoryvideosPageModule' },
   { path: 'addvideoquestions', loadChildren: './lecterns/addvideoquestions/addvideoquestions.module#AddvideoquestionsPageModule' },
   { path: 'studentwatchvideo', loadChildren: './lecterns/studentwatchvideo/studentwatchvideo.module#StudentwatchvideoPageModule' },
-  { path: 'studenttakelecternexam', loadChildren: './lecterns/studenttakelecternexam/studenttakelecternexam.module#StudenttakelecternexamPageModule' }
+  { path: 'studenttakelecternexam', loadChildren: './lecterns/studenttakelecternexam/studenttakelecternexam.module#StudenttakelecternexamPageModule' },
+  { path: 'manageparents', loadChildren: './parents/manageparents/manageparents.module#ManageparentsPageModule' },
+  { path: 'addoreditparent', loadChildren: './parents/addoreditparent/addoreditparent.module#AddoreditparentPageModule' }
 
 ];
 

@@ -99,8 +99,13 @@ export class EditsubtitlePage implements OnInit {
   }
 
   saveChanges(newSubTitle) {
+
+    let subTitleStatus = 0;
+    if (this.stStatus == true) {
+      subTitleStatus = 1;
+    }
     if ((newSubTitle != null) && (this.subTitleOfID != '')) {
-      this.network.addOrEditSubTitle(this.subTID, newSubTitle, this.subTitleOfID, this.stStatus, this.forAddOrEdit).then(result => {
+      this.network.addOrEditSubTitle(this.subTID, newSubTitle, this.subTitleOfID, subTitleStatus, this.forAddOrEdit).then(result => {
         this.presentToast('Your data has been saved..');
         console.log('the result of saving is: ' + JSON.stringify(result));
       }, (err) => {

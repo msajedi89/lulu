@@ -15,7 +15,7 @@ const FORADDOREDIT = 'addoreditstudent';
 export class ManagestudentsPage implements OnInit {
 
   allStudents: any;
-  mySearch: string = "";
+  mySearch = '';
 
   constructor(private router: Router, public platform: Platform, private network: NetworkEngineService, public navCtrl: NavController,
     public storage: Storage) { }

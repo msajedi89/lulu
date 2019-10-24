@@ -31,6 +31,7 @@ export class TeacherdashPage implements OnInit {
   myColor9 = '#fff';
   myColor10 = '#fff';
   myColor11 = '#fff';
+  myColor12 = '#fff';
 
   constructor(private router: Router, public navCtrl: NavController, public storage: Storage, private authService: AuthenticationService,
     private network: NetworkEngineService) {
@@ -154,6 +155,14 @@ export class TeacherdashPage implements OnInit {
       this.myColor11 = '#fff';
     }, 200);
     this.router.navigate(['lecternmainpage']);
+  }
+
+  goToManageParents() {
+    this.myColor12 = '#0fadf0';
+    setInterval(() => {
+      this.myColor12 = '#fff';
+    }, 200);
+    this.router.navigate(['manageparents']);
   }
 
 }

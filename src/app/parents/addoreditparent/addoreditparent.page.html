@@ -1,0 +1,59 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Add/Edit Parent</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div>
+    <ion-card>
+      <ion-card-content>
+
+        <ion-item>
+          <ion-label>Name & Family:</ion-label>
+          <ion-input placeholder="Required" [(ngModel)]="nameFamily" value="{{ parent.Name }}"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Username:</ion-label>
+          <ion-input placeholder="Required" [(ngModel)]="username" value="{{ parent.Username }}"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Password:</ion-label>
+          <ion-input placeholder="Required" [(ngModel)]="password" value="{{ parent.Pass }}"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Address:</ion-label>
+          <ion-textarea [(ngModel)]="address" value="{{ parent.Address }}"></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Phone No:</ion-label>
+          <ion-input [(ngModel)]="phone" value="{{ parent.Mobile }}"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Status</ion-label>
+          <ion-toggle color="warning" [(ngModel)]="parentStatus" size="small"></ion-toggle>
+        </ion-item>
+
+        <p align="center" class="keepButton">
+          <ion-button expand="block" color="success" size="small"
+            (click)="saveChanges(nameFamily, username, password, address, phone)" slot="end">Save Changes
+          </ion-button>
+        </p>
+
+        <span class="loginMsgs">{{ responseTxt }}</span>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>

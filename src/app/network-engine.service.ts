@@ -983,7 +983,7 @@ export class NetworkEngineService {
     return request.toPromise();
   }
 
-  // get all Parents
+  // get all Active Parents
   getAllParents(): Promise<any> {
     let url = this.mainUrl + "getAllParents.php";
 
@@ -1234,6 +1234,41 @@ export class NetworkEngineService {
 
     const param = {
       videoID: videoID
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // get all Parents for managing
+  getAllParentsForManaging(): Promise<any> {
+    let url = this.mainUrl + 'getAllParentsForManaging.php';
+
+    let request = this.http.get(url);
+
+    return request.toPromise();
+  }
+
+  // filter all Parents
+  filterParentsForManaging(mySearch): Promise<any> {
+    const url = this.mainUrl + 'filterParentsForManaging.php';
+
+    const param = {
+      mySearch: mySearch
+    };
+
+    let request = this.http.post(url, param);
+
+    return request.toPromise();
+  }
+
+  // get Parent by his ParentID
+  getParentByParentID(parentID): Promise<any> {
+    const url = this.mainUrl + 'getParentByParentID.php';
+
+    const param = {
+      parentID: parentID
     };
 
     let request = this.http.post(url, param);

@@ -1,0 +1,45 @@
+<ion-header text-center>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Manage Parents</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="bg">
+    <ion-toolbar>
+      <ion-searchbar placeholder="Search Parent" [(ngModel)]="mySearch" [showCancelButton]="shouldShowCancel"
+        (ionChange)="updateParents($event)" debounce="1000"></ion-searchbar>
+    </ion-toolbar>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Parent List</ion-card-title>
+        <ion-item>
+          <p>Click on the Parent to Edit or Disable.</p>
+        </ion-item>
+        <p align="center">
+          <ion-button expand="block" color="success" size="small" (click)="goToAddParent()" slot="end">ADD PARENT
+          </ion-button>
+        </p>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div *ngFor="let parent of allParents; let i = index">
+          <div class="keepMainTitles">
+            <ion-item (click)="showParentDetails(parent.ParentID)">
+              <p>#{{ i+1 }}) {{ parent.Name }} (ID: {{parent.ParentID}})<span *ngIf="parent.Status == true"
+                  class="dot"></span><span *ngIf="parent.Status == false" class="dotError"></span></p>
+            </ion-item>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>

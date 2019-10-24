@@ -262,6 +262,11 @@ export class EdituserPage implements OnInit {
 
   saveChanges(nameFamily, username, password, address, birthdate) {
 
+    let stStatus = 0;
+    if (this.studentStatus == true) {
+      stStatus = 1;
+    }
+
     if (address == null) { address = ''; }
     if (birthdate == null) { birthdate = '1991-05-08'; }
 
@@ -278,7 +283,8 @@ export class EdituserPage implements OnInit {
 
       if (this.forAddOrEdit == 'edit') {
         // Do not Check the Duplication of username in Edit mode
-        this.network.addOrEditStudent(this.stId, nameFamily, this.studentUsername, password, address, birthdate, this.studentStatus, imageName, this.forAddOrEdit, this.parentID).then(result => {
+        // tslint:disable-next-line: max-line-length
+        this.network.addOrEditStudent(this.stId, nameFamily, this.studentUsername, password, address, birthdate, stStatus, imageName, this.forAddOrEdit, this.parentID).then(result => {
           this.presentToast('Your data has been saved..');
           console.log('the result of saving is: ' + JSON.stringify(result));
         }, (err) => {
@@ -294,15 +300,11 @@ export class EdituserPage implements OnInit {
           // check the Dublication of username
           if (this.studentDuplication == '0') {
 
-            if(this.studentStatus === false) {
-              this.studentStatus = false;
-            } else {
-              this.studentStatus = true;
-            }
-            if(this.parentID == '') {
+            if (this.parentID == '') {
               this.parentID = '5';
             }
-            this.network.addOrEditStudent(this.stId, nameFamily, username, password, address, birthdate, this.studentStatus, imageName, this.forAddOrEdit, this.parentID).then(result => {
+            // tslint:disable-next-line: max-line-length
+            this.network.addOrEditStudent(this.stId, nameFamily, username, password, address, birthdate, stStatus, imageName, this.forAddOrEdit, this.parentID).then(result => {
               this.presentToast('Your data has been saved..');
               console.log('the result of saving is: ' + JSON.stringify(result));
             }, (err) => {

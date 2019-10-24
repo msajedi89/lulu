@@ -70,9 +70,14 @@ export class EditmaintitlePage implements OnInit {
   }
 
   saveChanges(newMainTitle) {
+
+    let mainTitleStatus = 0;
+    if (this.mtStatus == true) {
+      mainTitleStatus = 1;
+    }
     console.log('the mtStatus is: ' + this.mtStatus);
     if (newMainTitle != null) {
-      this.network.addOrEditMainTitle(this.mtID, newMainTitle, this.mtStatus, this.forAddOrEdit).then(result => {
+      this.network.addOrEditMainTitle(this.mtID, newMainTitle, mainTitleStatus, this.forAddOrEdit).then(result => {
         this.presentToast('Your data has been saved..');
         console.log('the result of saving is: ' + JSON.stringify(result));
       }, (err) => {
