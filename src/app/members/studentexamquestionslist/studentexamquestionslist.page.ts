@@ -88,6 +88,7 @@ export class StudentexamquestionslistPage implements OnInit {
   goToQuestion(position, questionType, qID) {
     this.questions[position] = '';
     console.log('the new questions: ' + JSON.stringify(this.questions));
+
     this.storage.set(this.stExamID, this.questions).then(result => {
       console.log('the storage has been updated. the new Data: ' + result);
 

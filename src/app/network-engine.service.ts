@@ -10,7 +10,7 @@ export class NetworkEngineService {
   mainUrl = "http://luluwa.me/";
 
   // Local Server
-  //mainUrl = "http://localhost:88/luluwa/";
+  // mainUrl = "http://localhost:88/luluwa/";
 
   mainUploadImgUrl = "http://luluwa.me/images/QuestionImages/";
   mainStudentsDrawingURL = "http://luluwa.me/images/StudentsDrawing/";
@@ -194,10 +194,9 @@ export class NetworkEngineService {
 
   // the method for inserting Exam
   insertExam(name, subject, examDate, qListIDs, stListIDs): Promise<any> {
+    const url = this.mainUrl + 'insertExam.php';
 
-    let url = this.mainUrl + "insertExam.php";
-
-    let param = {
+    const param = {
       name: name, subject: subject, examDate: examDate, qListIDs: qListIDs, stListIDs: stListIDs
     };
 

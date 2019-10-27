@@ -26,6 +26,7 @@ export class HomePage {
 
   language = 'english';
 
+
   constructor(public navCtrl: NavController, public network: NetworkEngineService, private storage: Storage,
     private authService: AuthenticationService, private router: Router, public plt: Platform) {
 
@@ -82,7 +83,7 @@ export class HomePage {
                 this.router.navigate(['members', 'teacherdash']);
               });
             });
-            
+
           } else if (this.whoIs == 'student') {
             console.log('the StudentID is: ' + this.user.stID);
             this.storage.set(USERID, this.user.stID).then(() => {
@@ -91,7 +92,7 @@ export class HomePage {
                 this.router.navigate(['members', 'dashboard']);
               });
             });
-            
+
           } else if (this.whoIs == 'parent') {
             console.log('the ParentID is: ' + this.user.ParentID);
             this.storage.set(PARENT, this.user).then(() => {
@@ -100,14 +101,22 @@ export class HomePage {
                 this.router.navigate(['parentdash']);
               });
             });
-            
+
           }
           //this.authService.login(username, this.whoIs);
         } else {
-          this.responseTxt = 'The Password is Incorrect';
+          if (this.language == 'english') {
+            this.responseTxt = 'The Password is Incorrect';
+          } else {
+            this.responseTxt = 'كلمة السر غير صحيحة';
+          }
         }
       } else {
-        this.responseTxt = 'The Username is Incorrect';
+        if (this.language == 'english') {
+          this.responseTxt = 'The Username is Incorrect';
+        } else {
+          this.responseTxt = 'اسم المستخدم غير صحيح';
+        }
       }
     });
   }

@@ -268,7 +268,6 @@ export class EdituserPage implements OnInit {
     }
 
     if (address == null) { address = ''; }
-    if (birthdate == null) { birthdate = '1991-05-08'; }
 
     let imageName;
 
@@ -279,12 +278,38 @@ export class EdituserPage implements OnInit {
       imageName = this.studentImg;
     }
 
+    let dateFormat: Date = new Date();
+    if (this.forAddOrEdit == 'edit') {
+      if (birthdate == null) {
+        dateFormat = this.student.Birthdate;
+      } else {
+        // format the birthdate
+        console.log('the birthdate: ' + birthdate);
+        dateFormat = birthdate.split('T')[0];
+        console.log('the dateFormat: ' + dateFormat);
+      }
+    } else {
+      if (birthdate == null) {
+        let tempDate: any = '2019-10-26';
+        console.log('the tempDate: ' + tempDate);
+        dateFormat = tempDate;
+        console.log('the dateFormat: ' + dateFormat);
+      } else {
+        // format the birthdate
+        console.log('the birthdate: ' + birthdate);
+        dateFormat = birthdate.split('T')[0];
+        console.log('the dateFormat: ' + dateFormat);
+      }
+    }
+
+    // tslint:disable-next-line: max-line-length
     if ((nameFamily != null) && (nameFamily != '') && (username != null) && (username != '') && (password != null) && (password != '')) {
 
       if (this.forAddOrEdit == 'edit') {
+
         // Do not Check the Duplication of username in Edit mode
         // tslint:disable-next-line: max-line-length
-        this.network.addOrEditStudent(this.stId, nameFamily, this.studentUsername, password, address, birthdate, stStatus, imageName, this.forAddOrEdit, this.parentID).then(result => {
+        this.network.addOrEditStudent(this.stId, nameFamily, this.studentUsername, password, address, dateFormat, stStatus, imageName, this.forAddOrEdit, this.parentID).then(result => {
           this.presentToast('Your data has been saved..');
           console.log('the result of saving is: ' + JSON.stringify(result));
         }, (err) => {
@@ -304,7 +329,7 @@ export class EdituserPage implements OnInit {
               this.parentID = '5';
             }
             // tslint:disable-next-line: max-line-length
-            this.network.addOrEditStudent(this.stId, nameFamily, username, password, address, birthdate, stStatus, imageName, this.forAddOrEdit, this.parentID).then(result => {
+            this.network.addOrEditStudent(this.stId, nameFamily, username, password, address, dateFormat, stStatus, imageName, this.forAddOrEdit, this.parentID).then(result => {
               this.presentToast('Your data has been saved..');
               console.log('the result of saving is: ' + JSON.stringify(result));
             }, (err) => {

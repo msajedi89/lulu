@@ -14,48 +14,67 @@
           <div class="inputs">
             <ion-item>
               <ion-icon name="person" color="medium" class="icons" slot="start"></ion-icon>
-              <ion-input [(ngModel)]="username" placeholder="Username" type="text"></ion-input>
+              <ion-input *ngIf="language=='english'" [(ngModel)]="username" placeholder="Username" type="text">
+              </ion-input>
+              <ion-input *ngIf="language=='arabic'" [(ngModel)]="username" placeholder="اسم المستخدم" type="text">
+              </ion-input>
             </ion-item>
             <ion-item class="pass">
               <ion-icon name="lock" color="medium" class="icons" slot="start"></ion-icon>
-              <ion-input type="password" [(ngModel)]="pass" placeholder="Password"></ion-input>
+              <ion-input *ngIf="language=='english'" type="password" [(ngModel)]="pass" placeholder="Password">
+              </ion-input>
+              <ion-input *ngIf="language=='arabic'" type="password" [(ngModel)]="pass" placeholder="كلمه السر">
+              </ion-input>
             </ion-item>
 
             <p style="margin: 10px; margin-top:30px; margin-bottom: 15px; font-size: 14px;">
               <ion-segment value="student">
                 <ion-segment-button value="student" (ionSelect)="segmentChangedtoStudent($event)">
-                  <ion-label>Student</ion-label>
+                  <ion-label *ngIf="language=='english'">Student</ion-label>
+                  <ion-label *ngIf="language=='arabic'">طالب</ion-label>
                 </ion-segment-button>
                 <ion-segment-button value="parent" (ionSelect)="segmentChangedtoParent($event)">
-                  <ion-label>Parent</ion-label>
+                  <ion-label *ngIf="language=='english'">Parent</ion-label>
+                  <ion-label *ngIf="language=='arabic'">الأبوين</ion-label>
                 </ion-segment-button>
                 <ion-segment-button value="teacher" (ionSelect)="segmentChangedtoTeacher($event)">
-                  <ion-label>Teacher</ion-label>
+                  <ion-label *ngIf="language=='english'">Teacher</ion-label>
+                  <ion-label *ngIf="language=='arabic'">مدرس</ion-label>
                 </ion-segment-button>
               </ion-segment>
             </p>
 
             <p align="center">
-              <ion-button expand="block" color="primary" (click)="login(username, pass)" size="small">
+              <ion-button *ngIf="language=='english'" expand="block" color="primary" (click)="login(username, pass)"
+                size="small">
                 LOG IN
+              </ion-button>
+              <ion-button *ngIf="language=='arabic'" expand="block" color="primary" (click)="login(username, pass)"
+                size="small">
+                تسجيل الدخول
               </ion-button>
             </p>
 
-            <p class="register">
+            <p class="register" *ngIf="language=='english'">
               You don't have account, <b><a routerLink="/register">Register Now</a></b>
+            </p>
+            <p class="register" *ngIf="language=='arabic'">
+              ليس لديك حساب ، <b><a routerLink="/register">سجل الان</a></b>
             </p>
 
             <p style="margin-top:15px;">
               <ion-segment value="english">
                 <ion-segment-button value="english" (ionSelect)="segment1ButtonClicked($event)">
-                  <ion-label>English</ion-label>
+                  <ion-label *ngIf="language=='english'">English</ion-label>
+                  <ion-label *ngIf="language=='arabic'">الإنجليزية</ion-label>
                 </ion-segment-button>
                 <ion-segment-button value="arabic" (ionSelect)="segment2ButtonClicked($event)">
-                  <ion-label>Arabic</ion-label>
+                  <ion-label *ngIf="language=='english'">Arabic</ion-label>
+                  <ion-label *ngIf="language=='arabic'">عربى</ion-label>
                 </ion-segment-button>
               </ion-segment>
             </p>
-            
+
             <span class="loginMsgs">{{ responseTxt }}</span>
           </div>
 

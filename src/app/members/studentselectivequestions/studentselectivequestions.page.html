@@ -1,12 +1,12 @@
 <ion-header>
-    <ion-toolbar color="primary">
-      <span slot="start" (click)="goBack()" style="margin-left:10px;">Back</span>
-  
-      <ion-title>Selection</ion-title>
-  
-      <span (click)="goNext()" color="medium" slot="end" style="margin-right:10px;">Next</span>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar color="primary">
+    <span slot="start" (click)="goBack()" style="margin-left:10px;">Back</span>
+
+    <ion-title>Selection</ion-title>
+
+    <span (click)="goNext()" color="medium" slot="end" style="margin-right:10px;">Next</span>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content class="bg">
 
@@ -172,3 +172,9 @@
   </ion-grid>
 
 </ion-content>
+
+<ion-footer text-center style="background-color: wheat;">
+  <ion-toolbar>
+    <ion-title style="color: #0FADF0;">{{ c }}</ion-title>
+  </ion-toolbar>
+</ion-footer>

@@ -50,6 +50,12 @@ export class StudentdescriptivequestionPage implements OnInit {
   descriptionEn: any = '';
   descriptionAr: any = '';
 
+  // max time variables
+  maxTime: any;
+  c = 0;
+  t: any;
+  timer_is_on = 0;
+
   // tslint:disable-next-line: max-line-length
   constructor(private router: Router, public platform: Platform, private network: NetworkEngineService, public popoverCtrl: PopoverController,
     public navCtrl: NavController, public storage: Storage, private transfer: FileTransfer, private media: Media, private file: File) { }
@@ -120,9 +126,28 @@ export class StudentdescriptivequestionPage implements OnInit {
           // get the descriptions for pop up
           this.descriptionEn = this.question.Description;
           this.descriptionAr = this.question.DescriptionAr;
+
+          // get the Max time
+          this.maxTime = this.question.MaxTime;
+          this.c = parseInt(this.maxTime);
+          console.log('the maxTime is: ' + this.maxTime);
+          console.log('the c is: ' + this.c);
+          this.timedCount();
         });
       });
     });
+  }
+
+  // Timer
+  timedCount() {
+    if (this.c > 0) {
+      let hideFooterTimeout = setTimeout(() => {
+        this.c = this.c - 1;
+        this.timedCount();
+      }, 1000);
+    } else {
+      this.goBack();
+    }
   }
 
   // play the Question Voice

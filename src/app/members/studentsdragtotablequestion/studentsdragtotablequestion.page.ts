@@ -59,6 +59,12 @@ export class StudentsdragtotablequestionPage implements OnInit {
   descriptionEn: any = '';
   descriptionAr: any = '';
 
+  // max time variables
+  maxTime: any;
+  c = 0;
+  t: any;
+  timer_is_on = 0;
+
   constructor(private router: Router, public platform: Platform, private network: NetworkEngineService, public navCtrl: NavController,
     public storage: Storage, private dragulaService: DragulaService, public popoverCtrl: PopoverController) {
 
@@ -126,6 +132,13 @@ export class StudentsdragtotablequestionPage implements OnInit {
         this.questionVoice = new Audio();
         this.questionVoice.src = this.network.mainQuestionVoicesUrl + this.question.VoiceEn;
         this.questionVoice.load();
+
+        // get the Max time
+        this.maxTime = this.question.MaxTime;
+        this.c = parseInt(this.maxTime);
+        console.log('the maxTime is: ' + this.maxTime);
+        console.log('the c is: ' + this.c);
+        this.timedCount();
       });
 
       // ************* get the question's Answer **************
@@ -182,6 +195,18 @@ export class StudentsdragtotablequestionPage implements OnInit {
       });
     });
 
+  }
+
+  // Timer
+  timedCount() {
+    if (this.c > 0) {
+      let hideFooterTimeout = setTimeout(() => {
+        this.c = this.c - 1;
+        this.timedCount();
+      }, 1000);
+    } else {
+      this.goBack();
+    }
   }
 
   // play the Question Voice

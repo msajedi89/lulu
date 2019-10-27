@@ -57,6 +57,7 @@ export class TeacherdashPage implements OnInit {
         }
       });
     });
+
   }
 
   logout() {

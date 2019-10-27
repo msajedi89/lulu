@@ -53,6 +53,12 @@ export class StudentdrawingquestionPage implements OnInit {
   descriptionEn: any = '';
   descriptionAr: any = '';
 
+  // max time variables
+  maxTime: any;
+  c = 0;
+  t: any;
+  timer_is_on = 0;
+
   constructor(private router: Router, public platform: Platform, public renderer: Renderer, private network: NetworkEngineService,
     public navCtrl: NavController, public storage: Storage, private transfer: FileTransfer, private camera: Camera,
     public popoverCtrl: PopoverController) {
@@ -132,6 +138,13 @@ export class StudentdrawingquestionPage implements OnInit {
         // get the descriptions for pop up
         this.descriptionEn = this.question.Description;
         this.descriptionAr = this.question.DescriptionAr;
+
+        // get the Max time
+        this.maxTime = this.question.MaxTime;
+        this.c = parseInt(this.maxTime);
+        console.log('the maxTime is: ' + this.maxTime);
+        console.log('the c is: ' + this.c);
+        this.timedCount();
       });
     });
 
@@ -139,6 +152,18 @@ export class StudentdrawingquestionPage implements OnInit {
     // this.platform.height() + ''
     this.renderer.setElementAttribute(this.canvasElement, 'width', this.platform.width() + '');
     this.renderer.setElementAttribute(this.canvasElement, 'height', 200 + '');
+  }
+
+  // Timer
+  timedCount() {
+    if (this.c > 0) {
+      let hideFooterTimeout = setTimeout(() => {
+        this.c = this.c - 1;
+        this.timedCount();
+      }, 1000);
+    } else {
+      this.goBack();
+    }
   }
 
   // play the Question Voice

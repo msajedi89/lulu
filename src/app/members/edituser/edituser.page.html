@@ -69,12 +69,12 @@
 
         <ion-item *ngIf="language == 'english'">
           <ion-label>Birthdate:</ion-label>
-          <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY" [(ngModel)]="birthdate"></ion-datetime>
+          <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMM YYYY" max="2040" min="1991" [(ngModel)]="birthdate"></ion-datetime>
           <p>{{ student.Birthdate }}</p>
         </ion-item>
         <ion-item *ngIf="language == 'arabic'" style="direction: rtl;">
           <ion-label>تاريخ الولادة :</ion-label>
-          <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY" [(ngModel)]="birthdate"></ion-datetime>
+          <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMM YYYY" max="2040" min="1991" [(ngModel)]="birthdate"></ion-datetime>
           <p>{{ student.Birthdate }}</p>
         </ion-item>
 

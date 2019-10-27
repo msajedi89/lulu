@@ -85,8 +85,13 @@ export class HomeworkslistPage implements OnInit {
 
     if ((name != null) && (homeworks != null) && (this.myStudentIDs != "") && (homeworkDate != null)) {
 
+      // format the homeworkDate
+      console.log('the homeworkDate: ' + homeworkDate);
+      const dateFormat = homeworkDate.split('T')[0];
+      console.log('the dateFormat: ' + dateFormat);
+
       // insert homework in table for selected Student
-      this.network.insertHomeworksList(name, homeworks, homeworkDate, this.myStudentIDs).then(resultData => {
+      this.network.insertHomeworksList(name, homeworks, dateFormat, this.myStudentIDs).then(resultData => {
         this.myStudentIDs = '';
         console.log('The result of inserting homework is: ' + resultData);
         this.presentToast('A new Homework has been inserted for selected Student.');

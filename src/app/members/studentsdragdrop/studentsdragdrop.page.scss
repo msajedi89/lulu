@@ -49,7 +49,7 @@ ion-card {
 }
 
 .q4 {
-    padding-top: 50px; 
+    padding-top: 20px; 
 }
 
 .q1 {
@@ -70,21 +70,25 @@ ion-card {
     
     ion-col{
         --ion-grid-column-padding: 0px;
-        //min-height: 150px;
+        min-height: 100px;
+        //border: 1px solid yellow;
     }
 
     .list{
+        border: 3px solid red;
         padding:2px;
         height: 100%;
         width: 100%;
     }
 
     div {
-        margin-bottom: 2px;
+        //border: 1px solid blue;
+        margin-bottom: 0px;
         text-align: left;
     }
 
     .elements {
+        //border: 1px solid black;
         margin: 0px !important;
         padding: 0px !important;
         background: #fff;
@@ -104,6 +108,8 @@ ion-card {
     height: 100px;
     text-align: center;
     border-radius: 10px;
+    margin-bottom: 0px!important;
+    padding-bottom: 0px!important;
 
     img {
         border-radius: 10px;

@@ -117,7 +117,13 @@ export class MakinghomeworkPage implements OnInit {
 
     if ((name != null) && (subject != null) && (this.myQuestionIDs != "") && (homeworkDate != null)) {
       let myHomeworkID;
-      this.network.insertHomework(name, subject, homeworkDate, this.myQuestionIDs, this.myStudentIDs).then(data => {
+
+      // format the homeworkDate
+      console.log('the homeworkDate: ' + homeworkDate);
+      const dateFormat = homeworkDate.split('T')[0];
+      console.log('the dateFormat: ' + dateFormat);
+
+      this.network.insertHomework(name, subject, dateFormat, this.myQuestionIDs, this.myStudentIDs).then(data => {
         myHomeworkID = this.showData(data);
         console.log("The inserted exercise ID is: " + myHomeworkID);
         this.presentToast("A new exercise with ID: " + myHomeworkID + " has been inserted.");

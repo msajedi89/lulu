@@ -1,12 +1,12 @@
 <ion-header>
-    <ion-toolbar color="primary">
-      <span slot="start" (click)="goBack()" style="margin-left:10px;">Back</span>
-  
-      <ion-title>Drag To Table</ion-title>
-  
-      <span (click)="goNext()" color="medium" slot="end" style="margin-right:10px;">Next</span>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar color="primary">
+    <span slot="start" (click)="goBack()" style="margin-left:10px;">Back</span>
+
+    <ion-title>Drag To Table</ion-title>
+
+    <span (click)="goNext()" color="medium" slot="end" style="margin-right:10px;">Next</span>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content forceOverscroll="false" class="bg">
 
@@ -44,21 +44,24 @@
     <ion-row no-padding class="matrixTexts">
 
       <ion-col size="4" class="q1">
-        <ion-list dragula="bag" [(dragulaModel)]="q1" lines="none">
+        <ion-list dragula="bag" [(dragulaModel)]="q1" lines="none"
+          style="min-height: 80px; margin-bottom: 0px;">
           <div *ngFor="let item of q1" class="texts">
             <p>{{ item.value }}</p>
           </div>
         </ion-list>
       </ion-col>
       <ion-col size="4" class="q1">
-        <ion-list dragula="bag" [(dragulaModel)]="q2" lines="none">
+        <ion-list dragula="bag" [(dragulaModel)]="q2" lines="none"
+          style="min-height: 80px; margin-bottom: 0px;">
           <div *ngFor="let item of q2" class="texts">
             <p>{{ item.value }}</p>
           </div>
         </ion-list>
       </ion-col>
       <ion-col size="4" class="q1">
-        <ion-list dragula="bag" [(dragulaModel)]="q3" lines="none">
+        <ion-list dragula="bag" [(dragulaModel)]="q3" lines="none"
+          style="min-height: 80px; margin-bottom: 0px;">
           <div *ngFor="let item of q3" class="texts">
             <p>{{ item.value }}</p>
           </div>
@@ -74,7 +77,8 @@
           <p class="englishTitle">{{ answer.TblOneEn }}</p>
           <p class="arabicTitle">( {{ answer.TblOneAz }} ) {{ answer.TblOneAr }}</p>
         </div>
-        <ion-list dragula="bag" [(dragulaModel)]="q4" lines="none">
+        <ion-list dragula="bag" [(dragulaModel)]="q4" lines="none"
+          style="border: 1px solid wheat; min-height: 100px; margin-bottom: 0px; margin-top: 7px;">
           <div *ngFor="let item of q4" class="texts">
             <p>{{ item.value }}</p>
           </div>
@@ -86,7 +90,8 @@
           <p class="englishTitle">{{ answer.TblTwoEn }}</p>
           <p class="arabicTitle">( {{ answer.TblTwoAz }} ) {{ answer.TblTwoAR }}</p>
         </div>
-        <ion-list dragula="bag" [(dragulaModel)]="q5" lines="none">
+        <ion-list dragula="bag" [(dragulaModel)]="q5" lines="none"
+          style="border: 1px solid wheat; min-height: 100px; margin-bottom: 0px; margin-top: 7px;">
           <div *ngFor="let item of q5" class="texts">
             <p>{{ item.value }}</p>
           </div>
@@ -98,3 +103,9 @@
   </ion-grid>
 
 </ion-content>
+
+<ion-footer text-center style="background-color: wheat;">
+  <ion-toolbar>
+    <ion-title style="color: #0FADF0;">{{ c }}</ion-title>
+  </ion-toolbar>
+</ion-footer>

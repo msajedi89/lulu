@@ -118,16 +118,24 @@ export class MakingexamPage implements OnInit {
 
     if ((name != null) && (subject != null) && (this.myQuestionIDs != "") && (examDate != null)) {
       let myExamID;
-      this.network.insertExam(name, subject, examDate, this.myQuestionIDs, this.myStudentIDs).then(data => {
-        myExamID = this.showData(data);
-        console.log("The inserted Exam ID is: " + myExamID);
-        this.presentToast("A new Exam with ID: " + myExamID + " has been inserted.");
 
-        // insert an Exam record for Chosen students
+      // format the exam date
+      console.log('the exam date: ' + examDate);
+      const dateFormat = examDate.split('T')[0];
+      console.log('the dateFormat: ' + dateFormat);
+
+      // ************* insert Exam ***********
+      this.network.insertExam(name, subject, dateFormat, this.myQuestionIDs, this.myStudentIDs).then(data => {
+        console.log('the inserting Result is: ' + JSON.stringify(data));
+        myExamID = this.showData(data);
+        console.log('The inserted Exam ID is: ' + myExamID);
+        this.presentToast('A new Exam with ID: ' + myExamID + ' has been inserted.');
+
+        // ******** insert an Exam record for Chosen students *******
         for (let i = 0; i < this.studentIDs.length; i++) {
           let stID = this.studentIDs[i];
           this.network.insertStudentExam(myExamID, stID).then(data => {
-            console.log("I received: " + JSON.stringify(data));
+            console.log('I received: ' + JSON.stringify(data));
           }, (err) => {
             console.log(err);
             alert(err);
@@ -137,7 +145,7 @@ export class MakingexamPage implements OnInit {
         alert(err);
       });
     } else {
-      alert("Please fill the Required fields");
+      alert('Please fill the Required fields');
     }
   }
 

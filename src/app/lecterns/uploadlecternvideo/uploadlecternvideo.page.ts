@@ -27,7 +27,7 @@ export class UploadlecternvideoPage implements OnInit {
   goToAssignQuestion = 1;
 
   // required variables for Video
-  videoFileName = '1571724129762.mov';
+  videoFileName = '';
   uploadText: any;
   fileTransfer: FileTransferObject;
   isUploading = false;
@@ -144,7 +144,7 @@ export class UploadlecternvideoPage implements OnInit {
 
   // Generate the video name by Datetime of system
   createFileName() {
-    let d = new Date(), n = d.getTime(), newFileName = n + '.mov';
+    let d = new Date(), n = d.getTime(), newFileName = n + '.mp4';
 
     return newFileName;
   }
