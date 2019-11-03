@@ -10,7 +10,7 @@ export class NetworkEngineService {
   mainUrl = "http://luluwa.me/";
 
   // Local Server
-  // mainUrl = "http://localhost:88/luluwa/";
+  //mainUrl = "http://localhost:88/luluwa/";
 
   mainUploadImgUrl = "http://luluwa.me/images/QuestionImages/";
   mainStudentsDrawingURL = "http://luluwa.me/images/StudentsDrawing/";

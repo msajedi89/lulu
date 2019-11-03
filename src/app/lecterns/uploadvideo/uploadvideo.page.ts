@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
-import { FileChooser } from '@ionic-native/file-chooser/ngx';
-import { FilePath } from '@ionic-native/file-path/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
 import { NetworkEngineService } from '../../network-engine.service';
@@ -24,7 +22,7 @@ export class UploadvideoPage implements OnInit {
   videoData: any;
   nativevideoData: any;
 
-  constructor(private transfer: FileTransfer, private file: File, private filePath: FilePath, private fileChooser: FileChooser,
+  constructor(private transfer: FileTransfer, private file: File,
     private camera: Camera, private network: NetworkEngineService) {
 
     this.uploadText = '';

@@ -89,6 +89,7 @@ export class StudentexamquestionslistPage implements OnInit {
     this.questions[position] = '';
     console.log('the new questions: ' + JSON.stringify(this.questions));
 
+    // ******** Release Phase *********
     this.storage.set(this.stExamID, this.questions).then(result => {
       console.log('the storage has been updated. the new Data: ' + result);
 
@@ -121,6 +122,40 @@ export class StudentexamquestionslistPage implements OnInit {
         });
       });
     });
+
+
+
+    // ******* Test Phase ********
+    /*
+    console.log('the questionType is: ' + questionType);
+    this.storage.set(QUESTIONID, qID).then(() => {
+      this.storage.set(ROOT, 'exam').then(() => {
+        switch (questionType) {
+          case '1':
+            this.router.navigate(['members', 'studentsdragdrop']);
+            break;
+          case '2':
+            this.router.navigate(['members', 'studentselectivequestions']);
+            break;
+          case '3':
+            this.router.navigate(['members', 'studentsdragtotablequestion']);
+            break;
+          case '4':
+            this.router.navigate(['members', 'studentdescriptivequestion']);
+            break;
+          case '5':
+            this.router.navigate(['members', 'studentdrawingquestion']);
+            break;
+          case '6':
+            this.router.navigate(['members', 'studentrecitequran']);
+            break;
+
+          default:
+            break;
+        }
+      });
+    });
+    */
   }
 
 
